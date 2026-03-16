@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>The Triage Challenge — Case Study — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
+
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
+
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
+
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#case-studies">Case Studies</a></div>
+  <div class="eyebrow">Case Study &nbsp;·&nbsp; DARPA BTO · 2022–2026</div>
+  <h1>The Triage Challenge</h1>
+  <div class="subtitle">Designing a Grand Challenge for a Data-Scarce, Life-Critical Domain</div>
+</div>
+<div class="content-wrap">
+<h1 id="case-study-the-darpa-triage-challenge-designing-a-grand-challenge-for-a-data-scarce-life-critical-domain">Case Study: The DARPA Triage Challenge — Designing a Grand Challenge for a Data-Scarce, Life-Critical Domain</h1>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>The DARPA Triage Challenge (DTC) is a three-year open competition launched in 2022, currently running through Fall 2026, that is attempting to do for mass casualty triage what the Grand Challenge did for autonomous vehicles: force a fragmented field to produce integrated, working systems under real-world conditions, while generating the data infrastructure and human capital network that the field has always lacked.</p>
+<p>It is relevant to the BiTS community for a specific reason: <strong>Commander Jean-Paul Chretien</strong>, one of BiTS's co-directors and a former DARPA Program Manager in the Biological Technologies Office, was the original program manager for RITMO — the foundational data collection initiative that underpins the DTC. The DTC is, in part, his intellectual fingerprint. Understanding its design logic is a direct window into how an experienced ARPA PM thinks about challenge construction in a domain where the usual challenge prerequisites — abundant labeled training data, well-established evaluation protocols, a community of technical talent ready to engage — do not yet exist.</p>
+<hr />
+<h2 id="the-problem-the-challenge-was-designed-to-solve">The Problem the Challenge Was Designed to Solve</h2>
+<h3 id="mass-casualty-incidents-and-the-triage-bottleneck">Mass Casualty Incidents and the Triage Bottleneck</h3>
+<p>In mass casualty incidents (MCIs) — whether military engagements, terrorist attacks, natural disasters, or large-scale accidents — the central bottleneck is not treatment capability. It is identification: figuring out, faster than human assessment can accomplish, which casualties need immediate life-saving intervention and which can wait. The clinical term for this is triage, and it has been performed by human medics using visual assessment and basic vital signs since the Napoleonic Wars.</p>
+<p>The problem with human triage under MCI conditions is well-documented. When the number of casualties exceeds the number of medics, assessments become rapid and error-prone. Critically injured casualties who appear stable can be misclassified. The casualties who appear most distressed are not always the ones whose lives are most immediately at risk. And in military contexts, the first medic on scene may be operating under fire, at night, in environments where physical access to casualties is itself dangerous.</p>
+<p>The field has known this problem existed for decades. Progress had been slow for structural reasons that the DTC was specifically designed to address.</p>
+<h3 id="the-three-structural-barriers">The Three Structural Barriers</h3>
+<p><strong>First: fragmented, low-quality data.</strong> Developing algorithms that can identify the physiological signatures of critical injury requires high-resolution, multimodal sensor data from real trauma patients in field conditions — not clean hospital records. This data is extraordinarily difficult to collect, proprietary to the institutions that hold it, and rarely labeled consistently across collection sites. No team trying to build a triage algorithm could access enough data to validate their approach.</p>
+<p><strong>Second: no evaluation standard.</strong> There was no agreed-upon protocol for testing whether a triage algorithm actually worked in a realistic scenario. Teams published results using incompatible metrics, on incompatible datasets, in incompatible environments. Progress was essentially unmeasurable at the field level.</p>
+<p><strong>Third: disciplinary fragmentation.</strong> The people best positioned to build triage algorithms — roboticists, sensor engineers, machine learning researchers — had little interaction with the clinicians and prehospital care providers who understood the domain. The domain experts had little interaction with the technology developers. Military medical research was largely siloed from academic research. No forcing function existed to bring these communities together around a shared concrete problem.</p>
+<p>The DTC was designed to address all three simultaneously.</p>
+<hr />
+<h2 id="program-architecture">Program Architecture</h2>
+<h3 id="ritmo-building-the-foundation-before-the-competition">RITMO: Building the Foundation Before the Competition</h3>
+<p>The first decision Chretien made was not to launch the competition directly. Before teams could compete on triage algorithms, the field needed the data those algorithms would require. He first designed RITMO — Research Infrastructure for Trauma with Medical Observations — as a pre-competition data collection program.</p>
+<p>RITMO funded teams to instrument real trauma patients across the full care pathway: from field care through helicopter transport, trauma center reception, resuscitation, and stabilization. The sensor suite was comprehensive: continuous non-invasive vital signs, brain and tissue oxygenation, pupillometry, respiratory dynamics, advanced airway data, and in-flight video. The University of Maryland School of Medicine received up to $7.3 million for a 3.5-year RITMO award; the University of Pittsburgh contributed trauma transport data.</p>
+<p>The RITMO output was a publicly accessible, standardized dataset that competition teams could use for algorithm development — the equivalent of a training corpus for the challenge's machine learning components.</p>
+<p>This sequencing reflects a design principle visible across ARPA programs: <strong>pull the prerequisite work to the front</strong>. JoeAnna Arthur's UP TEMPO program used a "Phase Zero" concept for the same reason — she needed ground-truth team performance metrics before she could test team readiness sensors, and she built that infrastructure during the BAA period rather than leaving it to performers. Chretien applied the same logic at the field level: the competition infrastructure needed to exist before the competition could be meaningful.</p>
+<h3 id="competition-structure-three-events-increasing-complexity">Competition Structure: Three Events, Increasing Complexity</h3>
+<p>The DTC runs as a three-year competition with annual events of escalating difficulty:</p>
+<p><strong>Event 1 (September-October 2024, Guardian Centers, Perry, Georgia):</strong> Teams competed in simulated mass casualty scenarios — airplane crashes, convoy ambushes — in which casualties with realistic injuries (moulage, simulated physiological data) were distributed across a mock environment. Teams deployed sensor platforms to detect, localize, and assess casualties without initial physical access.</p>
+<p><strong>Event 2 (September-October 2025):</strong> Scenarios incorporated degraded and obstructed environments — conditions where line-of-sight access to casualties was restricted, ambient noise and visual interference increased, and the physical challenges of sensor deployment were amplified.</p>
+<p><strong>Event 3 (Fall 2026):</strong> The most complex scenarios yet. The specific parameters for Event 3 were announced to registered teams in advance; the qualification deadline was February 5, 2026.</p>
+<h3 id="five-tracks">Five Tracks</h3>
+<p>The competition runs five parallel tracks:</p>
+<p><strong>Systems Competition — Real World:</strong> Teams deploy physical systems (typically UAVs/drones and ground robots) in live scenarios. Sensors gather data; algorithms assess casualties in real time.</p>
+<p><strong>Systems Competition — Virtual:</strong> Teams compete in simulated environments using identical sensor modalities and scenario structures. Enables participation from teams without hardware development capacity.</p>
+<p><strong>Data Competition:</strong> Teams develop algorithms that perform secondary triage — predicting which casualties require specific life-saving interventions — using the RITMO dataset and standardized vital sign waveforms.</p>
+<p><strong>Special Events:</strong> Including medic collaboration events where human-machine teaming is evaluated.</p>
+<p>This multi-track structure reflects a deliberate design choice: different communities have different strengths. Hardware teams and software teams have different barrier-to-entry profiles. Running real and virtual competitions in parallel maximizes the talent pool while ensuring that the highest-stakes evaluation happens against real physics.</p>
+<h3 id="prize-structure">Prize Structure</h3>
+<p>Prize amounts for Event 2 included $300,000 for the Systems Real World winner, $150,000 for second place, and comparable amounts in the Data competition. Total DTC prize funding across the full three-year program has not been publicly disclosed in full, but the RITMO infrastructure investment alone was $7.3 million.</p>
+<hr />
+<h2 id="notable-results">Notable Results</h2>
+<h3 id="event-1-2024">Event 1 (2024)</h3>
+<p><strong>DART</strong> (Battelle's Drone-Assisted Rapid Triage) won the Systems Real World competition. <strong>Coordinated Robotics</strong> won both the Virtual and Data competitions.</p>
+<p>The field's performance in Event 1 established baseline capability — how well existing approaches could detect, localize, and assess casualties in a structured scenario — and identified specific failure modes that teams could target for Event 2.</p>
+<h3 id="event-2-2025">Event 2 (2025)</h3>
+<p><strong>DART</strong> retained the Systems Real World title. <strong>MSAI</strong> won the Data competition, and <strong>Coordinated Robotics</strong> placed second in the Systems Real World track. Notably, UAS-DTU (Delhi Technological University) placed second in the Real World competition — a non-US team demonstrating one of the open participation benefits: the challenge attracted international capability that a US government-directed program would not have prioritized.</p>
+<p>The transition from Event 1 to Event 2 showed improvement across the field in the basic detection and localization tasks, while the more complex secondary triage prediction tasks — where algorithms need to identify which physiological waveform signatures predict need for transfusion, airway management, or other specific interventions — remained harder. This is precisely the kind of granular, public benchmark that the field had previously lacked.</p>
+<hr />
+<h2 id="program-design-lessons-extracted">Program Design Lessons — Extracted</h2>
+<h3 id="1-infrastructure-investment-must-precede-competition">1. Infrastructure Investment Must Precede Competition</h3>
+<p>The DTC's most distinctive architectural choice was RITMO. Without RITMO, the competition would have been a demonstration of who could collect the best data under competition conditions — not a test of who had built the best algorithms. By publicly providing training data before competition launch, DARPA lowered the barrier to participation for pure software teams, attracted machine learning researchers who would otherwise have had no entry point, and ensured that teams with the best algorithms won rather than teams with the best data collection infrastructure.</p>
+<p>This is a broadly applicable principle for challenges in data-scarce domains. A challenge that requires participants to build data collection capability as well as algorithmic capability is not testing the right thing — unless data collection is itself the capability you're trying to develop. In most domains, the appropriate challenge design separates infrastructure provision (the funder's job) from capability development (the competitor's job).</p>
+<h3 id="2-multi-track-design-maximizes-talent-coverage">2. Multi-Track Design Maximizes Talent Coverage</h3>
+<p>The real-world, virtual, and data competition tracks are not redundant — they are complements. Real-world teams tend to be hardware-oriented, with systems integration expertise and field deployment experience. Data competition teams tend to be algorithmically sophisticated but lack hardware. Virtual teams may be in either category. Running all three in parallel means the competition captures the best of each community while creating natural collaboration incentives: real-world teams know that the winning data competition algorithm might make their system better; data teams know that real-world results will validate their approach.</p>
+<p>This architecture echoes Brad Ringeisen's "parallel TAs beat serial programs" principle. If DARPA had run a sequential program — first the data collection, then the algorithm development, then the hardware deployment — the insights from each stage would flow only to the next team, not to the whole field. Running in parallel means the field learns everything simultaneously.</p>
+<h3 id="3-scenarios-are-program-management-instruments">3. Scenarios Are Program Management Instruments</h3>
+<p>The scenario design choices — airplane crash, convoy ambush, degraded/obstructed environments — are not merely test cases. Each scenario tests a specific capability hypothesis. The shift from Event 1 to Event 2 scenarios (degraded environments, obstructed access) was a deliberate escalation designed to stress capabilities that performed adequately under favorable conditions. The willingness to design scenarios that most teams will partially fail at is what makes the competition informative.</p>
+<p>This is the challenge-design equivalent of JoeAnna Arthur's "pull the hardest part to the front" principle. If the scenarios are too easy, you only learn that the hardest part was the scenario design, not the technology. Event 3's "most complex scenarios yet" structure maintains pressure on teams to continue developing rather than optimizing to a static evaluation target.</p>
+<h3 id="4-biological-and-medical-domains-require-end-user-integration-by-design">4. Biological and Medical Domains Require End-User Integration by Design</h3>
+<p>Renee Wegrzyn's addition to the Heilmeier Questions at ARPA-H — "How are you addressing customer experience and making sure end users are partners in program design?" — is essential in medical domains. The DTC's "special medic collaboration events" are not peripheral. They test the most important question about any triage technology: will a medic actually use it, trust its output, and integrate it into their decision-making under field conditions?</p>
+<p>The failure mode in medical technology programs is almost always sociotechnical rather than purely technical. A triage algorithm that performs well against a benchmark dataset can still fail to improve outcomes if medics don't understand how to interpret its outputs, don't trust its confidence estimates, or find the physical hardware too cumbersome for field use. The DTC builds this test into the competition rather than deferring it to post-program transition.</p>
+<h3 id="5-open-participation-finds-non-obvious-expertise-clusters">5. Open Participation Finds Non-Obvious Expertise Clusters</h3>
+<p>The appearance of Delhi Technological University in the top rankings for Event 2 illustrates a consistent pattern across open competitions: the communities most capable of advancing a problem are not always in the places traditional funders look. DTU's performance reflected strong UAV and autonomy research capacity that DARPA would not have prioritized in a directed program. Open competitions find these capacity clusters passively — teams self-select in based on their own assessment of where their expertise applies.</p>
+<p>SPRIND operates in a European context where cross-national talent mobilization is both possible and strategically valuable. A challenge that attracts top teams from universities across the EU — and potentially outside it — is doing field development that no single national program can replicate.</p>
+<h3 id="6-the-founding-pms-intellectual-fingerprint-persists">6. The Founding PM's Intellectual Fingerprint Persists</h3>
+<p>An underappreciated aspect of challenge design is that the founding program manager's choices — data infrastructure, track structure, scenario sequencing, evaluation metrics — set the field's agenda for years. The RITMO-first architecture was Chretien's decision. The five-track structure was established before his successor Col. Jeremy Pamplin took over as DTC program manager in 2025. The choices that shape what the field learns from the competition were made in the design phase, not the execution phase.</p>
+<p>This means that challenge programs are high-leverage moments for program managers in a way that contracted programs are not. A contracted program has ongoing PM influence throughout its life. A challenge program has outsized PM influence at design time, and then runs largely on the infrastructure those early decisions created. The implication for SPRIND is that the design phase of a challenge program deserves proportionally more PM time and deliberation than the execution phase.</p>
+<hr />
+<h2 id="connections-to-the-bits-curriculum">Connections to the BiTS Curriculum</h2>
+<p>The DTC sits at the intersection of several frameworks the BiTS curriculum emphasizes:</p>
+<p><strong>The "Why Now" question.</strong> The convergence of high-quality drone sensor payloads, miniaturized vital sign monitors, and transformer-based anomaly detection algorithms made the DTC technically feasible in 2022 in a way it was not in 2012. Chretien's timing was not arbitrary — it reflected a genuine assessment that the enabling technologies had crossed a threshold.</p>
+<p><strong>Transition as a design parameter.</strong> The DTC's end-user was always the military medic and the civilian first responder, not an abstract "DoD customer." The medic collaboration events and the emphasis on stand-off and non-invasive sensor modalities reflect design choices made with deployment constraints in mind from the beginning, not retrofitted at the transition phase.</p>
+<p><strong>Parallel TAs prevent single points of failure.</strong> The five tracks mean no single technical failure — a hardware team that can't get their drone to function in degraded conditions, a data team whose algorithm overfits — kills the program's learning value. Something always advances.</p>
+<p><strong>The champion hunt has a clinical dimension.</strong> In medical technology programs, the physician-champion who will advocate for adoption within a clinical or military system is as important as the funder who will provide resources. The DTC's clinical track record from RITMO data collection — built before the competition — gives early clinical advocates something concrete to defend when acquisition conversations begin.</p>
+<hr />
+<h2 id="implications-for-the-sprind-challenge-model">Implications for the SPRIND Challenge Model</h2>
+<h3 id="identify-your-ritmo-equivalent">Identify Your RITMO Equivalent</h3>
+<p>If SPRIND pursues a challenge in a data-scarce domain — clinical outcomes, industrial safety, ecological monitoring — the first question is whether the training data required for algorithmic competition exists at sufficient quality and accessibility. If it does not, the challenge program should begin with a RITMO-equivalent infrastructure investment, and the challenge design should separate data provision from algorithm development.</p>
+<p>The cost of this step is real (RITMO was a $7.3M investment before the first competitive event). But a competition launched without it will produce one or two well-resourced teams that happen to have better data access, rather than a true field-wide benchmark.</p>
+<h3 id="build-multi-track-structure-into-the-initial-design">Build Multi-Track Structure Into the Initial Design</h3>
+<p>SPRIND challenges should run real-world, virtual, and algorithmic tracks simultaneously rather than sequentially. The communities that excel at each are different; reaching all of them requires parallel entry points. The virtual track in particular is valuable for attracting academic ML and AI researchers who would not otherwise engage with a hardware-heavy competition.</p>
+<h3 id="design-scenario-escalation-as-a-curriculum">Design Scenario Escalation as a Curriculum</h3>
+<p>The three-event, escalating-complexity structure of the DTC is not just a competitive format. It is a curriculum for the field — each event teaches the community what it doesn't yet know how to do, and the difficulty escalation directs where development effort should go next. SPRIND challenges should build scenario escalation ladders explicitly and publish them in advance, so teams can plan 18-month development arcs rather than optimizing to the next single event.</p>
+<h3 id="take-the-sociotechnical-dimension-seriously-from-day-one">Take the Sociotechnical Dimension Seriously From Day One</h3>
+<p>Any SPRIND challenge in a domain with human operators — clinical, manufacturing, infrastructure, public services — needs an end-user evaluation track built into the competition structure, not added later. The DTC's medic collaboration events cost DARPA coordination overhead but provide data that no algorithmic benchmark can capture. This is especially important for EU contexts where regulatory requirements and user adoption dynamics may be the binding constraint on technology deployment.</p>
+<h3 id="count-human-capital-as-a-primary-output">Count Human Capital as a Primary Output</h3>
+<p>The DTC is creating a community of researchers with shared vocabulary, shared benchmark data, shared evaluation standards, and demonstrated track records against each other. SPRIND should track where DTC-model challenge alumni go — which ones found companies, which ones join procurement programs, which ones publish field-shaping papers — to capture the full value of the challenge investment. The $7 million RITMO investment should be evaluated not against the triage algorithms it produced but against the field infrastructure it created.</p>
+<hr />
+<h2 id="key-lessons-in-summary">Key Lessons in Summary</h2>
+<p><strong>Build infrastructure before competition.</strong> In data-scarce domains, the single most valuable thing a challenge funder can do is create the training data and evaluation standards that let algorithmic teams compete on algorithm quality rather than data collection capacity.</p>
+<p><strong>Multi-track maximizes field coverage.</strong> Hardware teams, software teams, and pure algorithm developers are different communities with different barrier-to-entry profiles. Run tracks for all of them in parallel.</p>
+<p><strong>Scenario design is program management.</strong> The choice of what scenarios to run, in what order, at what complexity level, determines what the field learns from the competition. These choices should receive as much deliberate attention as prize structure and eligibility rules.</p>
+<p><strong>End-user integration is non-negotiable in life-critical domains.</strong> Competitions that only test technical performance miss the adoption question. Build user evaluation into the competition structure rather than deferring it to transition.</p>
+<p><strong>The founding PM's design choices set the field's agenda.</strong> Challenge programs have their highest-leverage PM moment at design time. More deliberation in the design phase produces better downstream outcomes than more oversight during execution.</p>
+<hr />
+<p><em>Sources: DARPA Triage Challenge official site (triagechallenge.darpa.mil); DARPA research program description; DARPA news releases on Event 1 and Event 2 results; University of Maryland School of Medicine RITMO award announcement; Carnegie Mellon / Pitt DTC participation coverage; TechBriefs "Inside DARPA's Push to Reinvent Battlefield Triage"; DARPA profile of Jeremy Pamplin.</em></p>
+</div>
+<div class="page-nav">
+  <a href="../index.html#case-studies">← Case Studies</a>
+  
+</div>
+
+
+<footer>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
+</footer>
+
+</body>
+</html>

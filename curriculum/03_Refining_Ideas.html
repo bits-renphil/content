@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Refining Ideas — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
+
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
+
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
+
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
+  <div class="eyebrow">Chapter 3 &nbsp;💭</div>
+  <h1>Refining Ideas</h1>
+</div>
+<div class="content-wrap">
+<h1 id="3-refining-ideas">3️⃣ Refining Idea(s)</h1>
+<h1 id="chapter-3-refining-ideas"><strong>Chapter 3: Refining Idea(s)</strong></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">BLUF: Refining program ideas is an iterative process of deep thinking and open conversations, ensuring the ideas are aligned with bold, impactful goals. This module emphasizes the importance of using the Heilmeier Catechism to rigorously evaluate programs by asking key questions about objectives, approach, risks, and impacts. Refining ideas requires the ability to identify and strengthen weak points, balancing ambition with feasibility. DARPA PMs must embrace cross-disciplinary thinking, work with diverse performers, and plan for transitions to real-world applications. Iteration and feedback loops with peers are critical, as early refinement can make or break a program’s success.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚡Practical outcomes:</strong></p>
+<ul>
+<li>Solid (though certainly not final) answers to the Big Four HQs.   </li>
+<li>Relative confidence that the performer base exists for your program.   </li>
+<li>A pretty good sense for how you're going to address the Other Four HQs   </li>
+<li>You’ve talked to users about transition issues  </li>
+<li>You’ve talked to a wide array of key potential performers and have a good sense for the blockers and the technical areas  </li>
+<li>You’ve talked to potential integration/engineering performers about the challenges of bringing it all together (which strongly informs the timeline, phases and intermediate milestones)  </li>
+<li>You’ve probably talked to potential evaluation teams about measurement strategies and metrics.   </li>
+<li>You’ve evaluated other recent programs (at your org and others) to ensure your idea is sufficiently new.   </li>
+<li>You have a good draft argument for why this won’t happen without your program.   </li>
+<li>You can communicate all this effectively to colleagues and leadership and have begun to get them on board.</li>
+</ul>
+<p><a href="#📋what-makes-an-idea-a-darpa-program?">📋What makes an idea a DARPA program?</a></p>
+<p><a href="#the-big-four.-focus-on-these-first,-the-rest-you’ll-address-later-once-the-program-starts-to-coalesce.">The Big Four. Focus on these first, the rest you’ll address later once the program starts to coalesce.</a></p>
+<p><a href="#the-other-four.-it-never-hurts-to-keep-these-in-mind,-but-don’t-focus-on-them-at-this-stage.">The Other Four. It never hurts to keep these in mind, but don’t focus on them at this stage.</a></p>
+<p><a href="#✅other-useful-questions-we've-found-over-the-years">✅Other Useful Questions We've Found Over the Years</a></p>
+<p><a href="#on-potential-upside-and-translational-potential">On Potential Upside and Translational Potential</a></p>
+<p><a href="#🤝identifying-performers">🤝Identifying Performers</a></p>
+<p><a href="#✍️the-little-details:-tactics-for-refining-ideas">✍️The Little Details: Tactics for Refining Ideas</a></p>
+<p><a href="#🧐assumptions---hypotheses---impacts">🧐Assumptions - Hypotheses - Impacts</a></p>
+<p><a href="#🎨wireframes">🎨Wireframes</a></p>
+<p><a href="#✉️circling-back">✉️Circling Back</a></p>
+<p><a href="#🤔cross-disciplinary-thinking">🤔Cross-Disciplinary Thinking</a></p>
+<p><a href="#📝rfis-and-workshops">📝RFIs and Workshops</a></p>
+<p><a href="#📊red-teams,-blue-teams,-and-murder-boards">📊Red Teams, Blue Teams, and Murder Boards</a></p>
+<p><a href="#🌊-risk-assessment-and-mitigation">🌊 Risk Assessment and Mitigation</a></p>
+<p><a href="#🔁iteration-and-failure">🔁Iteration and Failure</a></p>
+<p><a href="#🛠️-ideas-for-using-the-tech-stack-1">🛠️ Ideas for Using the Tech Stack</a></p>
+<p>At a certain point in the exploration and field mapping process, PMs must begin to more ruthlessly refine their young program ideas. Refining ideas requires both thinking and talking. You need deep thinking to connect and distill the pieces of information that you’ve gathered while exploring and field mapping. Then you need to talk to people to test your ideas with those who have more knowledge in specific areas.</p>
+<p>Refining ideas should happen in a loop with exploration: one conversation might spark an idea for a sub-goal, only for the next conversation with another expert to shift that idea in a new direction. This process can be challenging, as promising ideas may need to be scrapped or significantly revised before your project takes its final shape. In this module, we’ll guide you through how to navigate this iterative process of refining ideas.</p>
+<p>The information in this module will become particularly important once you’ve learned enough about a space to come up with ideas for whole programs. For an idea to flourish into something impactful, you must rigorously examine it from every angle to identify and address weak points. This is especially critical in the context of DARPA programs, where even minor “details” could demand millions of dollars or years of highly skilled labor to fix. Upfront refinement can be the difference between a program’s success or failure.</p>
+<p>Some describe the ability to identify and strengthen weak points as “taste” or “high standards.” While these are accurate descriptors, it’s important to remember that this skill is one that can be cultivated. Hard work and deliberate practice can help you develop the judgment needed to refine program ideas effectively. The first part of this module will explore one key element of "taste": understanding what does and doesn’t constitute a DARPA program.</p>
+<hr />
+<h2 id="what-makes-an-idea-a-darpa-program-what-makes-an-idea-a-darpa-program"><strong>📋What makes an idea a DARPA program?</strong> {#📋what-makes-an-idea-a-darpa-program?}</h2>
+<p>Since the mid-1970s, <a href="https://www.darpa.mil/work-with-us/heilmeier-catechism">the Heilmeier Catechism</a> has been a cornerstone of DARPA's decision-making process, often determining whether a project secures funding. Named after the DARPA Director who formalized and placed extreme emphasis on its use, George Heilmeier, this famous set of questions remains a crucial tool for evaluating program proposals. While the wording may vary slightly, the core questions are as follows. </p>
+<h3 id="the-big-four-focus-on-these-first-the-rest-youll-address-later-once-the-program-starts-to-coalesce-the-big-four-focus-on-these-first-the-rest-youll-address-later-once-the-program-starts-to-coalesce"><strong>The Big Four. Focus on these first, the rest you’ll address later once the program starts to coalesce.</strong>  {#the-big-four.-focus-on-these-first,-the-rest-you’ll-address-later-once-the-program-starts-to-coalesce.}</h3>
+<ul>
+<li>What are you trying to do? Articulate your objectives using absolutely no jargon.  </li>
+<li>Sometimes the “what…do” here confuses people because they get too into the weeds too fast. I often like to reframe this as “What are you trying to accomplish?” or “What are you trying to change?” or “What is your bold goal?”  </li>
+<li>How is it done today, and what are the limitations of current practice?  </li>
+<li>It's often useful to break this down into “state of the practice” (i.e. what people actually do in the real world) and “state of the art” (i.e. examples where innovators are pushing the boundaries along some dimension but its not yet in common use) because those can be very different things (and those SOTA innovators may end up being some of your key performers).  </li>
+<li>What is new in your approach, and why do you think it will succeed?  </li>
+<li>The most important thing here is to elucidate your big insight that will enable your bold goal. Sometimes this takes the form of “Why now?” Is there new knowledge or emerging technology that makes your goal plausible? This is also a good time to think about what can be parallelized into distinct Technical Areas.   </li>
+<li>Who cares? If you are successful, what difference will it make?  </li>
+<li>This question is NOT literally asking WHO cares. Skip that part and go right to the impact statement. <a href="https://en.wikipedia.org/wiki/Fermi_problem">Fermi estimates</a> are particularly useful here. </li>
+</ul>
+<h3 id="the-other-four-it-never-hurts-to-keep-these-in-mind-but-dont-focus-on-them-at-this-stage-the-other-four-it-never-hurts-to-keep-these-in-mind-but-dont-focus-on-them-at-this-stage"><strong>The Other Four. It never hurts to keep these in mind, but don’t focus on them at this stage.</strong>  {#the-other-four.-it-never-hurts-to-keep-these-in-mind,-but-don’t-focus-on-them-at-this-stage.}</h3>
+<ul>
+<li>What are the risks?  </li>
+<li>How much will it cost?  </li>
+<li>How long will it take?  </li>
+<li>What are the midterm and final "exams" to check for success?</li>
+</ul>
+<p>It’s essential to remember that every path from your exploration and idea refinement will ultimately lead to questions that mirror the Heilmeier Catechism. Write this list down, keep it on hand, and use it to inform your program development and networking conversations. If you can’t answer one of these questions, you need to have a strong rationale for why not.</p>
+<p>That said, a critical detail to keep in mind is that the strictness and interpretation of the Heilmeier Catechism can shift over time. As DARPA Directors change, so do their emphases on different elements of the catechism. Some directors favor ambitious projects far removed from direct applications,[^1] while others focus on more immediate practicalities.[^2] These preferences can also vary significantly across different DARPA offices at any given moment.</p>
+<p>Over the years, there have been common shifts in priority, such as the focus on dual-use applications or the level of importance placed on DARPA’s "additionality"—the assurance that the project wouldn’t happen without DARPA’s involvement. Although we won’t cover every possible variation in interpretation in this module, it is crucial that you quickly grasp your leadership’s stance on these matters. DARPA is known for its ambitious goals—like 10Xing a certain metric or granting humanity a completely new capability. But which ambitious goals are pursued and how they are communicated internally will depend on the specific dynamics of the moment. You'll need to select projects strategically and tailor your communication accordingly.</p>
+<h2 id="other-useful-questions-weve-found-over-the-years-other-useful-questions-weve-found-over-the-years"><strong>✅Other Useful Questions We've Found Over the Years</strong> {#✅other-useful-questions-we've-found-over-the-years}</h2>
+<p>While the Heilmeier Catechism provides a strong foundation, specific, targeted questions can help you refine your program ideas and eventually pass the Catechism itself. These questions should guide both your self-reflection and your discussions with others, focusing on key areas such as potential upside, usability, DARPA’s comparative advantages, performer involvement, and program structure.</p>
+<h3 id="on-potential-upside-and-translational-potential-on-potential-upside-and-translational-potential"><strong>On Potential Upside and Translational Potential</strong> {#on-potential-upside-and-translational-potential}</h3>
+<ul>
+<li><strong>What happens after this program?</strong> DARPA's mission is to unlock technologies with real-world impact, but that impact often depends on others carrying the work forward once DARPA's involvement ends. Whether it’s through further research, nonprofits, open-source communities, startups, or established companies integrating the technology, it’s essential to plan for this transition from the outset. Impact doesn’t happen by accident—de-risking the transition and securing future pathways for your work should be part of your strategy from day one. Some PMs fail to prioritize this and only consider transition risks late in the program, which can undermine the project’s potential.</li>
+</ul>
+<p>This is why planning for transition and engaging with potential users should be a central focus during your exploration and idea refinement. If you cannot disentangle the idea of planning an R\&amp;D project with transition partners in mind from some mental stereotype of myopic, applied research, then I encourage you to read <a href="https://www.freaktakes.com/p/how-did-places-like-bell-labs-know">this piece</a> on how Bell Labs leveraged its systems engineers to ensure its exploratory researchers were asking the most useful, ambitious questions they could. This application-centric approach, though less common today, was a hallmark of mid-20th-century R\&amp;D powerhouses like Bell Labs, GE Research, and MIT (see these pieces for details on <a href="https://www.freaktakes.com/p/how-did-places-like-bell-labs-know">Bell Labs</a>, <a href="https://www.freaktakes.com/p/irving-langmuir-the-general-electric">GE Research</a>, and <a href="https://www.freaktakes.com/p/a-progress-studies-history-of-early-001">MIT</a>). DARPA PM-style roles remain one of the few in the R\&amp;D ecosystem that allow you to contribute to this tradition of visionary, application-driven research. Embrace that opportunity, don’t hide from it.</p>
+<p>When considering whether a problem truly requires DARPA’s involvement, it’s important to ask: Does solving this problem really need DARPA? How confident are we that this won’t happen without us? Several ways to break this question down include:</p>
+<ul>
+<li><strong>What research won’t happen under the current system? Consider:</strong>  </li>
+<li>Is this project too weird for most government funders? Is it a bad fit with existing funders or institutions for some other reason?  </li>
+<li>Is the project too engineering-heavy or coordination-intensive for a single lab or group of labs to self-organize around it?  </li>
+<li>Is the work needed but not “qualitatively novel” in the way academia incentivizes?  </li>
+<li>Does the project require a firm-like team, but the technical uncertainty too high or potential revenue too low for a VC-funded startup to tackle?  </li>
+<li>Is the work too misaligned with current technical paradigms or business interests for large companies to pursue?</li>
+</ul>
+<p>If the impacts would be extraordinary if the project succeeded, why hasn’t it been done yet? Answer this with as much detail and specificity as possible. This will form the foundation of your marketing pitch for the program. Keep in mind, people will cross-check your understanding with the very groups you say are uninterested or unable to tackle the problem for specific reasons. Being thorough and accurately representing differing viewpoints, even if you disagree with them, is crucial. Failing to do so can erode trust in your future assessments.</p>
+<p>By rigorously addressing these questions, you can uncover whether your office is uniquely positioned to take on a project that the broader R\&amp;D ecosystem may otherwise overlook. Keeping the concept of comparative advantage at the front of your mind during the idea refinement stages will help guide you towards initiatives that your office is particularly well-suited to pursue.</p>
+<hr />
+<h2 id="identifying-performers-identifying-performers"><strong>🤝Identifying Performers</strong> {#🤝identifying-performers}</h2>
+<p>In addition to seeking projects with substantial upside and areas others won’t tackle, you must also propose a buildable program. DARPA operates without its own labs. A successful program depends on a PM assembling a network of performers, managing them, allocating funds, and guiding progress toward practical goals. Questions about who your performers will be and how the program should be managed are essential, not just for program execution but also during the idea refinement stage. If your program idea can’t be effectively built and run, then it simply isn’t a viable program.</p>
+<p>The following questions can help you identify potential performers and shape how your program will be managed:</p>
+<ul>
+<li><strong>Which groups are talented enough to tackle the key problems within your program?</strong> While it’s tempting to turn to well-known labs and universities, they often have ample funding and are already adept at advancing their own ideas. Consider looking beyond the usual big-name institutions. Explore lesser-known labs or academics outside of major cities to discover fresh talent. You might still end up choosing the big names, but the search will broaden your perspective. Similarly, in the private sector, look beyond the usual firms that are familiar with DARPA. Collaborate with your legal team to find new firms that might be perfect for your program. In many cases, an eager firm might exist ideally suited to your task that has never operated a DARPA contract before because they are just not a part of your office’s network — not yet, at least.[^3]  </li>
+<li><strong>Are the incentives of your chosen performers truly aligned with the goals of your program?</strong> If the answer is complicated, could an injection of funds or a carefully structured contract help realign them?  </li>
+<li><strong>Is there an advantage to assembling multiple specialized contractors versus using a single integrated performer to handle the entire project?</strong> If a single performer is ideal, does the right team exist? If multiple contractors are preferable, is there a natural way to ensure they collaborate effectively?  </li>
+<li><strong>Are there any fast, clever experiments that could help answer critical questions about risks or alternative directions for the program?</strong> Finding quick, inexpensive answers to these tough questions can help steer your program in the right direction early on.</li>
+</ul>
+<p>Now that we’ve covered what makes a program distinctly DARPA-worthy, let’s move on to the concrete tactics you can employ as you navigate the idea refinement process.</p>
+<h2 id="the-little-details-tactics-for-refining-ideas-the-little-details-tactics-for-refining-ideas"><strong>✍️The Little Details: Tactics for Refining Ideas</strong> {#✍️the-little-details:-tactics-for-refining-ideas}</h2>
+<p>This section offers concrete tactics you can incorporate into your idea refinement process.</p>
+<h3 id="assumptions-hypotheses-impacts-assumptions-hypotheses-impacts">🧐<strong>Assumptions - Hypotheses - Impacts</strong> {#🧐assumptions---hypotheses---impacts}</h3>
+<p>This first tactic helps you codify and communicate your reasoning behind why your program is a good idea. It bridges the gap between your thinking and writing, allowing you to effectively share and refine your ideas with others.</p>
+<p>Start by creating a high-level Assumptions - Hypotheses - Impacts outline:</p>
+<ol>
+<li><strong>Assumptions</strong>: List all your assumptions about the program concept, problem, or field. Include any problem or bottleneck statements that frame your understanding.  </li>
+<li><strong>Hypotheses</strong>: Write down what you believe will or could be true. Some of these will be predictions, while others will depend on factors you can influence, usually through funding or coordinating research.  </li>
+<li><strong>Impacts</strong>: Articulate the expected impacts. If your hypotheses are correct, how will the world be different? Be as specific as possible—how will important tasks be done better, faster, or more efficiently?</li>
+</ol>
+<p>This outline will help you communicate your thought process clearly and improve upon it through collaboration with other experts.</p>
+<h3 id="wireframes-wireframes"><strong>🎨Wireframes</strong> {#🎨wireframes}</h3>
+<p>Another effective tactic is to sketch out a wireframe of the Heilmeier Catechism (shown below). This simplified form of the Catechism can clarify your thinking and serve as a concise way to convey your ideas in presentations or meetings, allowing you to spend less time explaining and more time discussing. Wireframes force you to be clear and succinct, making them a powerful tool for sharpening your approach.</p>
+<p><em>A wireframe using shortened versions of the Heilmeier questions [credit: Actuate Innovation]</em></p>
+<h3 id="_1"></h3>
+<h3 id="circling-back-circling-back"><strong>✉️Circling Back</strong> {#✉️circling-back}</h3>
+<p>One crucial tactic you should utilize is circling back with people you spoke to during the exploration phase, this time with a concrete hypothesis for them to respond to. Re-engaging with key individuals from the early stages of your program exploration can lead to two valuable outcomes.</p>
+<p>First, they may continue to provide incredibly useful insights—fantastic! Continue involving them as long as their input adds value. Second, they may be less helpful this time around because you’ve gained new knowledge since your initial conversation. That’s also a positive sign—it indicates your thinking has evolved. In either case, this process is valuable for refining ideas.</p>
+<h3 id="cross-disciplinary-thinking-cross-disciplinary-thinking"><strong>🤔Cross-Disciplinary Thinking</strong> {#🤔cross-disciplinary-thinking}</h3>
+<p>One of DARPA's great strengths is its ability to foster cross-disciplinary thinking, blending insights from diverse fields to tackle complex challenges. As you refine your ideas, resist the urge to stay within the boundaries of your discipline. Instead, look for opportunities to incorporate perspectives and expertise from other fields. Whether it's applying machine learning to biology or combining material science with robotics, cross-pollination of ideas can lead to breakthroughs that wouldn’t emerge from a single discipline. Don’t hesitate to engage with experts outside your usual network; their insights could be the missing piece that elevates your program to the next level.</p>
+<h3 id="rfis-and-workshops-rfis-and-workshops"><strong>📝RFIs and Workshops</strong> {#📝rfis-and-workshops}</h3>
+<p>Another approach to gathering information is to put out Requests for Information (RFIs) or organize workshops through your office. These methods allow you to gather insights from a broader audience, but they also introduce more noise and can involve bureaucratic hurdles. Before pursuing these formal approaches, strategize with veteran PMs and consult with legal to ensure this is the best route for obtaining the information you need. Once formal processes begin, things may slow down compared to the more agile pace of informal networking, but there is a time and place for both.</p>
+<h3 id="red-teams-blue-teams-and-murder-boards-red-teams-blue-teams-and-murder-boards"><strong>📊Red Teams, Blue Teams, and Murder Boards</strong> {#📊red-teams,-blue-teams,-and-murder-boards}</h3>
+<p>But wait, you aren’t working in a bubble but with a brilliant and diverse group of other PMs (or BiTS fellows) that are working through the same process as you. Use them! In the olden days we used to do this by just walking into their office, but these days you’re more likely to call them up. No matter! </p>
+<p>One of the most valuable ways to leverage your colleagues is through red teams, blue teams, and murder boards. </p>
+<ul>
+<li><strong>Red/blue teams</strong>: Gather a few of your colleagues (I suggest using a smaller and more targeted set earlier on while things are still rough, and then broadening out later as your ideas and program designs coalesce). By default, most people will walk in on the blue team. That is, they will want to be supportive and constructive. That’s great and very useful, but make sure you assign some fraction (not all!) of them to play the red team. The red team is tasked with listening to your idea/pitch from a skeptical perspective and asking as many tough questions as possible. This will help you identify program risks and/or holes in your argument.   </li>
+<li><strong>Murder boards</strong>: Late in the idea refinement process (once you have something close to a fully formed proposal/HQ document/pitch) ask your colleagues for a <a href="https://en.wikipedia.org/wiki/Murder_board">murder board</a>. This is basically the 100% red team scenario (everyone’s a skeptic!) except you also ask participants to think about the decision-makers you are targeting and try to put themselves in their shoes. What specific concerns or unique perspectives might they bring to the decision? Oftentimes (especially if your participants are not familiar with your decision-makers or you don’t exactly know who your decision-makers are yet) it's useful to discuss this in advance and seed the group with some perspectives that you think might be present (or that you’re worried about). </li>
+</ul>
+<p>Remember, all feedback is useful but ultimately you have to own the idea so make sure not to over-index on any particular opinion. </p>
+<h3 id="risk-assessment-and-mitigation-risk-assessment-and-mitigation"><strong>🌊 Risk Assessment and Mitigation</strong> {#🌊-risk-assessment-and-mitigation}</h3>
+<p>As you refine your ideas, identifying and mitigating risks early on will be key to building a resilient program. Risks are not just technical—consider risks related to program management, performer alignment, transition to real-world impact, and external dependencies. Start by creating a simple list/table of risks that categorizes risks by likelihood and impact, and then develop strategies to mitigate them. For instance, if a key technical component has a high likelihood of failure, consider parallel paths or experiments to de-risk it before fully committing to that approach. Likewise, ensure that your performers’ incentives are aligned with the program’s goals. At times, it can also be helpful to structure contracts in a way that allows PMs to reorient the program after a fixed amount of time to more heavily utilize better performers. The earlier you address potential risks, the smoother your program will run once it gets off the ground.</p>
+<h3 id="iteration-and-failure-iteration-and-failure"><strong>🔁Iteration and Failure</strong> {#🔁iteration-and-failure}</h3>
+<p>One key aspect of refining program ideas is embracing the iterative nature of innovation, including the inevitability of failure along the way. Iteration allows PMs to cycle through different versions of their ideas, gradually refining each aspect until the program is both viable and impactful. During this process, certain ideas or approaches may fail—and that’s okay. Failure in the early stages is a crucial part of determining which concepts have real potential. DARPA-like programs are inherently ambitious, so it’s vital to test bold hypotheses early and often. Refinement isn’t just about perfecting the program; it’s about deliberately stress-testing it, learning from setbacks, and continuously improving the strategy. </p>
+<p>Many of the above approaches are common sense, but making even minor improvements during the early stages of your program can save you years of effort, millions of dollars, and even determine the success or failure of the entire program. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">🛠️ Ideas for Using the Tech Stack If you already have written artefacts for the technical aspects of your program, LLM chatbots can give you a good first pass on your Heilmeier Catechism. It is often easier to correct someone who’s been wrong on the internet (even if it’s not a human) than to start yourself. LLMs are also excellent thinking partners for red-teaming and initial risk assessment of your initial ideas. They are faster and less judgmental than humans, so you can use them early on in the process. That said, real humans with context on your field will often give more substantive suggestions, so seek those early as well! For expert and industry contacts, warm introductions work best, but cold-emailing is often key at this stage. This is typically easy for academics, as their emails tend to be easily available via university websites or in their recent papers. For industry calls, it may pay to invest in tools for direct contact (LinkedIn or X Premium) or finding a given person’s email address (e.g. <a href="https://rocketreach.co/">RocketReach</a>). For circling back, consider tools to resurface some of your key contacts. A simple spreadsheet (or Notion/Airtable database) with a random number column is a good way to remind you who to circle back to. Some people like to use spaced repetition tools like Anki or Remnote to keep track of key names and faces. Gmail features such as Snooze or Schedule Send are your friends as well!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page-nav">
+  <a href="02_Exploration.html">← Exploration &amp; Field Mapping</a>
+  <a href="04_Program_Design.html">Program Design →</a>
+</div>
+
+
+<footer>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
+</footer>
+
+</body>
+</html>

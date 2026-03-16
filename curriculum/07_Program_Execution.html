@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Program Execution &amp; Management — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
+
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
+
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
+
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
+  <div class="eyebrow">Chapter 7 &nbsp;🚧</div>
+  <h1>Program Execution &amp; Management</h1>
+</div>
+<div class="content-wrap">
+<h1 id="7-program-execution">7️⃣ Program Execution</h1>
+<h1 id="chapter-7-program-execution-management"><strong>Chapter 7: Program Execution &amp; Management</strong></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">BLUF: The program execution and management phase is where most of the actual R\&amp;D takes place. Given that the actual R\&amp;D tasks are contracted out, it can also feel less busy for many PMs than the early stages of the program. But it’s important to not take your eye off the ball. While many day-to-day tasks in this stage do not depend on the PM, the PM must remain vigilant. As research results come back, known unknowns will become known. You need to make crucial tweaks to your program with that information. Additionally, active management of teams is often essential to ensure effective collaboration among performers. This is often done through very regular check-ins, taking flights, and PI meetings.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚡Practical Outcome</strong>: By the end of this module, PMs should understand how to assess progress in their program, make informed decisions based on research results, and conduct key types of meetings effectively to keep their teams aligned and on track.</p>
+<p><a href="#🎬-overview">🎬 Overview</a></p>
+<p><a href="#🧐-active-management">🧐 Active Management</a></p>
+<p><a href="#🚖-darpa’s-alv:-a-case-study-in-active-program-management">🚖 DARPA’s ALV: A Case Study in Active Program Management</a></p>
+<p><a href="#key-takeaways-from-the-alv-case-study">Key Takeaways from the ALV Case Study</a></p>
+<p><a href="#🗺️-mapping-incentives">🗺️ Mapping incentives</a></p>
+<p><a href="#some-tactics-for-discerning-incentives">Some tactics for discerning incentives</a></p>
+<p><a href="#related-reading">Related reading</a></p>
+<p><a href="#⏹️-knowing-when-to-quit">⏹️ Knowing when to quit</a></p>
+<p><a href="#kill-criteria">Kill Criteria</a></p>
+<p><a href="#concrete-examples">Concrete examples</a></p>
+<p><a href="#🕵️‍♂️-kick-off,-meeting-structures,-site-visits,-evaluations,-etc.">🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</a></p>
+<p><a href="#meetings-and-events">Meetings and events</a></p>
+<p><a href="#performance-evaluation-framework">Performance Evaluation Framework</a></p>
+<p><a href="#post-program-reflection-and-knowledge-transfer">Post-Program Reflection and Knowledge Transfer</a></p>
+<p><a href="#🛠️-ideas-for-using-the-tech-stack-4">🛠️ Ideas for Using the Tech Stack</a></p>
+<h2 id="overview-overview"><strong>🎬 Overview</strong> {#🎬-overview}</h2>
+<p>Program execution is when the real research happens: contracts are signed, money is distributed, and researchers get to work. Ironically, for a PM, there may be fewer daily tasks, but your role as project manager and CEO is crucial.</p>
+<p>Treating projects as “fire and forget” is a common mistake for several reasons:</p>
+<ol>
+<li><strong>Ongoing Adjustments</strong>: Programs often need adjustments over time. Staying informed helps you make smaller, proactive changes, preventing major course corrections later. You don’t want to needlessly micromanage, but you also don’t want to avoid checking in just to be polite. Do what’s best for your program.  </li>
+<li><strong>Fostering Collaboration</strong>: Cross-pollination between projects can greatly enhance your program’s success. It’s your responsibility to ensure performers are collaborating effectively and sharing insights.  </li>
+<li><strong>Maintaining Momentum</strong>: PMs must stay updated on all results and implications. Without tight feedback loops, projects can slow down unnecessarily.</li>
+</ol>
+<p>Of course, good program execution will mean something different for every program. While every program is different, certain tactics apply universally:</p>
+<ul>
+<li><strong>Regular In-Person Check-Ins</strong>: Seeing progress firsthand is often more insightful than remote updates. In-person meetings can reveal issues not visible over the phone.  </li>
+<li><strong>Unstructured Time for Collaboration</strong>: Hold gatherings for external collaborators with plenty of informal time. This fosters open communication and stronger relationships. DARPA typically does this with 2-4 day “PI Meetings” every 6 months, but this could also include hackathons (sometimes spanning weeks), retreats (get people out of typical environments to enable space for creative interactions), integration/evaluation events, or hybrids of these!  </li>
+<li><strong>Be Willing to Cut or Double Down</strong>: Be ready to kill underperforming projects to free up resources, and also invest more in those that show exceptional promise.  </li>
+<li><strong>Challenge-focussed working groups</strong>: Many times key blockers in a program will not fall neatly within one project or even one technical area. In these cases, it's useful to provide space for collaborative working groups to form around these technical challenges (or just form them yourself). </li>
+</ul>
+<p>Before distributing funds, you should have a plan for:</p>
+<ul>
+<li>Assessing performer progress  </li>
+<li>Knowing when to kill or double down on projects  </li>
+<li>How and when to fire underperforming performers</li>
+</ul>
+<p>While some decisions are hard to plan for, the next two sections will offer strategies to help you prepare for these challenges.</p>
+<h2 id="active-management-active-management"><strong>🧐 Active Management</strong> {#🧐-active-management}</h2>
+<p>Regardless of how well-designed your program is, active management will almost certainly be required during its execution. DARPA programs often occupy the fringes of the existing R\&amp;D ecosystem—by design. As such, they frequently fall outside the typical patterns of work and collaboration, which means they can require more hands-on oversight from the PM.</p>
+<p>Even with a clear plan and dedicated funding, you can’t simply assume that all the pieces will fall into place on their own. Active management involves ensuring that performers collaborate effectively, stay on task, and meet deadlines. This might include encouraging—or even demanding—that performers put in the necessary time and effort to meet the program’s goals, as Larry Roberts did during the ARPAnet program.</p>
+<p>PM Larry Roberts' arm-twisting with the ARPAnet program is one famous example of active management. While the core hardware (the IMP) was developed smoothly, setting up the nodes—computers that would connect to the network—risked delay because the individual university departments responsible for them had other, research-related priorities. Getting the nodes set up was more important to DARPA than it was to them. Roberts had to use DARPA’s status as the departments’ most substantial funder to push the departments to get their nodes up and running on schedule. But Roberts made it work. Roberts made it very clear what the ramifications for the department’s future funding might be if they did not get their nodes up and running on schedule. As a result, the program progressed on schedule. </p>
+<p>Had Larry Roberts not had the power of the purse to lord over the node performers, the program design stage is where he should have figured out what else he could have done to keep them on task. As a PM, your role will be to manage not just the technology but the people, relationships, and incentives that make the program function. If your project is “abnormal” in the R\&amp;D ecosystem, as many DARPA programs are, expect that active management will be a critical part of its success.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">🚖 DARPA’s ALV: A Case Study in Active Program Management One illustrative example of effective program design and management is DARPA’s Autonomous Land Vehicle (ALV) program, which was part of its 1980s Strategic Computing Initiative. The ALV project had great ambitions: to develop an autonomous reconnaissance vehicle that could navigate complex environments using advanced computer vision technologies. However, the program initially struggled due to misaligned incentives among performers.  The prime contractor the DARPA PMs chose was Martin Marietta — now the “Martin” in Lockheed Martin. As many of IPTO’s varied research projects were developing component technologies — from sensors to vision algorithms to new signal processors — Martin was meant to be distilling it all into one functional whole. In the program design stage, the PMs also decided that the roughly five-year program should have a Phase 1 and Phase 2 period. At the end of Phase 1, there would be a check-in meeting in which DARPA leadership would decide how the future of the program would be managed given the first two years of experience. On paper, all bases were covered. There was a base of component computing knowledge that had been developed and was continually improving in DARPA’s broader portfolio. DARPA would also fund additional component performers to work on specific technologies of interest to the project. And Martin was employed as the systems integrator to make it all come together. However, in practice, the incentives and cultural norms of each of the contractor groups caused complications. Systems integrator problems Martin Marietta was a large firm more comfortable with clear contracts that had intermediate benchmarks to hit; they didn’t prefer to pursue open-ended research projects with solutions they couldn’t even imagine at the start of the project. So, they pushed DARPA to give them clear intermediate benchmarks to hit. When DARPA did this, Martin found ways to hit these benchmarks without satisfying the spirit of the contract–in the PMs’ view. Martin was not prioritizing implementing the newest component technology. As one major example, they were only minimally setting time aside to work with the academic vision researchers and test their algorithms. Basic researcher problems Many vision researchers were also not living up to the level of applicability that the ALV PMs expected from them. A scenario that would sound familiar to many today arose. The academic vision researchers were often more interested in using the data from the machine for their papers than in developing algorithms that actually worked in a real machine. There was a clear translational gap in the project’s workflow. Luckily, there was a performer on the project who largely solved this problem. The Carnegie Mellon Robotics Institute (CMU) stepped in to fill the gap, becoming the de facto systems integrator for the project. From the beginning of the project, CMU proved eager to not just do cutting-edge basic research, but also engage in complex systems integration tasks that were more “engineering” than “research.” In the project’s early stages, CMU pushed DARPA for funds to build their own cheap pilot vehicle in which to test new systems ideas and component technologies. Unlike Martin, they proved willing to test vision algorithms from other academic researchers. As they began doing this, it became clear that straight-from-the-lab vision algorithms did not work in most cases. They had to be tailored to the specific machine and environment. This required a lot of engineering time. It was time the academics did not want to put in, but CMU was happy to do so. Although the CMU team worked on a smaller budget, they proved far more effective at building autonomous vehicle systems with the ambition the DARPA PMs sought. Recognizing that CMU was the performer pool’s true systems integrator, at the end of Phase 1 the PMs made a critical decision to scale down Martin's project role. They initiated a new project which gave more responsibility to CMU. On paper, the ALV program itself was not a success. But the project’s main goal lived on elsewhere in DARPA’s Strategic Computing portfolio, with CMU as the star performer. Meanwhile, DARPA’s vision researchers continued to receive more or less the same level of research funds for their exploratory work. The CMU team would continue to collaborate with those colleagues and draw on their work in an ad-hoc fashion, when it made sense to do so. This decision—enabled by the program’s two-stage design—allowed the project to course-correct after two years and ultimately succeed. CMU went on to play a central role in DARPA’s autonomous vehicle research, helping lay the groundwork for future projects like the DARPA Grand Challenge and other work which propelled the autonomous vehicle revolution. Key Takeaways from the ALV Case Study The ALV program demonstrates the importance of flexibility in program design and adaptability in program management. Although the initial choice of Martin Marietta as the prime contractor was not ideal, the program was designed with built-in opportunities for reassessment and adjustment. When it became clear that CMU was the better performer, DARPA was able to pivot and shift resources to where they would be most effective. This case study highlights the need to: Design programs with flexibility so that mid-course corrections can be made if necessary. Be prepared to act decisively if performance issues or misaligned incentives threaten the program’s success. Structure your program in phases, allowing for formal checkpoints to evaluate progress and make necessary changes. Expect and plan for underperformance from some performers, but have mechanisms in place to reallocate resources or bring in new performers if needed. By incorporating these lessons into your program design, you can increase the likelihood of success, even if the initial execution doesn’t go as planned.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="mapping-incentives-mapping-incentives"><strong>🗺️ Mapping incentives</strong> {#🗺️-mapping-incentives}</h2>
+<p>At its core, a successful research program enables work that would not have otherwise happened. To make this happen, PMs need to think clearly about whether a potential performer is being funded to work on things they already want to do or if the PM needs to shift what the performer wants to do. A good PM needs to think about people’s incentives: what is driving them to act the way they do. </p>
+<p>Incentives matter for coordinated research programs both so that you can effectively coordinate people within the program and also so that the program itself can be impactful. If you don’t consider incentives, you are going to find yourself constantly frustrated by people who say they will do one thing and wind up doing another or simply won’t cooperate at all. Furthermore, many programs attempt to address systemic problems. Most people are not malicious or stupid — they’re simply acting according to incentives you might not see. In order to make headway on these problems, you need to figure out what is incentivizing people in that system so that you can shift those incentives. </p>
+<p>For example, most companies are incentivized to maximize profits (shocking!) so they’re incredibly unlikely to use a replacement technology that is [cooler/more sustainable/etc] if it costs drastically more than what they’re currently using. Installing new technology also costs money so companies are rarely incentivized to use technologies that are small improvements over what they already use. Governments (and especially militaries) have different incentives such as keeping soldiers and citizens alive, making politicians look good, and appeasing politically important groups, so they are sometimes willing to pay significantly more for marginal improvements in capabilities. </p>
+<p>There is no best-practice methodology to mapping incentives or incorporating them into your program design. One approach is long-form writing where you work backwards from the outcome that you want, describing who you want to do what and what their current incentives are. Another is to set up a spreadsheet or piece of paper with several columns:</p>
+<ul>
+<li>Actor  </li>
+<li>Current incentives  </li>
+<li>Desired action  </li>
+<li>Why their current incentives prevent them from taking the desired action  </li>
+<li>Potential actions you could take to bridge that gap.</li>
+</ul>
+<p>Figuring out what people’s and group’s incentives are in the first place is not straightforward. You can’t ask directly both because it’s incredibly awkward to ask “so, beyond the nice-sounding reasons, why are you really doing this?” and people often don’t notice what’s really driving their behavior.  </p>
+<h3 id="some-tactics-for-discerning-incentives-some-tactics-for-discerning-incentives"><strong>Some tactics for discerning incentives</strong> {#some-tactics-for-discerning-incentives}</h3>
+<ul>
+<li>Figure out what gets people in a particular position promoted or fired. Reaper functions dominate other incentives.  </li>
+<li>Look at where an organization’s free cash flow comes from.  </li>
+<li>Look at what someone’s peers celebrate or condemn.  </li>
+<li>Look at whether an individual or organization is under any particular legal obligation.  </li>
+<li>Observe the patterns in trajectories and failure modes of people/organizations/ideas that look similar to people/organizations/ideas that you’re considering.</li>
+</ul>
+<p>There are also many questions that you can ask to tease out different sets of incentives. These questions are domain specific. Some of them include:</p>
+<ul>
+<li>For academics  </li>
+<li>What stage of their career are they at?  <ul>
+<li>Do they have tenure?  </li>
+</ul>
+</li>
+<li>How large a lab do they need to support?  </li>
+<li>What projects do they already have going?  </li>
+<li>What ideas have they pinned their career to?  </li>
+<li>For universities  </li>
+<li>How could being involved in a program increase their prestige?  </li>
+<li>For large companies  </li>
+<li>What is their core product/revenue stream?  </li>
+<li>How is that product priced?  </li>
+<li>For people at companies  </li>
+<li>Is this person’s department a cost center or a profit center?  </li>
+<li>For startups  </li>
+<li>What are they trying to build?  </li>
+<li>What ideas have they sold to their investors?  </li>
+<li>How soon do they need to raise another round?</li>
+</ul>
+<p>Once you understand the incentives at play, you can either try to shift them or work around them.</p>
+<p>Ways that you can shift incentives:</p>
+<ul>
+<li>Pay someone to do something  </li>
+<li>Create a field that they can publish into  </li>
+<li>Make them feel like their peers’ opinions have shifted or help them find new peers  </li>
+<li>Change the opinion of their bosses  </li>
+<li>Convince them that a problem is actually interesting</li>
+</ul>
+<p>Ways to work around incentives:</p>
+<ul>
+<li>Enable someone to do more of what they want to do in exchange for spending some of their time doing what you want to do  </li>
+<li>Convince them that what you want them to do is related to what they already find interesting  </li>
+<li>Shift your goals to be more aligned with theirs</li>
+</ul>
+<h3 id="related-reading-related-reading"><strong>Related reading</strong> {#related-reading}</h3>
+<ul>
+<li><a href="http://www.nber.org/papers/w26752.pdf">Stagnation and Scientific Incentives</a> examines how incentives drive behavior and outcomes in science, focusing on how academic structures often prioritize safe, incremental work over transformative breakthroughs due to career and funding pressures.   </li>
+<li><a href="https://blog.benjaminreinhardt.com/wddw">Why Does DARPA Work?</a> analyzes DARPA's unique operational model, highlighting its reliance on empowered program managers, flexible funding, and a flat organizational structure to drive high-risk, high-reward innovation. Replicating DARPA's success in other contexts requires adapting these elements to fit different institutional environments. <a href="https://twitter.com/ilangur/status/1277447853023956993?s=20">“It’s all about incentives”</a></li>
+</ul>
+<hr />
+<h2 id="knowing-when-to-quit-knowing-when-to-quit"><strong>⏹️ Knowing when to quit</strong> {#⏹️-knowing-when-to-quit}</h2>
+<p>One of the reasons ARPA-style programs can take significant risks is their willingness to terminate projects or entire lines of investigation. These programs often pursue “big, if true” ideas—the "if" acknowledging that many may not succeed. Quitting allows you and your office to redirect resources toward more promising endeavors.</p>
+<p>Knowing when to quit is an art. It’s often difficult, especially when it involves letting go of external performers. Decisions to abandon a line of investigation or shut down a project can happen at various stages, such as:</p>
+<ul>
+<li>Abandoning an idea during program design.  </li>
+<li>Choosing not to continue after an initial round of experiments.  </li>
+<li>Ending a project before reaching a planned milestone.</li>
+</ul>
+<p>Several factors may signal that it’s time to quit, including:</p>
+<ul>
+<li>Discovering that an idea violates fundamental physical laws.  </li>
+<li>Realizing that an approach won’t scale or is otherwise unworkable.  </li>
+<li>Finding that the issue is non-technological in nature.  </li>
+<li>Other work has made a project or approach obsolete.  </li>
+<li>Identifying that a performer isn’t competent or capable of execution.</li>
+</ul>
+<p>In some cases, replacing a performer may solve the issue, while in others, it’s better to end the entire line of investigation.</p>
+<h3 id="kill-criteria-kill-criteria"><strong>Kill Criteria</strong> {#kill-criteria}</h3>
+<p>Whenever possible, establish kill criteria early in the program’s life cycle. Effective kill criteria should be:</p>
+<ul>
+<li><strong>Objective</strong>: The clearest way to achieve this is through measurable outcomes. However, insisting on measurability can exclude some valuable projects.  </li>
+<li><strong>Agreed upon by all parties</strong>: This often requires careful negotiation.</li>
+</ul>
+<p>There should ideally be ways for performers to realize that they aren’t on target and step up their game throughout the process. In the cases where kill criteria are not objective metrics, you will need to tell them that they will need to step up their game or you are willing to move on from them.</p>
+<p>Here are additional tips for setting clear expectations:</p>
+<ul>
+<li><strong>Create precise, falsifiable hypotheses:</strong> This ensures there’s a clear way to evaluate success or failure.  </li>
+<li><strong>Timebox everything</strong>: Whether it’s your own exploration or performer projects, set strict deadlines.  </li>
+<li><strong>Set clear expectations for progress</strong>: Communicate upfront about the pace and rate of progress you expect.  </li>
+<li><strong>Have performers specify their own milestones</strong>: This encourages accountability and ambition, with guidance from you.  </li>
+<li><strong>Establish tight feedback loops</strong>: Regular communication helps identify problems early and keeps everyone aligned.</li>
+</ul>
+<p>Once you’ve decided to quit, act quickly. Delaying only wastes time and resources.</p>
+<p>The following section will provide concrete examples of DARPA-style programs that successfully implemented quitting, firing, and killing strategies.</p>
+<h3 id="concrete-examples-concrete-examples"><strong>Concrete examples</strong> {#concrete-examples}</h3>
+<p>The following list contains some concrete historical examples of effective quitting, firing, and killing in DARPA-style programs.</p>
+<ul>
+<li><strong>Cutting sub-projects or external collaborators due to cost overruns.</strong> During the <a href="https://web.archive.org/web/20110629003311/http://www.darpa.mil/WorkArea/DownloadAsset.aspx?id=2565">Miniature GPS Receiver Program</a>, Tony Tether cut Magnavox as a performer because they had repeated cost overruns. Pruning performers based on cost overruns is not uncommon.  </li>
+<li><strong>Cutting sub-projects or external collaborators that fail to hit milestones.</strong> During the <a href="https://www.darpa.mil/program/system-f6">F6 Program (Future, Fast, Flexible, Fractionated, Free-Flying Spacecraft United by Information Exchange)</a> DARPA aimed to develop a new approach to satellite architecture. The program’s PM had to make tough decisions around cutting performers who were not meeting the milestones in developing modular and flexible spacecraft systems.  </li>
+<li><strong>Cutting teams from a staged competition based on milestones.</strong> During the <a href="https://en.wikipedia.org/wiki/DARPA_Robotics_Challenge">DARPA Robotics Challenge</a> teams had to succeed at one or two different sub-challenges (a competition with a simulated robot and a scoped version of the final challenge) to make it to the final competition. Those that failed at the challenges were cut and those that succeeded were given additional funding. (See image)</li>
+</ul>
+<p>The next chunk of examples covers programs that ended early:</p>
+<ul>
+<li><strong>Quitting a program because the approach is deeply mismatched to the goals.</strong> <a href="https://en.wikipedia.org/wiki/Adaptive_Vehicle_Make">The Fast Adaptable Next-Generation Ground Vehicle program</a> was focused on building open-source vehicle design and manufacturing, but was ultimately ended early because there were enough classified military designs and materials that an open-source approach just didn’t work for military vehicles.  </li>
+<li><strong>Quitting because it didn’t seem possible to hit key metrics.</strong> The Exoskeletons for Human Performance Augmentation Program aimed to develop wearable exoskeletons to enhance soldier performance. It faced significant technical challenges, especially in power supply and weight reduction. The technological hurdles and the high cost of development led to its early termination.  </li>
+<li><a href="https://en.wikipedia.org/wiki/Aerial_Reconfigurable_Embedded_System"><strong>The Transformer (TX) Program sought to develop a flying car-like vehicle for military use.</strong></a> It encountered numerous challenges in design and feasibility, particularly in achieving the desired performance within the constraints of size, weight, and power. The program was terminated early due to these technical and practical limitations.  </li>
+<li><strong>Quitting because of politics.</strong> <a href="https://en.wikipedia.org/wiki/Total_Information_Awareness">The Total Information Awareness (TIA) Program was developing technologies for large-scale data mining and analysis to prevent terrorist attacks.</a> It was terminated due to public concerns over privacy and civil liberties. The controversy over surveillance and data collection led to a loss of support in Congress, resulting in its early closure.  </li>
+<li><strong>Quitting because the world changes</strong>. The <a href="https://www.darpa.mil/program/systems-of-neuromorphic-adaptive-plastic-scalable-electronics">SyNAPSE (Systems of Neuromorphic Adaptive Plastic Scalable Electronics) program</a>, started in the late 2000s, aimed to create electronic neuromorphic machine technology that would function similarly to a human brain. The goal was to develop a new generation of computers and electronics that could interpret, analyze, and learn from data in a sophisticated, efficient manner, much like the human brain. However, as the program progressed, the rapid advancement of machine learning and artificial intelligence in the broader tech industry, particularly the development and improvement of deep learning algorithms, overshadowed the goals of SyNAPSE. These advancements in AI and machine learning offered more immediate and practical solutions to problems SyNAPSE aimed to address. Deep learning, leveraging large neural networks and massive amounts of data, began to demonstrate remarkable capabilities in image and speech recognition, natural language processing, and other areas that were once thought to require the kind of neuromorphic computing DARPA's SyNAPSE program was exploring. As a result, the focus in the tech industry shifted towards these more immediately applicable AI technologies, which were rapidly evolving and being integrated into various applications. This shift made some of the objectives of the SyNAPSE program seem less relevant, leading to its early wind-down.</li>
+</ul>
+<h2 id="kick-off-meeting-structures-site-visits-evaluations-etc-kick-off-meeting-structures-site-visits-evaluations-etc"><strong>🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</strong> {#🕵️‍♂️-kick-off,-meeting-structures,-site-visits,-evaluations,-etc.}</h2>
+<p>One of the most important tools you have for program management is events and in-person engagements. These can take many forms depending on the structure of the program and your objectives, but there are usually some universal components. </p>
+<h3 id="meetings-and-events-meetings-and-events"><strong>Meetings and events</strong> {#meetings-and-events}</h3>
+<p><strong>The Kick-Off</strong>: A program generally starts out with a kick-off event. Having seen dozens of these, I can say there is no one right way to organize it. A few tips: </p>
+<ul>
+<li>Start the event (after an inspirational program overview talk of course) with icebreakers, unstructured discussions, or even a (perhaps anonymous) pre-mortem where you ask performers to consider that the program has just ended and it was a failure and ask them to write down their top N reasons for why it failed (you can come back to these at the end of the meeting to see if people have updated their priors).   </li>
+<li>At a hackathon I once handed out pieces of paper and made everyone create “playing cards” with images and various professional and personal facts and skills which we then arranged into a huge map on the wall that people were encouraged to browse or use to quickly find the right person to talk to on a particular topic.   </li>
+<li>Typically it's essential to give everyone an opportunity to present themselves and their planned project and role in the program, which inevitably means a firehose of power-point information. Think about ways to break this up such as by having all TA1 performers speak and then doing a broad discussion or breakout activity to discuss key challenges in TA1 and/or key interfaces with the other TAs.   </li>
+<li>Schedule lots of time for informal discussions and working sessions but keep in mind that many people will be meeting for the first time so they may need some prodding/prompting to engage outside their teams. Encourage people to have broad (perhaps even random) small-group “beer meetings” before (or after) dinner.   </li>
+<li>Organize breakouts around things like working group topics, technical areas, hard technical challenges, integration requirements, evaluation structure and metrics.   </li>
+<li>Do private in-person one-on-one meetings with each PI (consider including co-Is or full project teams as you think is best). I’ve found this is usually easiest to schedule during a speed-dating session.   </li>
+<li>Finish the meetings with a specific discussion of near-term (3-6 months) action items and responsibilities. Make sure people know and can articulate what their responsibilities are (intermediate technical deliveries, working group leads, etc.) and leave with a sense of excitement for the program mission and their key role in it. </li>
+</ul>
+<p>None of this is gospel. If you ask 10 former PMs you’ll probably get 10 different answers for kick-off priorities and methods for team-building (I’m personally heavily biased towards karaoke as by far the best team-building exercise there is). </p>
+<p><strong>PI Meetings</strong>: The kick-off meeting is basically the first PI meeting, so most of the above translates here as well. PI meetings are typically every 6 months, but nothing is set in stone so figure out what works best for the cadence of your program. Some PMs choose to have only PIs and other key leads at these meetings while others (including myself) take a more-the-merrier approach. There are downsides to having a big meeting with every grad student and junior engineer in attendance, but the upside is that the people doing the work day-to-day get to meet and get exposed to, and inspired by, the broader program goals. </p>
+<p><strong>Site Visits</strong>: It used to be gospel at DARPA that you should visit each performer in person every 6 months. This is undoubtedly valuable, if you don’t mind living on the road… Since the pandemic, virtual site visits have become much more common though there’s still nothing like face-to-face. Depending on how many performers you have, the types of work they’re doing and how widely distributed they are (can you knock out 3 or 4 in a couple days in one city?), consider doing in-person site visits as reasonable. </p>
+<p><strong>Hackathons and Evaluations</strong>: ARPA-style meetings tend to be much more productive when they’re built around working and planning, rather than conference-style powerpoint overload. Hackathons are a great framework for organizing a true working event and can be particularly useful for targeted integration work (get everyone together and hack until their tools/data can talk to each other). </p>
+<p><strong>Evaluation Events</strong>: Not every program will need to have an event to conduct evaluations, but frequently this will be the case, particularly if you are trying to bring in users (real or proxy) to put a technology, or integrated set of technologies, through its paces. Consider combining this with a preceding hackathon so teams have targeted time for hardening, integration and testing before the eval. </p>
+<h3 id="performance-evaluation-framework-performance-evaluation-framework"><strong>Performance Evaluation Framework</strong> {#performance-evaluation-framework}</h3>
+<p>It’s important to have a structured framework to evaluate performers and assess progress at various milestones. This includes:</p>
+<ul>
+<li><strong>A checklist for evaluation</strong>: Use a standardized set of questions or criteria to evaluate each performer.  </li>
+<li><strong>Mid-program assessments</strong>: Hold formal reviews at key points to evaluate whether projects should continue, be adjusted, or be terminated.  </li>
+<li><strong>Tight feedback loops</strong>: Maintain regular communication to track progress and identify issues early.</li>
+</ul>
+<p><em>Note: Please keep this simple! Create a standard template and have a plan for how you’ll use the various templates across the program (a good time to leverage AI tools!).</em> </p>
+<h3 id="post-program-reflection-and-knowledge-transfer-post-program-reflection-and-knowledge-transfer"><strong>Post-Program Reflection and Knowledge Transfer</strong> {#post-program-reflection-and-knowledge-transfer}</h3>
+<p>After the program ends, conduct post-mortems or debrief sessions to capture lessons learned. These insights will help future PMs and teams avoid similar pitfalls. Additionally, ensure that knowledge is transferred effectively to stakeholders, collaborators, or follow-up programs.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">🛠️ Ideas for Using the Tech Stack There are many ways to approach project management and you should figure out for yourself which one suits you best. Some people do best with notes in Google Docs or Apple Notes and Calendar.  Project tracking If you haven’t, it is probably worth trying project management software that supports multiple views per project and see if you work best with a simple list, Kanban board or table view. There are many solutions, including Asana, Trello, Notion, Monday or ClickUp. If you have collaborators, avoid the temptation to pick the perfect tool for you that nobody else likes to use. If possible, consider shared project management platforms that give you visibility into real-time progress across projects without requiring constant check-ins. You should also explore ways of using elements to help you synthesize a picture of overall program progress based on submitted progress reports, and help you notice if any part of the program is not going as intended.  Knowledge Synthesis Use LLMs and knowledge management tools to identify potential synergies across projects that performers themselves might miss. Feed project updates, research papers, and meeting notes into these systems to generate insights about potential collaborations or technologies that might benefit from cross-team application. Implementation Approach You may be constrained on this by your organization. If so, try to create pressure on your ops and legal to find a way to use these tools in a privacy-preserving manner, whether by using local models cloud-based ones with appropriate privacy policies.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page-nav">
+  <a href="06_Program_Engineering.html">← Program Engineering</a>
+  <a href="08_Tech_Transition.html">Tech Transition →</a>
+</div>
+
+
+<footer>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Program Design — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
+
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
+
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
+
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
+  <div class="eyebrow">Chapter 4 &nbsp;🎨</div>
+  <h1>Program Design</h1>
+</div>
+<div class="content-wrap">
+<h1 id="4-program-design">4️⃣ Program Design</h1>
+<h1 id="chapter-4-program-design"><strong>Chapter 4: Program Design</strong></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">BLUF: The program design stage is about taking your high-level vision and the results of your field exploration and turning these into an actionable roadmap. Remember that the goal here is not defining the solution but defining the problem(s), framing the solution and then structuring a program to achieve your goals. Program designs should be a guide for the program, but should also leave plenty of room for adaptation.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚡Practical outcomes</strong></p>
+<ul>
+<li>A full Heilmeier document (or similar) with ROM budget, timeline, evaluation plan, etc. that has been iterated multiple times with colleagues and direct managers  </li>
+<li>A full pitch deck ready for your program approval meeting (that has been road-tested multiple times with colleagues and direct managers)  </li>
+<li>Specific examples of key potential performers and methods in each technical area  </li>
+<li>A draft of your transition strategy/options (at a high-level)  </li>
+<li>A road-tested argument for why this won’t happen without your program</li>
+</ul>
+<p><a href="#🔮planning-for-problems">🔮Planning for Problems</a></p>
+<p><a href="#🩻the-structure-of-a-coordinated-research-program">🩻The Structure of a Coordinated Research Program</a></p>
+<p><a href="#program-style">Program Style</a></p>
+<p><a href="#identifying-“technical-areas”">Identifying “Technical Areas”</a></p>
+<p><a href="#timelines,-phases-and-milestones">Timelines, Phases and Milestones</a></p>
+<p><a href="#component-integration">Component Integration</a></p>
+<p><a href="#designing-evaluation-plans-and-metrics">Designing evaluation plans and metrics</a></p>
+<p><a href="#designing-your-transition-strategy">Designing your transition strategy</a></p>
+<p><a href="#💰budgeting-for-a-coordinated-research-program">💰Budgeting for a Coordinated Research Program</a></p>
+<p><a href="#an-aside-on-top-down-budgeting">An Aside on Top-Down Budgeting</a></p>
+<p><a href="#getting-started-on-your-budget">Getting Started on Your Budget</a></p>
+<p><a href="#♟️examples-of-program-contexts-and-plays">♟️Examples of Program Contexts and Plays</a></p>
+<p><a href="#example-1:-building-a-dataset-for-a-competition">Example 1: Building a Dataset for a Competition</a></p>
+<p><a href="#example-2:-two-different-solutions,-two-different-trls">Example 2: Two Different Solutions, Two Different TRLs</a></p>
+<p><a href="#🗣️-creating-your-pitch">🗣️ Creating Your Pitch</a></p>
+<p><a href="#🕵️‍♂️-other-places-to-source-program-design-ideas">🕵️‍♂️ Other Places to Source Program Design Ideas</a></p>
+<p><a href="#💰appendix:-miscellaneous-budget-tips">💰Appendix: Miscellaneous Budget Tips</a></p>
+<p><a href="#budgeting-tips">Budgeting Tips</a></p>
+<p>Many aspects of effective program design require good strategic skills as well as scientific intuition. You need to assess whether the technical tasks are doable, who is up to the challenge, and whether all elements of the project can come together cohesively. Understanding incentive structures, clarifying roles, and ensuring alignment between performers are all tasks that fall squarely on the PM's shoulders. While scientific challenges can sometimes be difficult to predict, management problems are often within your control. Careful and thorough program design helps you stay ahead of these challenges.</p>
+<p>In the design phase you will continue to iterate on your Big Four HQs and answer “the other four” as well:</p>
+<ul>
+<li>What are the risks?  </li>
+<li><em>This should include the technical blockers you’ve already identified, transition/adoption challenges, program structure risks, etc.</em>   </li>
+<li>How much will it cost?  </li>
+<li><em>We’ll cover this later, for now just calibrate to something like more than $10M but less than \~$100M.</em>   </li>
+<li>How long will it take?  </li>
+<li><em>What is time? Use this prompt to think about sequencing, phase structure and intermediate milestones.</em>  </li>
+<li>What are the midterm and final "exams" to check for success?  </li>
+<li><em>Metrics and evaluation are essential to a good program. The best way to approach this is not “how do I prove that my program is working” but “how do I design evaluations and metrics to help drive towards the outcomes I care about.” This is harder than it sounds in most cases…</em> </li>
+</ul>
+<h2 id="planning-for-problems-planning-for-problems"><strong>🔮Planning for Problems</strong> {#🔮planning-for-problems}</h2>
+<p>In DARPA-style programs, the key performers are spread across separate organizations. As the PM, you are often the sole unifying force tying these performers together into a functional team. In many cases, you won’t just be an orchestrator; you might need to take a strong leadership role.</p>
+<p>In a perfect world, the performers’ skills and incentives would fit seamlessly with your program’s objectives. You could focus on ensuring they have the resources to succeed and that they collaborate well with end users. However, this is rarely the case. As the program progresses, you may discover that a performer’s incentives don’t align with the program’s success, or that they are simply underperforming. While you’d ideally uncover these issues during the selection process, some challenges won’t become apparent until later.</p>
+<p>This is where effective program design comes into play. Planning for problems from the start can help prevent these issues from derailing your entire program. For instance, you might establish contingency plans, set up intermediate checkpoints to evaluate progress, or build in mechanisms for changing course if needed. Adequate program design can prevent management and contracting issues from sinking your program.</p>
+<h2 id="the-structure-of-a-coordinated-research-program-the-structure-of-a-coordinated-research-program"><strong>🩻The Structure of a Coordinated Research Program</strong>  {#🩻the-structure-of-a-coordinated-research-program}</h2>
+<p>The most important aspects of your program design are the things that give it structure: </p>
+<ul>
+<li>What style of program is it? Competition? Collaboration? Both? Something else?   </li>
+<li>What are the distinct, parallelizable Technical Areas (TAs)?   </li>
+<li>How will you phase the program and what are the intermediate milestones and/or down-selects?   </li>
+<li>Will there be component pieces that need to be integrated and if so how will that be accomplished?   </li>
+<li>How will you evaluate progress over the course of the program?   </li>
+<li>And finally, what is the end goal, who are the users, and what’s your strategy for transition?</li>
+</ul>
+<p>Being smart about how you define these up front will enable you to more effectively adapt to changes during the program. Locking yourself into overly specific or complicated choices in the design phase is very likely to come back to bite you when you’re trying to execute. In a similar vein, ensure your program design accounts for the possible negative effects of too many technological contingencies. If one or two key technical risks can derail your entire program, do everything possible to ensure they are either worked on/around early in the program’s life cycle or that the necessary phasing is put in place to pivot if the problems prove to be too hairy.</p>
+<h3 id="program-style-program-style"><strong>Program Style</strong> {#program-style}</h3>
+<p>How you choose to design your program will depend on its particular style. There are many different “styles.” Each category of program styles can have many sub-areas or be joined with other styles in a hybrid approach. Some examples include:</p>
+<ul>
+<li><strong>Challenges</strong>  </li>
+<li><strong>Single Stage Challenges</strong> are challenges in which multiple performers seek to achieve the same technical goal.  </li>
+<li><strong>Multi-Stage Challenges</strong> are challenges in which, after stage 1, the field might be narrowed or all competitors might be forced to show their work.  </li>
+<li><strong>Coordinated Research Programs</strong>  </li>
+<li><strong>Systems Integrators + Component Contractors</strong> is a common way to divvy up tasks in a coordinated research program. Component contractors might work to innovate on specific materials, sensors, or algorithms while a systems integrator folds the novel components into a useful system.  </li>
+<li><strong>Development Partnerships</strong> might be crucial in certain programs, with contractors co-designing and co-developing technologies with the intended users in the loop every step of the way.  </li>
+<li><strong>Build It and They Will Come</strong> programs might take an alternative approach, building technologies with minimal input from intended users. While these PMs still tend to build with a specific set of users in mind, this approach can be helpful if a set of users will not grasp the vision of the program until the technology is fleshed out. This is a risky strategy, but there is a time and place for it.   </li>
+<li><strong>Hybrid</strong>  </li>
+<li><strong>Prediction + Integrator.</strong> Some programs might combine a challenge and a coordinated research program by having a set of performers engage in a prediction challenge and a group of performers fold the most exciting ideas into a single piece of technology.  </li>
+<li><strong>Challenge Then Build</strong> is when a challenge is used to determine the most promising technical approach, but then a program is run as a coordinated research program from there.</li>
+</ul>
+<p>This list should give you an idea of what “program style” refers to when it comes to program design.</p>
+<h3 id="identifying-technical-areas-identifying-technical-areas"><strong>Identifying “Technical Areas”</strong> {#identifying-“technical-areas”}</h3>
+<p>A typical CRP has different technical areas that can be fully or partially separated and parallelized so that work on different blockers can proceed simultaneously. </p>
+<ul>
+<li><strong>Identifying TAs</strong>: A good way to identify different technical areas is by identifying what parts of the program are likely to attract different types of performer groups (might be different institutions, different domains or maybe just different labs). The need for entirely different teams for either subject, incentive, staffing, or equipment-related reasons is often a clear indicator that two tasks fall in different TAs.   </li>
+<li><strong>What needs to be achieved in each TA to achieve the program’s goals?</strong> Be as specific as possible. Each task should be clearly defined so you understand the scope and requirements.  </li>
+<li><strong>Mapping TAs to projects</strong>: Just because you identify parallel TAs doesn’t necessarily mean you want to constrain proposals/projects to focus exclusively on one. In many cases there is a benefit (closer collaboration and potential cost savings) to having integrated teams working across TAs. Sometimes the best choice is a hybrid, with some teams working across multiple TAs and others focussed on a single one. Allowing teams to propose integrated projects that span TAs also allows you a bit more flexibility during the selection process; if you like what 1 team proposes for TA1 but not their idea for TA2, you can select to fund only the good stuff. </li>
+</ul>
+<p>When allocating work for a project’s TAs, do not fall into the trap of deciding how to divvy up TA tasks based on purely component technology concerns. Smooth collaboration among TA teams is key to a program’s success. There is often a lot of complementarity in having the same team of people with a unified vision and leadership structure work on several consecutive stages of a program or on several technical components. As the number of contractors grows, there can be clear frictions in helping coordinate unrelated contractors to work in lockstep. PMs must weigh the tradeoff of increasingly difficult management as the number of contractors rises. </p>
+<h4 id="example-ta-structures"><strong>Example TA structures.</strong></h4>
+<p>Just as there are common program styles, there are common TA structures. Some include:</p>
+<ul>
+<li><strong>Theory and Execution</strong> in which one technical group is focused on theoretical improvements and another group is focused on implementing the new theoretical ideas in a practical way.  </li>
+<li><strong>Component and Systems Integrator (Pipeline)</strong> in which a set of component contractors first develop innovative component technologies, then a systems integrator later comes and folds the technology into a useful system.[^4]  </li>
+<li><strong>Component and Systems Integrator (Ongoing)</strong> in which the two groups collaborate on an ongoing basis, evolving based off of one another’s work.  </li>
+<li><strong>Back-End and Front-End</strong> in which one group focuses on making a system work on a technical or scientific level while another focuses on ensuring that technology is delivered in a way that is optimized for user needs.</li>
+</ul>
+<p>Optimal TA structures can vary based on the goals of a program, technological readiness, types of contractors available, and many other factors.</p>
+<h4 id="performer-types-and-examples"><strong>Performer types and examples</strong></h4>
+<p>For each TA, you need to think about the types of performers that are ideally suited to carry out the work. </p>
+<ul>
+<li><strong>What types of groups are ideally suited to carrying out different aspects of the project?</strong> Are you relying on academic institutions, industry partners, government labs, or some other type of contractor? Each group has different strengths and weaknesses based on their different incentive structures.  </li>
+<li><strong>If no standard archetype of performer exists to serve a crucial project need, what will you do?</strong> Sometimes, you will need to be creative in how you source and structure performer teams, particularly if traditional contractors or labs don’t fit your requirements.  </li>
+<li><strong>How should different performers interact?</strong> How will contractors interact with each other, potential users, etc.?</li>
+</ul>
+<h3 id="timelines-phases-and-milestones-timelines-phases-and-milestones"><strong>Timelines, Phases and Milestones</strong>  {#timelines,-phases-and-milestones}</h3>
+<p><strong>How will you build in flexibility for inevitable discoveries and changes along the way?</strong> Your program must be adaptable, allowing you to pivot based on new information or unforeseen challenges.</p>
+<p>How a program is “phased” varies widely. The problem at hand, contractors available, and technical risks involved will determine what phasing makes the most sense. To share one example of a program with a distinct phasing strategy from DARPA history:</p>
+<ul>
+<li><em>In DARPA’s STEALTH program, the first phase consisted of a moderate length of time in which DARPA funded multiple aircraft companies to construct primitive 3-D models of aircraft built out of cheap materials. The contractors participated in a competition to see whose model could achieve the lowest radar cross section. The winner won the more lucrative contract to build the actual plane.</em></li>
+</ul>
+<p>There are many ways to phase a program. Some programs might consist of many component contractors working to improve their technologies indefinitely, as academic labs often do, and a systems integrator folding great ideas from the contractor pool into a useful piece of technology on an ongoing basis. Other programs will naturally break up into separate multi-year phases in which the first consists of working on a technical breakthrough in the lab and the second phase consists of turning the finding into something manufacturable/usable. In the attached CMU systems integrator write-up, the reader will learn about a program incorporating a multi-year, phase 1 check-in to make major changes to a program.  </p>
+<h3 id="component-integration-component-integration"><strong>Component Integration</strong>  {#component-integration}</h3>
+<p>In general a good ARPA program is much bigger than the sum of its parts, meaning that component breakthroughs or technologies will have to be integrated into one or more final products or integrated demonstrations and/or evaluations. Having a reliable and trusted integration team may be the most important predictor of success, so make sure you design the integration TA carefully and choose these performers wisely. </p>
+<h3 id="designing-evaluation-plans-and-metrics-designing-evaluation-plans-and-metrics"><strong>Designing evaluation plans and metrics</strong> {#designing-evaluation-plans-and-metrics}</h3>
+<p>Choosing good metrics and designing evaluation plans to test and track those metrics is an entire art unto itself. </p>
+<h4 id="metrics-for-coordinated-research-programs"><strong>Metrics for coordinated research programs</strong></h4>
+<p>Metrics are a critical part of research management, but they can be tricky. Good metrics are invaluable, while bad metrics can actively derail a program. In simple terms: good metrics &gt; no metrics &gt; bad metrics.</p>
+<p><strong>Examples of bad metrics for most DARPA-style programs include:</strong></p>
+<ul>
+<li>Lines of code  </li>
+<li>Number of publications  </li>
+<li>Positive media mentions</li>
+</ul>
+<p><strong>Examples of good metrics include:</strong></p>
+<ul>
+<li>Strength-to-weight ratio of a material  </li>
+<li>Yield, cost or time-requirement of a process  </li>
+<li>Number of functioning components in a new system</li>
+</ul>
+<p>Metrics serve various purposes, and when chosen wisely, they can help track and benchmark progress effectively. Some key roles of metrics are:</p>
+<ul>
+<li><strong>To Gauge Progress:</strong> Good metrics allow you to compare different approaches and help identify which path is more promising.  </li>
+<li><strong>To Drive Work</strong>: Metrics can align performers around a clear goal, ensuring everyone knows what’s important. Lack of progress on key metrics can spark necessary discussions about challenges and potential course corrections.  </li>
+<li><strong>To Prove Progress</strong>: In a multidisciplinary setting, metrics provide a simple way to show progress, even to non-experts. When decision-makers or funders from different technical fields need to evaluate your project, metrics offer a clear, objective basis for comparison.  It’s very likely that, at some point, someone who is not a subject area expert will have a say in the future of your project. In this situation, metrics can be crucial.</li>
+</ul>
+<p>However, metrics are just tools. They should complement, not replace, thoughtful judgment. Be sure to communicate clearly to performers how metrics will be used and why they are important.</p>
+<h4 id="how-to-approach-creating-metrics"><strong>How to Approach Creating Metrics</strong></h4>
+<p>In some cases, the right metrics for your program will be obvious; in others, it will take time to identify the best ones. The right metrics depend on the nature of your program. Below are strategies for developing useful metrics:</p>
+<ol>
+<li><strong>Identify Direct Proxies for Success</strong>: Determine if there’s a metric that directly correlates with your program’s goal.  </li>
+<li><em>Example: For a rocket program, measuring thrust per kilogram directly relates to the rocket’s ability to carry mass into orbit—a clear indicator of success.</em>  </li>
+<li><strong>Assess Metric Suitability</strong>: Not all programs lend themselves to metrics. While metrics are powerful, forcing them where they don’t fit can waste time. However, avoid using this as an excuse to bypass the discipline that metrics provide, as that can lead to inefficient use of resources.  </li>
+<li><strong>Convincing Metrics</strong>: Ask yourself if achieving a certain metric will convince stakeholders that progress is meaningful or exciting.  </li>
+<li><em>Example: A high-tensile material for a space elevator that can only be produced in tiny lengths won’t convince anyone that a space elevator is feasible, even if the material is strong.</em>  </li>
+<li><strong>Set Intermediate Metrics for Key Risks</strong>: Use metrics to track progress on key risks.  </li>
+<li><em>Example: If corrosion is a key concern, measuring contact resistance in components could serve as a valuable intermediate metric.</em>  </li>
+<li><strong>Distinguish Between Must-Hit Goals and Stretch Goals</strong>: Clarify whether a goal is critical or aspirational.  </li>
+<li><em>Example: For wall-penetrating radar, a stretch goal might be penetrating two meters of concrete, but a must-hit goal would be ensuring the device is light enough to carry.</em>  </li>
+<li><strong>Include Cost and Scalability</strong>: Reducing the cost or increasing the scalability of a system can be just as important as hitting technical metrics, especially for transitioning a technology to real-world use.  </li>
+<li><strong>Be Flexible Based on Results</strong>: If progress toward a metric reveals unexpected opportunities or challenges, be prepared to adjust your program.  </li>
+<li><em>Example: If an academic performer develops a chemical process that hits one metric but does so at a yield rate that is lower than you’d hoped, you might need to allocate more resources to pilot plant-style work than you initially anticipated.</em>  </li>
+<li><strong>Limit the Number of Metrics</strong>: Use as few metrics as necessary to maintain focus, but ensure all critical aspects are covered. Too many metrics can dilute attention; too few can lead to important factors being overlooked.  </li>
+<li><strong>Understand Transition Metrics</strong>: Know what metrics need to be met for your technology to move from research to real-world use.  </li>
+<li><em>Example: A DARPA program to create artificial blood hit all its technical metrics, but the artificial blood was so much more expensive than blood from a blood bank. The technology was never used.</em>  </li>
+<li><strong>Use Indirect Metrics When Necessary</strong>: While direct metrics tied to success are ideal, sometimes indirect metrics can offer valuable insights and guide progress.</li>
+</ol>
+<h4 id="indirect-but-useful-metrics-of-program-success"><strong>Indirect (but useful) Metrics of Program Success</strong></h4>
+<p>While it’s ideal to have a clear number or technical achievement to mark a program’s success, the reality isn’t always that straightforward. Sometimes, indirect metrics, though not definitive on their own, provide valuable insights into a program’s broader impact.</p>
+<p>Useful indirect metrics after a program ends might include:</p>
+<ul>
+<li><strong>Follow-on Funding</strong>: The amount of funding directed toward work that builds on the program’s outcomes—whether through startups, nonprofits, or further research by governments or companies—can signal continued relevance and influence.  </li>
+<li><strong>Wider Adoption of Terminology</strong>: The use of technical terms coined during the program indicates that the concepts introduced are gaining traction in the field.  </li>
+<li><strong>Contribution to Tools and Resources</strong>: The development or widespread use of tools, methods, or resources created during the program demonstrates its broader utility.  </li>
+<li><strong>Academic and Intellectual Output</strong>: Papers, patents, and citations generated by the program reflect its intellectual and technical contributions to the research community.</li>
+</ul>
+<p>Two important caveats apply to both direct and indirect success metrics:</p>
+<ol>
+<li><strong>Intermediate Milestones May Not Reflect Final Success</strong>: The metrics used to judge a program’s ultimate success shouldn’t necessarily serve as benchmarks during the program’s progression, as not all projects show linear or continuous improvement.  </li>
+<li><strong>Beware of Over-Emphasizing Metrics</strong>: Over-reliance on certain metrics can distort the program’s focus. For example, academia’s obsession with citation metrics has led to unintended consequences. Balance is key.</li>
+</ol>
+<p>The next section will explore how an overemphasis on metrics can sometimes lead a program off track.</p>
+<h4 id="avoiding-misuse-of-metrics"><strong>Avoiding Misuse of Metrics</strong></h4>
+<p>Metrics can easily be misused, leading to poor decision-making and misaligned priorities. Below are some common pitfalls to avoid:</p>
+<ol>
+<li><strong>Avoid Compound Metrics</strong>: Combining multiple metrics into a single weighted score is tempting but problematic. It’s nearly impossible to assign the right weights, and doing so often obscures important issues rather than clarifying them.  </li>
+<li><strong>Beware of <a href="https://en.wikipedia.org/wiki/Goodhart%27s_law">Goodhart’s Law</a>:</strong> When a metric becomes a target, people optimize for it—sometimes at the expense of the actual goal. If you focus on a proxy metric, you risk optimizing for that metric without solving the underlying problem it’s meant to measure.  </li>
+<li><strong>Update Metrics When Needed</strong>: As new information arises, don’t be afraid to revise your metrics. If a key metric becomes irrelevant, you need to adjust, even if it’s an uncomfortable conversation with stakeholders. Clinging to a bad metric due to sunk-cost bias can derail the entire program.  </li>
+<li><strong>Don’t Ignore Non-Quantifiable Information</strong>: Metrics are valuable, but not everything can be measured. Important aspects of a program’s success may defy quantification, so don’t rely solely on metrics. Keep room for qualitative judgment.  </li>
+<li><strong>Don’t Rush to Quantify in Uncertain Situation</strong>s: If there’s too much uncertainty, avoid setting metrics prematurely. As my old defensive coordinator would say, “Don’t be fast to go nowhere!”  </li>
+<li><strong>Don’t Force Metrics on Non-Quantifiable Goals</strong>: It’s tempting to assign numbers to things like “usability” or “innovation,” but these proxies rarely drive meaningful work. Stay cautious about over-quantifying subjective outcomes.  </li>
+<li><strong>Don’t Expect Linear Progress</strong>: Metrics sometimes show little progress until a major breakthrough occurs. Patience is often necessary. But wishful thinking can also kill a program. Don’t ignore persistent stagnation. Knowing when to cut losses is just as important as waiting for breakthroughs.</li>
+</ol>
+<p>Handling these challenges requires careful judgment. The next section will explore how to set clear criteria for killing a project or pivoting when necessary.</p>
+<h3 id="designing-your-transition-strategy-designing-your-transition-strategy"><strong>Designing your transition strategy</strong> {#designing-your-transition-strategy}</h3>
+<ul>
+<li><strong>What needs to happen at the end of the program to ensure it achieves the desired impact?</strong> Work backward from the final goal, ensuring that your program includes the necessary milestones, technologies, or partnerships needed to transition successfully.</li>
+</ul>
+<p>No matter how technically ambitious your program is, you should be designing with transition in mind from day one. Discuss your program design with transition partners and ensure you understand their constraints. In many cases, their input should help inform the priority queue of technical problems to be worked through. These needs might also shape which contractors are hired and how resources are allocated. This planning ensures that at the end of your program technology is ready for investment by eagerly interested parties — whether they be VCs, the armed services, philanthropic funders, etc. A thorough transition strategy should minimize the role luck or circumstance play in your program achieving a successful transition.</p>
+<h2 id="budgeting-for-a-coordinated-research-program-budgeting-for-a-coordinated-research-program"><strong>💰Budgeting for a Coordinated Research Program</strong> {#💰budgeting-for-a-coordinated-research-program}</h2>
+<p>There is no algorithm for figuring out a program’s budget. Budgeting for large programs is often a bundle of tricks that you will use to come up with numbers that get you in the right ballpark. But attempting to take approaches that give overly granular predictions on a very noisy process is not helpful. The budget should be as firm as it can be, accounting for all the line items you know will contribute to your costs. But, also, R\&amp;D projects inherently deal with technical unknowns. Budget for your program in a way that allows you the flexibility to deal with and take advantage of unknowns.</p>
+<p>At a high level, your budgeting process will likely combine the following approaches:</p>
+<ul>
+<li><strong>Bottom-Up Budgeting</strong>: This method involves calculating costs from the ground up—estimating equipment, materials, and labor, then adding up expected costs for each. It’s based on “first principles” and is often the most detailed. You probably aren’t going to do this, but we’ve included some tips in an Appendix just in case.   </li>
+<li><strong>Comparable Budgeting</strong>: This approach involves looking at similar projects from the past to estimate costs, then adjusting for any differences. This method can account for hidden costs that might not be obvious in a bottom-up approach. This is generally the best approach to budgeting in the design phase.   </li>
+<li><strong>Top-Down Budgeting</strong>: In this case, you start by asking, "What can we achieve with the amount of money we think we can secure?" This method is often driven by operational, political, or practical constraints and ensures your program fits within expected funding limits. Some amount of this is probably inevitable so get comfortable with making tradeoffs.</li>
+</ul>
+<p>While bottom-up budgeting may seem more rigorous to career researchers, it’s just as prone to inaccuracy as comparable or top-down approaches due to the inherent uncertainties in research. Comparable budgets, for example, often include hidden costs from previous programs that aren’t immediately obvious in a bottom-up analysis. Even if your program is the first to use a particular material or performer, other common costs will often be captured through comparable budgeting.</p>
+<p>In practice, the most accurate budget will likely come from a blend of these three approaches. For instance, you might discover a significant gap between your bottom-up estimate and past comparable costs, leading to a realization that you missed a key factor, such as a delay in a critical component. To stay within budget, you may need to cut or reallocate funds from other projects to address this issue.</p>
+<p>Before diving into a rough set of steps you can use to begin budgeting, I’d like to do a quick aside to give you an idea of how top-down budgeting fits into all this. Its necessity is often born out of operational, political, or practical realities.</p>
+<h3 id="an-aside-on-top-down-budgeting-an-aside-on-top-down-budgeting"><strong>An Aside on Top-Down Budgeting</strong> {#an-aside-on-top-down-budgeting}</h3>
+<p>In many cases, your program’s budget will be driven less by its ideal cost and more by the realities of funding sources and office constraints. Here are some key considerations when employing top-down budgeting:</p>
+<ul>
+<li><strong>Know the Funding Ceiling:</strong> Understand both the maximum and typical amounts a funder allocates to programs. This helps you set realistic expectations.  </li>
+<li><strong>Ask Boldly</strong>: Don’t hesitate to request the funding your program needs. The chance of rejection doesn’t actually change with the amount you’re asking for as long as it's well-reasoned and under the organization’s ceiling.  </li>
+<li><strong>Plan for Different Funding Levels</strong>: Plan and think through what you’d operationally change if offered you various smaller amounts of money.  </li>
+<li><strong>Use Negotiation Tactics</strong>: Anchor high, but stay reasonable. What seems like a large sum for your program (e.g., an additional $5 million) might be insignificant to the organization. Pitch ambitiously, but be ready to negotiate.  </li>
+<li><strong>Understand Organizational Budget Dynamics</strong>:  </li>
+<li>Does the organization have a fixed budget that can be exhausted? If so, how much remains?  </li>
+<li>Are they looking to spend down by year-end? If so, how much do they need to allocate?  </li>
+<li>What specific expenses can be covered? (e.g., travel, meetings, small projects) Ensure your request aligns with what’s fundable.  </li>
+<li><strong>Pick Your Battles</strong>: Avoid asking for more than the organization can realistically provide. Advocate for your program, but fight winnable battles. Maintaining strong relationships is crucial, so you want to be seen as competent, prepared, and pragmatic.</li>
+</ul>
+<h3 id="getting-started-on-your-budget-getting-started-on-your-budget"><strong>Getting Started on Your Budget</strong> {#getting-started-on-your-budget}</h3>
+<p>Your budget won’t be perfect—ambitious R\&amp;D is inherently uncertain. However, budgeting is a skill, and with diligence, you can achieve a high level of accuracy. Skunk Works’ Kelly Johnson, for example, was famous for his ability to estimate R\&amp;D budgets within 5-10% of the final cost. Being thorough in your budgeting process, research, and associated networking can help you be much more accurate.</p>
+<p>Here are steps to get your budgeting process on the right track:</p>
+<ul>
+<li><strong>Begin with your Gantt Chart:</strong> Your budget flows from the work that needs to be done. First, map out:  </li>
+<li>The various Technical Areas or workstreams.  </li>
+<li>The program phases and key milestones for each TA.  </li>
+<li>Dependencies between TAs and milestones that lead to burn-rate differences over the course of the program.  </li>
+<li><strong>Understand Comparables</strong>: Research similar programs and talk to people who have worked on them. Get a sense of the costs for salaries, equipment, consumables, and other program elements, as well as the overall budget.   </li>
+<li><strong>Buying down risk</strong>: For particularly critical or high-risk technical goals within the program, it's often justified to fund more than one project using different approaches to solve the same problem. Just make sure you’re prepared to make the cost-benefit assessment when you’re defending your budget.   </li>
+<li><strong>Estimate the FTEs</strong>: For most programs, staff is likely to be the biggest cost category and it's usually easier to estimate (and get others to tell you) how many and what kinds of people will be required for a project, rather than how many dollars. Get an idea for the types of performers you will need in each TA (universities, companies and start-ups) and get estimates for the Full Time Equivalent cost (fully loaded) of different types of staff in these categories (postdocs, graduate students, junior/senior engineers, etc.). This will also give you a basis for estimating travel costs since you’ll have a rough estimate of how many people will be working on the program.   </li>
+<li><strong>Leverage Your Network</strong>: Share your Gantt chart with mentors or colleagues to refine your cost estimates and uncover hidden expenses.   </li>
+<li><strong>Identify Monetary Bottlenecks</strong>: Pinpoint areas where spending more money won’t speed things up, like clinical trials or regulatory approvals. Budget strategically in areas where additional funding can accelerate progress.  </li>
+<li><strong>Document Your Assumptions</strong>: For every non-obvious cost, write down the underlying assumptions. For instance, “I’m assuming the team will streamline tests 2-5 after completing test 1.” Discuss these assumptions with experts to validate them.  </li>
+<li><strong>Work Backward from Different Budgets</strong>: What can you achieve with $2M? $5M? $25M? Tailor your program’s scope based on potential funding levels and identify which version would be most compelling.</li>
+</ul>
+<p>When developing your budget, rely on:</p>
+<ul>
+<li><strong>Your Own Experience:</strong> How much have similar projects cost, and how long did they take?  </li>
+<li><strong>Technical Experts:</strong> Consult people who understand projects with similar structures to yours. In DARPA-style organizations, these could be SETAs, PSpecs, or TSpecs. Factor in any biases experts may have.  </li>
+<li><strong>Historical Research</strong>: Don’t overestimate how hard it is to find a helpful analog from history and learn relevant lessons. There are a lot of old programs from history with public budgets, end-of-mission reflections, and more. There are also project write-ups on the internet. Find them and learn from them.</li>
+</ul>
+<h2 id="examples-of-program-contexts-and-plays-examples-of-program-contexts-and-plays"><strong>♟️Examples of Program Contexts and Plays</strong> {#♟️examples-of-program-contexts-and-plays}</h2>
+<p>This section provides two hypothetical program contexts along with rough program structures that could emerge from them, as well as examples of key program design questions a PM would need to answer. While it’s impossible to cover every possible context or play, these examples should illustrate how you should approach program design during the early stages.</p>
+<h3 id="example-1-building-a-dataset-for-a-competition-example-1-building-a-dataset-for-a-competition"><strong>Example 1: Building a Dataset for a Competition</strong> {#example-1:-building-a-dataset-for-a-competition}</h3>
+<p>Imagine that your program’s goal can be achieved by combining widely available resources with a hard-to-create dataset. In this situation, a solid program design might involve a combination of dataset creation and a competition to drive innovation using that dataset. Even once you’ve identified the right performers to create the dataset, have a clear understanding of their costs, and know roughly what the dataset should include, several critical questions remain.</p>
+<p><strong>Key Program Design Questions:</strong></p>
+<ol>
+<li><strong>Should the dataset be fully completed before launching the competition?</strong><br />
+   Alternatively, would it be better to complete a smaller batch of the data and run a pilot competition with it? Should you contract out a preliminary analysis on the sample data to identify any key missing pieces before allocating resources to complete the dataset?  </li>
+<li><strong>How will the competition be structured and managed?</strong><br />
+   Many competitions, such as Kaggle challenges, require participants to submit predictions corresponding to a hold-out dataset with ground truth answers. However, there are alternative formats. Some competitions involve stages with intermediate prizes that require teams to reveal their solutions to progress. This allows for a blend of competition and collaboration. For example, <a href="https://arcprize.org/">the Arc Prize</a> competition uses this format.  </li>
+<li><strong>What are the timelines for dataset collection?</strong><br />
+   If performers responsible for dataset creation fall behind schedule or go over budget, how will you determine if it’s a performance issue or if the problem is more complex than anticipated? What steps will you take to adjust the program structure in response?  </li>
+<li><strong>Is there a way for you to plan your dataset collection or competition to take advantage of mid-program lessons?</strong><br />
+   Is there anything you might learn during the dataset collection or competition stages that you will wish you had known at the start of the program? How can you change program structure, asset allocation, etc. to take advantage?  </li>
+<li><strong>Who will participate in the competition without additional funding?</strong><br />
+   Are there key groups or stakeholders whose participation is critical to the competition’s success? Should you set aside funding to incentivize these groups to join the competition?  </li>
+<li><strong>How should the competition be marketed?</strong><br />
+   Often, the marketing strategy is more crucial than the prize money in attracting the right competitors. In some cases, strategic outreach to specific communities or potential participants can determine the success of the competition more than the reward itself.</li>
+</ol>
+<p>This example illustrates how complex decisions surrounding dataset creation and competition design need to be addressed during the program design stage. A PM must think critically about timelines, performer responsibilities, potential pitfalls, and how the program will evolve in response to new information. These types of questions help ensure the program remains adaptable while staying on track to achieve its goals.</p>
+<h3 id="example-2-two-different-solutions-two-different-trls-example-2-two-different-solutions-two-different-trls"><strong>Example 2: Two Different Solutions, Two Different TRLs</strong> {#example-2:-two-different-solutions,-two-different-trls}</h3>
+<p>In some cases, you may find that two distinct technological approaches could meet your program’s objectives. One approach might be at a higher <a href="http://benjaminreinhardt.com/trl">Technology Readiness Level (TRL)</a>, but with more modest upside potential. The other might be more speculative or in the early stages of development, but carry the promise of a greater long-term payoff if successful.</p>
+<p><strong>Key Program Design Questions:</strong></p>
+<ol>
+<li><strong>Is there a strategic reason to choose just one approach?</strong><br />
+   If the two technologies are vastly different in their potential or cost structures, is it better to concentrate your resources on a single pathway? Or could pursuing both approaches in parallel increase your chances of success?  </li>
+<li><strong>If you pursue both, what scenarios might lead you to favor one over the other?</strong><br />
+   For example, could one approach run into an insurmountable technical hurdle or face integration issues that the other does not? Create an exhaustive list of criteria that would lead you to adjust funding, kill one project, or double down on the other.  </li>
+<li><strong>Should both groups of performers engage with potential users as if they were the sole performer?</strong><br />
+   In cases where both approaches are viable, do you have each performer develop their solution independently with direct user feedback? Or would that require duplicative effort and collaboration that may not be worth the time and cost?  </li>
+<li><strong>Can you structure the program so that lessons learned from one technology can benefit the other?</strong><br />
+   Even if one solution is ultimately canceled, can its insights be folded into the remaining workstream? This was a method used by <a href="https://www.freaktakes.com/p/illiac-iv-and-the-connection-machine">PM Stephen Squires during DARPA’s 1980s computing projects</a>. He funded multiple projects, some with higher TRLs (such as BBN’s butterfly processor) that could be implemented immediately in applied research, while others pursued more ambitious goals. Although some projects were ultimately canceled, many lessons they produced were integrated into those technologies that continued, ensuring that even canceled projects contributed to the overall program’s success.  </li>
+<li><strong>Is there a risk in waiting for the more ambitious technology to mature?</strong><br />
+   In some cases, it may be worth waiting for a more promising solution to become application-ready. However, this needs to be weighed against the cost of delay. PMs are selected for their ability to weigh these tradeoffs on a case-by-case basis, and you will need to determine whether pushing forward with an existing, lower-TRL solution or waiting for a higher-upside option is the right call.</li>
+</ol>
+<h2 id="creating-your-pitch-creating-your-pitch"><strong>🗣️ Creating Your Pitch</strong> {#🗣️-creating-your-pitch}</h2>
+<p>The Communicating your Vision chapter has most of the tips you’ll need for generating a compelling pitch, so we won’t go over it too much here except to say the following: </p>
+<ul>
+<li><strong>Start Early</strong>: Start creating slides pretty early in the process. Not because it's important that they be absolutely perfect (though it often is) but because the new medium can often expose you to new ways of thinking about your program and help unlock new ideas or identify new design challenges. Slides force you to think more visually and structurally about your program design and this can be useful.   </li>
+<li><strong>HQ Slides</strong>: The best way to start is often by turning your HQ document directly into a slide deck in sequence. This might not ultimately be where you end up, but it's a good start for generating useful material and forcing you to structure and visualize your answers to the questions. </li>
+</ul>
+<h2 id="other-places-to-source-program-design-ideas-other-places-to-source-program-design-ideas"><strong>🕵️‍♂️ Other Places to Source Program Design Ideas</strong> {#🕵️‍♂️-other-places-to-source-program-design-ideas}</h2>
+<p>As you refine your program design, leverage every available resource to ensure your program is well-rounded and resilient. Squeezing insights from experts, performers, and even the broader community can offer perspectives you might not have considered.</p>
+<ul>
+<li><strong>Talking to Experts</strong><br />
+  Your office likely has program management veterans and a network of individuals who have run or collaborated on programs similar to yours. Engage with them early and often, and absorb any operational or strategic insights they have to offer.  </li>
+<li><strong>Talking to Performers</strong><br />
+  If you can, casually reach out to potential performers to explore their ideas and gauge their interest. Often, performers will have practical insights into challenges or opportunities that you might not have considered from your vantage point.  </li>
+<li><strong>Requesting Information/Ideas</strong><br />
+  In some cases, it may be beneficial to issue a formal Request for Information/Ideas (RFIs) to see what ideas the broader community has. This can help uncover unexpected solutions or approaches that can enhance your program design.</li>
+</ul>
+<p>These strategies can help ensure you’re maximizing your program’s potential, mitigating risks, and refining your design with input from a diverse range of voices.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">🛠️ Ideas for Using the Tech Stack This stage of your journey relies a lot on knowledge synthesis. Use LLM tools such as NotebookLM or Claude and ChatGPT projects to aggregate and synthesize knowledge from the documents you have collected along the way. With this knowledge base, LLMs should give you a solid first pass on breakdown of your program into technical areas. They are also becoming increasingly reliable for back-of-the-envelope budget estimates. You may also want to do a quick modeling exercise, or a rough techno-economic analysis. In all these cases, LLMs with fed-in knowledge can give you a skeleton to work with. You can discard their outputs, but you will get to a final product much faster than starting with a blank page. Needless to say, use LLMs liberally in crafting your pitch as well. You will want to give your artifacts a personal style, but you can save a lot of time in summarizing lots of unstructured thoughts and disparate elements into a cohesive whole.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">💰Appendix: Miscellaneous Budget Tips The scattered nature of the following list derives from the principle that while all PMs’ final budgets will look somewhat similar on the page, the thought process that is eventually distilled into a final budget will be as diverse as your programs are. With that in mind, draw on any pieces of advice in the following list that are useful to your program and discard what is not useful. Budgeting Tips Avoid Overly Precise Estimates: Avoid too many significant figures. Don’t give the illusion of certainty with excessive precision. Round figures to the nearest $1M, $2M, or $5M as appropriate. Just be honest. Account for Travel: Include ROM costs for your planned program meetings and (particularly for academic performers) some amount for conference travel. Reserve a Contingency Fund: Aim to keep 10-20% of your budget in reserve, unallocated. Your reserve budget can be for a variety of uses, including: Unexpected expenses that cause a promising project to run out of money. To double down on projects that can productively absorb more money. To opportunistically pursue something that came up during the program. To enable transition at the end of the program: whether it’s seeding a spinout, matching a budget from a large company, or paying for engineering work to make a tool or dataset more usable. Identify Monetary Bottlenecks: Some areas, like regulatory processes or clinical trials, can’t be accelerated with more money. Focus your budget where additional funding will buy speed. Write Down Key Assumptions: For every major cost estimate, document the assumptions behind it. Validate these assumptions with experts. Factor in Talent Costs: Adjust your budget to reflect the talent needed. High-demand fields may require higher salaries, while niche areas may require lower ones. Leverage Your Network: Share your budget draft with mentors and colleagues to catch hidden costs or missed opportunities. Adapt to Program Archetypes: Different types of projects (e.g., industry partnerships with large firms, those with small firms, academic collaborations, etc.) have distinct cost structures. Ask your network for guidance on appropriate reserve levels for each archetype. Scale is a Big Factor: The scale of your solution will dictate much of the budget. Much of the required scale for your program will be dictated by practical considerations such as estimating the first point at which a transition partner will be happy to take over funding the work. Different Domains, Different Rules. Your technical domain will often have different budgetary rules of thumb than others. So be careful to not port over too many learnings from an electrical engineering project if you are in charge of something like a biotechnology project. Different Organizations, Different Rules. Different organizations will have different rules about how earmarked your budget needs to be.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page-nav">
+  <a href="03_Refining_Ideas.html">← Refining Ideas</a>
+  <a href="05_Communications.html">Communicating Vision →</a>
+</div>
+
+
+<footer>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
+</footer>
+
+</body>
+</html>

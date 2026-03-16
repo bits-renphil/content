@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Communicating Vision — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
+
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
+
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
+
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
+  <div class="eyebrow">Chapter 5 &nbsp;📣</div>
+  <h1>Communicating Vision</h1>
+</div>
+<div class="content-wrap">
+<h1 id="5-communicating-vision">5️⃣ Communicating Vision</h1>
+<h1 id="chapter-5-communicating-your-vision"><strong>Chapter 5: Communicating Your Vision</strong></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">BLUF: For any program to succeed, PMs must organize and fundraise effectively. Great ideas rarely speak for themselves. It’s the PM’s job to clearly communicate with stakeholders from the inception of the idea to the program’s conclusion. To communicate your vision well, you need to think clearly about every aspect of the program. Ask yourself: What’s the upside? Why does our organization need to work on this? What are the technical challenges? Why are those challenges solvable? Who benefits from this? Can the project transition to real-world use with reasonable funding from our office?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚡Practical Outcome:</strong> By the end of this module, PMs should have concise (\~30-second) responses to these questions, tailored for different stakeholders—funders, performers, transition partners, etc. For tricky questions, rehearsing responses is useful. Getting to the heart of the matter quickly is critical for success, as many will need a clear, general understanding of your project to become involved.</p>
+<p><a href="#👥-stakeholders-to-consider">👥 Stakeholders to Consider</a></p>
+<p><a href="#1.-management">1. Management</a></p>
+<p><a href="#2.-collaborators-&amp;-doers">2. Collaborators &amp; Doers</a></p>
+<p><a href="#3.-transition-partners">3. Transition Partners</a></p>
+<p><a href="#🧺-a-laundry-list-of-tips-and-tricks">🧺 A Laundry List of Tips and Tricks</a></p>
+<p><a href="#clarity">Clarity</a></p>
+<p><a href="#sales">Sales</a></p>
+<p><a href="#preparation">Preparation</a></p>
+<p><a href="#📌-keep-in-mind-your-comparative-advantages">📌 Keep in Mind Your Comparative Advantages</a></p>
+<p><a href="#comparative-advantages-of-darpa-style-programs:">Comparative Advantages of DARPA-Style Programs:</a></p>
+<p><a href="#⏳-useful-historical-examples">⏳ Useful Historical Examples</a></p>
+<p><a href="#🎯pitching-a-program">🎯Pitching a Program</a></p>
+<p><a href="#🛠️-ideas-for-using-the-tech-stack-2">🛠️ Ideas for Using the Tech Stack</a></p>
+<p><a href="#✅-appendix:-some-additional-tips-and-exercises-you-might-try">✅ Appendix: Some additional tips and exercises you might try</a></p>
+<p><a href="#elevator-pitch-creation">Elevator Pitch Creation</a></p>
+<p><a href="#handling-objections">Handling Objections</a></p>
+<p><a href="#storytelling-techniques">Storytelling Techniques</a></p>
+<p><a href="#visual-communication-skills">Visual Communication Skills</a></p>
+<p><a href="#feedback-and-iteration">Feedback and Iteration</a></p>
+<p><a href="#listening-and-active-engagement">Listening and Active Engagement</a></p>
+<p><a href="#crisis-communication">Crisis Communication</a></p>
+<p>Note that communication spans every aspect of what a program leader does, from your hunch to your transition (which is why it needs its own chapter). We have focussed primarily on communication up to and including your program approval, but the same basic lessons and guidance apply throughout. </p>
+<h2 id="stakeholders-to-consider-stakeholders-to-consider"><strong>👥 Stakeholders to Consider</strong> {#👥-stakeholders-to-consider}</h2>
+<p>Tailored Communication: When sharing your project’s goals and challenges, always consider who you’re speaking to. What are their incentives? What are their beliefs? What is their technical background? Many individuals crucial to the success of your project will have very different incentives and backgrounds. Tailor your description to meet their specific needs.</p>
+<p>The three general categories your audience might fall into are:</p>
+<ul>
+<li><strong>Management</strong>: The decision-makers who control resources and have the authority to support or halt your project.  </li>
+<li><strong>Collaborators &amp; Doers:</strong> The researchers, engineers, and firms responsible for executing the project’s technical work.  </li>
+<li><strong>Transition Partners</strong>: The organizations or individuals who will continue to develop or use the program's outputs after its completion.</li>
+</ul>
+<h3 id="1-management-1-management"><strong>1. Management</strong> {#1.-management}</h3>
+<p><strong>Resource Gatekeepers</strong>: Management refers to those who control program resources. Keep these points in mind:</p>
+<ul>
+<li><strong>Technical overlap</strong>: Management may be tech-savvy but might not have deep expertise in your field. Find common ground.  </li>
+<li><strong>Shared goals</strong>: Management tends to have incentives that are relatively aligned with yours. They want to find good programs to fund that fit their office’s criteria.  </li>
+<li><strong>Internal allies</strong>: Within your organization, you may have people of influence who are natural allies of your project and others who are skeptical. Leverage natural allies within management to help sell your program and persuade skeptics.</li>
+</ul>
+<h3 id="2-collaborators-doers-2-collaborators-doers"><strong>2. Collaborators &amp; Doers</strong> {#2.-collaborators-&amp;-doers}</h3>
+<p>Collaborators &amp; Doers are the groups (researchers, engineers, and firms) who will be doing the actual research and engineering work on the project — either for or with you depending on your organization. Consider their incentives:</p>
+<ul>
+<li><strong>Traditional Private R\&amp;D Firms</strong>: Many firms in this space are incentivized to think about practical details like the billable hours on the contract and contract structure. Clear, compelling project scopes help win them over, but don’t forget—they're made up of engineers and scientists who are excited by innovative projects too!  </li>
+<li><strong>Academics</strong>: Researchers at universities tend to focus on the technical excitement of a project, but they also have practical incentives like publishing papers and gaining recognition in their field. Understanding their academic goals can help you tailor your pitch effectively.  </li>
+<li><strong>Startups</strong>: Venture-funded companies can offer a mix of flexibility and top talent, but they are often laser-focused on hitting milestones that drive revenue, scale, or raising additional VC funding. If your project aligns with their technical goals, it’s a good fit—otherwise, it might get de-prioritized.</li>
+</ul>
+<p>These groups vary in their motivations, but the key to working with all of them is understanding their incentives and presenting a project that appeals to them both practically and technically.</p>
+<h3 id="3-transition-partners-3-transition-partners"><strong>3. Transition Partners</strong> {#3.-transition-partners}</h3>
+<p><strong>Who They Are</strong>: Transition partners are the individuals or organizations that will continue the work after your program concludes. They come in various forms, depending on the nature of your project:</p>
+<ul>
+<li><strong>Academics</strong>: Ideal for laying the groundwork in new research fields. They’re often eager to push the boundaries of what’s next.  </li>
+<li><strong>Funders (DOE, NSF, NIH)</strong>: If your program is successful, these funding bodies may step in to support further work in the area.  </li>
+<li><strong>Users</strong>: In the case of DARPA, the armed services often serve as transition partners, looking to deploy project outputs and, in many cases, agree to partially fund continued work if it reaches a certain level of development.  </li>
+<li><strong>Venture Capitalists</strong>: While cautious about excess technical or business risks, VC firms could back startups in your area once certain risks are reduced via your program, providing long-term funding until the business is viable.</li>
+</ul>
+<p>Other transition partners may include nonprofits, government agencies, or private firms with technical needs. Regardless of the partner type, <strong>the key remains the same: know what they care about and tailor the framing of your pitch accordingly.</strong> </p>
+<h2 id="a-laundry-list-of-tips-and-tricks-a-laundry-list-of-tips-and-tricks"><strong>🧺 A Laundry List of Tips and Tricks</strong> {#🧺-a-laundry-list-of-tips-and-tricks}</h2>
+<p>These tips can help you, no matter who you’re pitching to. Good sales can feel like walking a tightrope—some of the advice bullets below may seem at odds. It’s all about finding the right balance for your particular situation.</p>
+<h3 id="clarity-clarity"><strong>Clarity</strong> {#clarity}</h3>
+<ul>
+<li><strong>Bottom line up front (BLUF)</strong>: Always lead with your main point. This works for both technical and operational conversations. For example, in a technical conversation, you might open with, “The goal is to create cost-competitive carbon-based molecules from atmospheric carbon, not petroleum.” This frames the discussion before diving into specifics.  </li>
+<li><strong>Frame before details</strong>: Whether it’s technical or operational, provide context first. For example, for an operational meeting, you might start by explaining the overall program, areas you have covered, and what you still need help with. Then dig into the details.  </li>
+<li><strong>Tailor your depth</strong>: When talking to experts, focus on the details they care about. Instead of saying, “We aim to revolutionize brain-computer interfaces,” say something like, “We want to increase the number of probes that can be inserted into the human brain by two orders of magnitude without increasing price or damage.” Specifics resonate more than broad statements.</li>
+</ul>
+<h3 id="sales-sales"><strong>Sales</strong> {#sales}</h3>
+<ul>
+<li><strong>Emotional hook</strong>: Make your project emotionally compelling. Even highly technical people, to some extent, make decisions based on excitement or fear. For example, a PM might pitch a program by saying, “This project will not only reduce our reliance on petroleum, but it will reshape the future of clean energy,” to stir excitement. Tailor your emotional appeal to what you know will resonate with the audience.  </li>
+<li><strong>Visual aids</strong>: Use graphs, Fermi estimates, or spreadsheets to back up your points. For instance, in a DARPA-style setting, if you’re pitching cost reductions, show a graph comparing current costs with projected savings over time. Visuals make the information clearer and more memorable.  </li>
+<li><strong>Always Be Selling (ABS)</strong>: Keep pitching, no matter the context. Whether it’s a formal meeting or a casual chat, always leave people excited about your program. For example, when casually mentioning your project, make sure they leave remembering something impactful—like how your research could revolutionize a field. Every conversation is an opportunity.  </li>
+<li><strong>Share the credit</strong>: People are more invested in ideas they think are their own. In conversations, subtly nudge people toward conclusions that align with your pitch and let them feel they arrived there independently. They’ll be more likely to support the project.</li>
+</ul>
+<h3 id="preparation-preparation"><strong>Preparation</strong> {#preparation}</h3>
+<ul>
+<li><strong>Smooth answers</strong>: Whether you're naturally a smooth talker or not, practice answering tough questions ahead of time. If someone asks about risks, for example, have a confident response like, “We’ve identified the key risks, but our approach mitigates the major ones by focusing on scalable prototypes.”  </li>
+<li><strong>Learn from feedback</strong>: Keep notes on where your pitch works and where it doesn’t. For example, if people seem confused about technical risks, refine how you explain that aspect. Over time, you’ll figure out which parts of your description resonate and which fall flat.  </li>
+<li><strong>Convince the decision-maker</strong>: The ultimate goal is to win over the real decision-maker. If you know they rely on a trusted advisor, tailor your approach to appeal to that person’s perspective first. If someone has pitched successfully to them before, learn from their experience.  </li>
+<li><strong>Leverage others</strong>: Equip others with the tools they need to sell your project when you're not around. A concise one-pager or key statistics can make a big difference. Make sure they have the info that gets people interested—whether it’s a quick cost-benefit breakdown or a compelling narrative.  </li>
+<li><strong>Clear action steps:</strong> Always end conversations with clear next steps. For instance, say, “We’ll need you to review this part of the project by next Tuesday,” and confirm who’s responsible. This keeps momentum and ensures everyone knows their role.</li>
+</ul>
+<h2 id="keep-in-mind-your-comparative-advantages-keep-in-mind-your-comparative-advantages"><strong>📌 Keep in Mind Your Comparative Advantages</strong> {#📌-keep-in-mind-your-comparative-advantages}</h2>
+<p>When pitching your project, whether to performers or management, it's key to highlight the comparative advantages of your organization. You want to frame your pitch so people understand why your office is the best place for this project. Why is this a DARPA or ARPA-E or ARIA project? What makes your approach unique?</p>
+<p>For example, if you’re funding mostly academics, make sure you highlight what aspects of your project go beyond what the NSF would normally support. Your pitch should emphasize what your organization brings that’s different—maybe it's tackling an idea academia has already worked on but requires a professional engineering collaboration to make the technology useful in the real world. Sell what your program will do that won’t be done without it.</p>
+<p>Individuals going through the BiTs program might be looking to spin up an externally contracted coordinated research program — such as a DARPA program. They also might be looking to set up an organization uniquely suited to handling R\&amp;D problems that fall between the cracks in the current ecosystem — such as a Focused Research Organization (FRO) or a BBN-model performer. For any of these goals, highlight the gaps your program fills and the value it creates in areas other institutions do not emphasize. (The rest of this section explores how to do this with DARPA-style programs. FROs and BBN-model orgs are similarly covered in the appendix.)</p>
+<h3 id="comparative-advantages-of-darpa-style-programs-comparative-advantages-of-darpa-style-programs"><strong>Comparative Advantages of DARPA-Style Programs:</strong> {#comparative-advantages-of-darpa-style-programs:}</h3>
+<p>DARPA-style programs have at least three key differences that set them apart from standard basic research projects that happen in academia.</p>
+<ul>
+<li><strong>Empowered PMs</strong>: Unlike traditional federal research programs, DARPA has active, empowered PMs who manage portfolios of related projects. These individuals are more risk-taking than panels and actively manage projects.  </li>
+<li><strong>Specific Users:</strong> Projects are funded with specific end users in mind, even in early research stages.  </li>
+<li><strong>Prototypes, Not Papers:</strong> The goal is very often to build scalable, user-ready technology—not just to fill gaps in academic literature.</li>
+</ul>
+<p>Great researchers may work on similar projects in academia, but they often struggle against their institutional incentives or norms. Academia’s limited staffing and purchasing rules can make it hard for them to build something truly novel or useful. But these constraints hamper PMs of DARPA-style programs less! As the PM, you have the flexibility and resources to fund ambitious, game-changing technologies with less red tape. That’s your edge—lean into it.</p>
+<h2 id="useful-historical-examples-useful-historical-examples"><strong>⏳ Useful Historical Examples</strong> {#⏳-useful-historical-examples}</h2>
+<p>One standout example of a successful DARPA program from history is the ARPAnet, the precursor to the Internet. Let’s use the ARPAnet, whose world-changing impacts are now well-known, as a case study for understanding how to communicate a project’s value to management, performers, and transition partners.</p>
+<p><a href="https://en.wikipedia.org/wiki/ARPANET">ARPAnet</a>: This program created the foundational network that became the Internet. It was a perfect fit for DARPA because:</p>
+<ul>
+<li><strong>Immediate Upside:</strong> The ARPAnet addressed an immediate need by seeking to cut DARPA's computing expenses. It allowed researchers to remotely access DARPA-funded computers, reducing the need for each site to buy its own machines.  </li>
+<li><strong>Intermediate Use Cases</strong>: DARPA saw that the military might quickly adopt the ARPAnet for operational coordination and communication between different locations. On top of that, the potential for easier academic collaboration and code sharing was clear—email, for instance, quickly became popular.  </li>
+<li><strong>Long-Term Potential</strong>: While personal computing wasn’t a sure bet at the time, the upside was undeniable. With computers becoming more ubiquitous in research organizations and businesses, the market was expanding.</li>
+</ul>
+<p><strong>Comparative Advantages:</strong></p>
+<ul>
+<li><strong>Required Research and Engineering Challenges</strong>: The ARPAnet involved both tough engineering problems, like building the IMP hardware to connect incompatible computers at node sites, and cutting-edge academic computing knowledge.  </li>
+<li><strong>Coordination</strong>: DARPA brought together various organizations, like BBN (who built the IMP) and academic labs (who operated the node computers), to solve these problems quickly.  </li>
+<li><strong>Limited Expertise and Opportunities</strong>: The number of experienced real-time computing experts in the world who knew how to build a system like this was very small — possibly only dozens. And many were in academic-adjacent organizations not suited to extensive engineering tasks like this. The technology area was also not a good business which a financier would fund, not yet. DARPA funds represented the chance to push this area into practicality faster than would happen otherwise.</li>
+</ul>
+<p>Below are two more examples of DARPA programs that provide some ideas on how to sell a project’s unique value:</p>
+<p><a href="https://en.wikipedia.org/wiki/DARPA_Grand_Challenge"><strong>DARPA Grand Challenge</strong></a><br />
+This competition aimed to create a vehicle capable of autonomously navigating the California desert.</p>
+<ul>
+<li><strong>Innovative Funding Mechanism</strong>: It was an early example of the government offering prize-based funding to spur innovation.  </li>
+<li><strong>Cutting-Edge Science + Systems Engineering</strong>: The project needed integrated teams of researchers and engineers working together, something traditional academic structures often struggle to support.  </li>
+<li><strong>Step-Change in Readiness</strong>: Autonomous driving had been in the works for years, but DARPA’s push moved the technology closer to real-world use, making it appealing for transition partners like tech firms and venture capitalists.</li>
+</ul>
+<p><strong>GPS Miniaturization</strong><br />
+The original GPS receivers were bulky, weighing around 50 pounds. <a href="https://web.archive.org/web/20110629003311/http://www.darpa.mil/WorkArea/DownloadAsset.aspx?id=2565">The MGR program</a> aimed to make them much smaller, resulting in GPS units the size of a deck of cards.</p>
+<ul>
+<li><strong>Ambitious but Clear</strong>: The project wasn’t about creating something entirely new; it was about improving an existing technology. This sort of challenge often sits between academia and industry, making it a perfect fit for DARPA.  </li>
+<li><strong>Tractable Goal</strong>: The goal was difficult but achievable, making it attractive to a DARPA-style office. There was a clear technical improvement to be made, and the upside was obvious.  </li>
+<li><strong>Significant Upside</strong>: Reducing the size of GPS receivers opened the door to many further advancements in navigation and technology.</li>
+</ul>
+<p>Now that we’ve covered some examples, let’s wrap up with practical advice for PMs when pitching internally or describing a program in an RFP process.</p>
+<h2 id="pitching-a-program-pitching-a-program"><strong>🎯Pitching a Program</strong>  {#🎯pitching-a-program}</h2>
+<p>You’ve done all the hard work and you’ve made it to your program approval meeting. Congrats! If you’ve properly socialized your idea and absorbed feedback, this should hopefully be fairly pro forma, but that doesn’t mean it will be easy! </p>
+<ul>
+<li>Be prepared for surprise questions/concerns from a new and potentially diverse audience of stakeholders.   </li>
+<li>Know who will be in the room, particularly those who have expertise in your subject area. If they’ve written relevant papers, make sure you read them!  </li>
+<li>Be prepared to defend your budget estimates and impact model.  </li>
+<li>Be prepared to answer specific questions about your milestones, the feasibility of your metric targets and the viability of your transition strategy.   </li>
+<li>Be prepared for someone to say “this is already being done by X” (X could be a person, agency, or another program; know who all the potential X’s are and have a response ready).   </li>
+<li>Be prepared for someone to say “I don’t believe the research of Y that you’re using for Z”.  </li>
+<li>Create back-up slides that speak to any questions that arise during your many practice talks (particularly your murder-boards). </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">🛠️ Ideas for Using the Tech Stack LLM chatbots are really good at helping you distill things into short blurbs. Take your ideas, notes or drafts and use them to help you draft elevator pitches and other variations on your materials. They’re also good at helping you reword your pitch for different target audiences or even create FAQs from your notes that you can use to identify hard questions that you need to be prepared to answer.  You can even whip up a few decent slides from notes/documents in a matter of minutes with various AI slide generators. Might not be good enough for your program approval meeting, but if you need a few slides quickly to communicate your idea to a particular audience, they can be quite useful.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix-some-additional-tips-and-exercises-you-might-try-appendix-some-additional-tips-and-exercises-you-might-try"><strong>✅ Appendix: Some additional tips and exercises you might try</strong> {#✅-appendix:-some-additional-tips-and-exercises-you-might-try}</h2>
+<h3 id="elevator-pitch-creation-elevator-pitch-creation"><strong>Elevator Pitch Creation</strong> {#elevator-pitch-creation}</h3>
+<p>Many interactions with stakeholders, whether management, collaborators, or transition partners, will happen in brief conversations. Crafting a concise, compelling elevator pitch is essential to getting your point across quickly. Your pitch should clearly convey the core idea, the upside, and why it’s exciting.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: Practice distilling your project into a 15-30 second pitch. Tailor it for different stakeholder groups, ensuring the language resonates with their interests and priorities.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="handling-objections-handling-objections"><strong>Handling Objections</strong> {#handling-objections}</h3>
+<p>When pitching or communicating your project, you’ll inevitably face pushback or difficult questions. Anticipating these objections and preparing smooth, confident responses can significantly improve your communication. Whether it's concerns about technical risk, funding, or the project’s long-term feasibility, being ready to address doubts will help maintain stakeholder confidence.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: Role-play a scenario where someone questions your project. Prepare responses to common objections, and practice delivering them with confidence and clarity.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="storytelling-techniques-storytelling-techniques"><strong>Storytelling Techniques</strong> {#storytelling-techniques}</h3>
+<p>Facts and data are essential, but connecting with stakeholders on an emotional level often requires storytelling. By framing your project as a narrative—introducing the problem, the struggle to find solutions, and the potential impact—you can make the idea more relatable and compelling.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: Turn your project into a short story, focusing on the human impact or broader societal implications. This will help stakeholders visualize the importance and outcome of your work.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="visual-communication-skills-visual-communication-skills"><strong>Visual Communication Skills</strong> {#visual-communication-skills}</h3>
+<p>Not everyone processes information through words alone. Visual aids such as diagrams, charts, or infographics can make your project’s complex ideas more digestible and memorable. Effective visuals help break down technical barriers and allow stakeholders to see the bigger picture.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: Create one visual that represents the most critical aspect of your project. It could be a timeline, a funding breakdown, or a technical flow chart that highlights key elements. The goal is to make your project more accessible through visuals.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="feedback-and-iteration-feedback-and-iteration"><strong>Feedback and Iteration</strong> {#feedback-and-iteration}</h3>
+<p>Communication evolves. After presenting your vision, it’s important to seek feedback, adjust based on what resonated or didn’t, and refine your approach. The ability to iterate on your pitch, based on real-world reactions, can make all the difference in getting your message across.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: After presenting your project, gather feedback from peers or mentors. Focus on what parts of your pitch worked and where people seemed confused or disengaged. Then, revise and iterate your pitch to make it stronger.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="listening-and-active-engagement-listening-and-active-engagement"><strong>Listening and Active Engagement</strong> {#listening-and-active-engagement}</h3>
+<p>Communication is a two-way street. Great communicators don’t just talk—they listen. Actively engaging with stakeholders and understanding their concerns allows you to adjust your messaging in real-time. This builds trust and ensures that your vision aligns with their needs.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: Practice listening during a simulated conversation with a stakeholder. Repeat key points back to show understanding, and adjust your pitch based on their input. This will help you tailor your message to fit their concerns and priorities.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="crisis-communication-crisis-communication"><strong>Crisis Communication</strong> {#crisis-communication}</h3>
+<p>Not every conversation will be positive, and you’ll need to communicate effectively during setbacks or crises. Whether it’s a technical failure, funding shortfall, or other challenge, handling these moments with clear, confident communication is critical to maintaining stakeholder trust.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Exercise: Work through a crisis scenario where your project faces a major setback. Develop and practice delivering messaging that addresses the issue honestly, reassures stakeholders, and outlines next steps to move forward.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page-nav">
+  <a href="04_Program_Design.html">← Program Design</a>
+  <a href="06_Program_Engineering.html">Program Engineering →</a>
+</div>
+
+
+<footer>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
+</footer>
+
+</body>
+</html>

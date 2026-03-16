@@ -1,438 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BiTS — Big if True Science Accelerator</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>BiTS — Big if True Science Accelerator — BiTS</title>
   <style>
-    /* ── Reset & Base ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
 
-    :root {
-      --navy:   #0f1f3d;
-      --blue:   #1a3a6b;
-      --accent: #2563eb;
-      --gold:   #f59e0b;
-      --light:  #f0f4fa;
-      --muted:  #64748b;
-      --text:   #1e293b;
-      --border: #e2e8f0;
-      --white:  #ffffff;
-      --radius: 10px;
-      --sans: "Inter", "Segoe UI", system-ui, sans-serif;
-    }
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
 
-    html { scroll-behavior: smooth; }
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
 
-    body {
-      font-family: var(--sans);
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.65;
-    }
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
 
-    /* ── Sticky Nav ─────────────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--navy);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      height: 56px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.25);
-    }
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
 
-    .nav-brand {
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: .02em;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
 
-    .nav-brand span.tag {
-      font-size: .7rem;
-      font-weight: 600;
-      background: var(--gold);
-      color: var(--navy);
-      padding: 2px 7px;
-      border-radius: 20px;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
 
-    .nav-links a {
-      color: rgba(255,255,255,.8);
-      font-size: .88rem;
-      font-weight: 500;
-      transition: color .15s;
-    }
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
 
-    .nav-links a:hover { color: #fff; text-decoration: none; }
-
-    /* ── Hero ───────────────────────────────────────────────────── */
-    .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1e4d8c 100%);
-      color: #fff;
-      padding: 5rem 2rem 4rem;
-      text-align: center;
-    }
-
-    .hero-eyebrow {
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,.8);
-      max-width: 640px;
-      margin: 0 auto 2rem;
-    }
-
-    .hero-badges {
-      display: flex;
-      gap: .75rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.9);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: .8rem;
-      font-weight: 500;
-    }
-
-    /* ── Section wrapper ────────────────────────────────────────── */
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1140px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      margin-bottom: 2.5rem;
-    }
-
-    .section-label {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .4rem;
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.2;
-    }
-
-    .section-subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-top: .5rem;
-      max-width: 600px;
-    }
-
-    /* ── Divider ────────────────────────────────────────────────── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
-    /* ── Curriculum Grid ────────────────────────────────────────── */
-    .curriculum-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .chapter-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      background: var(--white);
-      transition: box-shadow .2s, transform .2s, border-color .2s;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chapter-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity .2s;
-    }
-
-    .chapter-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,.1);
-      transform: translateY(-2px);
-      border-color: #c7d8f8;
-    }
-
-    .chapter-card:hover::before { opacity: 1; }
-
-    .chapter-card a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .chapter-meta {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-
-    .chapter-num {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--light);
-      color: var(--accent);
-      font-weight: 800;
-      font-size: .85rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .chapter-emoji {
-      font-size: 1.2rem;
-    }
-
-    .chapter-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.3;
-    }
-
-    .chapter-bluf {
-      font-size: .84rem;
-      color: var(--muted);
-      line-height: 1.55;
-      flex: 1;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .chapter-link {
-      font-size: .8rem;
-      font-weight: 600;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: .25rem;
-      margin-top: .25rem;
-    }
-
-    .chapter-link:hover { text-decoration: underline; }
-
-    /* ── Case Studies Grid ──────────────────────────────────────── */
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .case-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--white);
-      overflow: hidden;
-      transition: box-shadow .2s, transform .2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .case-card:hover {
-      box-shadow: 0 10px 28px rgba(0,0,0,.1);
-      transform: translateY(-3px);
-    }
-
-    .case-card-header {
-      padding: 1.5rem 1.5rem 1rem;
-      background: linear-gradient(135deg, var(--navy), var(--blue));
-      color: #fff;
-    }
-
-    .case-tag {
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .5rem;
-    }
-
-    .case-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #fff;
-    }
-
-    .case-subtitle {
-      font-size: .82rem;
-      color: rgba(255,255,255,.7);
-      margin-top: .3rem;
-      font-style: italic;
-    }
-
-    .case-card-body {
-      padding: 1.25rem 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .case-excerpt {
-      font-size: .875rem;
-      color: var(--muted);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .case-meta {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      font-size: .72rem;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: var(--light);
-      color: var(--blue);
-      border: 1px solid #dbeafe;
-    }
-
-    .case-link {
-      font-size: .82rem;
-      font-weight: 600;
-      color: var(--accent);
-      display: inline-flex;
-      align-items: center;
-      gap: .3rem;
-    }
-
-    .case-link:hover { text-decoration: underline; }
-
-    /* ── About strip ────────────────────────────────────────────── */
-    .about-strip {
-      background: var(--light);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .about-inner {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2rem;
-    }
-
-    .about-block h4 {
-      font-size: .9rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: .5rem;
-    }
-
-    .about-block p {
-      font-size: .85rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ── Footer ─────────────────────────────────────────────────── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,.6);
-      text-align: center;
-      padding: 2rem;
-      font-size: .82rem;
-    }
-
-    footer a { color: rgba(255,255,255,.75); }
-    footer a:hover { color: #fff; }
-
-    /* ── Responsive ─────────────────────────────────────────────── */
-    @media (max-width: 700px) {
-      .about-inner { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .hero { padding: 3rem 1.25rem 2.5rem; }
-      .section { padding: 2.5rem 1.25rem; }
-    }
-  </style>
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
 </head>
 <body>
 
-<!-- ── Nav ──────────────────────────────────────────────────────── -->
 <nav>
-  <div class="nav-brand">
-    🛰️ BiTS <span class="tag">2025</span>
-  </div>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
   <ul class="nav-links">
-    <li><a href="#curriculum">Curriculum</a></li>
-    <li><a href="#case-studies">Case Studies</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="https://github.com/bits-renphil/content" target="_blank">GitHub ↗</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
   </ul>
 </nav>
 
-<!-- ── Hero ─────────────────────────────────────────────────────── -->
+
 <header class="hero">
   <div class="hero-eyebrow">Renaissance Philanthropy</div>
   <h1>Big if True Science Accelerator</h1>
@@ -444,111 +176,96 @@
   </div>
 </header>
 
-<!-- ── Curriculum ────────────────────────────────────────────────── -->
 <section class="section" id="curriculum">
   <div class="section-header">
     <div class="section-label">Playbook</div>
     <h2 class="section-title">2025 BiTS Curriculum</h2>
     <p class="section-subtitle">The eight phases of a coordinated research program, from initial hunch to successful tech transition.</p>
   </div>
-
   <div class="curriculum-grid">
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">1</div>
         <span class="chapter-emoji">🛰️</span>
       </div>
       <h3>BiTS Overview</h3>
-      <p class="chapter-bluf">A program manager wears many hats. The seven phases — from exploration through tech transition — are not rigidly sequential. This chapter introduces the full arc of leading a coordinated research program and why bridging academia and venture funding requires an unusual set of skills.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/01_Overview.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">A program manager wears many hats. The seven phases — from exploration through tech transition — are not rigidly sequential. This chapter introduces the full arc of leading a coordinated research program.</p>
+      <a class="chapter-link" href="curriculum/01_Overview.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">2</div>
         <span class="chapter-emoji">🗺️</span>
       </div>
       <h3>Exploration &amp; Field Mapping</h3>
-      <p class="chapter-bluf">PMs need to understand the landscape of research, technology, and potential performers in the relevant domains. Covers strategic field mapping, practical networking, identifying bottlenecks and key risks, and a DARPA case study (MOSIS) to illustrate these concepts in action.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/02_Exploration.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">Understand the landscape of research, technology, and potential performers. Covers strategic field mapping, practical networking, identifying bottlenecks and key risks, and a DARPA case study (MOSIS).</p>
+      <a class="chapter-link" href="curriculum/02_Exploration.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">3</div>
         <span class="chapter-emoji">💭</span>
       </div>
       <h3>Refining Ideas</h3>
-      <p class="chapter-bluf">Refining program ideas is an iterative process of deep thinking and open conversations. Uses the Heilmeier Catechism to rigorously evaluate programs by asking key questions about objectives, approach, risks, and impacts. Balancing ambition with feasibility through cross-disciplinary thinking.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/03_Refining_Ideas.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">Refining program ideas is an iterative process of deep thinking and open conversations. Uses the Heilmeier Catechism to rigorously evaluate programs — objectives, approach, risks, and impacts.</p>
+      <a class="chapter-link" href="curriculum/03_Refining_Ideas.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">4</div>
         <span class="chapter-emoji">🎨</span>
       </div>
       <h3>Program Design</h3>
-      <p class="chapter-bluf">Taking your high-level vision and field exploration results and turning them into an actionable roadmap. The goal is not to define the solution, but to define the problem(s), frame the solution approach, and structure a program that achieves your objectives while maintaining flexibility for adaptation.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/04_Program_Design.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">Turn your high-level vision and field exploration results into an actionable roadmap. Define the problem(s), frame the solution approach, and structure a program while maintaining flexibility for adaptation.</p>
+      <a class="chapter-link" href="curriculum/04_Program_Design.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">5</div>
         <span class="chapter-emoji">📣</span>
       </div>
       <h3>Communicating Vision</h3>
-      <p class="chapter-bluf">For any program to succeed, PMs must organize and fundraise effectively. Great ideas rarely speak for themselves. Covers how to clearly communicate with stakeholders from inception to conclusion — crafting the elevator pitch, the one-pager, and the slide deck for funders, performers, and transition partners.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/05_Communications.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">Great ideas rarely speak for themselves. Covers how to communicate with stakeholders from inception to conclusion — the elevator pitch, the one-pager, and the slide deck for funders, performers, and transition partners.</p>
+      <a class="chapter-link" href="curriculum/05_Communications.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">6</div>
         <span class="chapter-emoji">⚙️</span>
       </div>
       <h3>Program Engineering</h3>
-      <p class="chapter-bluf">Once your program idea is approved and funded, PMs must focus on securing and organizing the teams responsible for executing the R&amp;D. Soliciting proposals, negotiating contracts, and moving from planning to action — where strategic thinking transitions into concrete decisions.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/06_Program_Engineering.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">Secure and organize the teams responsible for executing the R&amp;D. Soliciting proposals, negotiating contracts, and moving from planning to action — where strategic thinking becomes concrete decisions.</p>
+      <a class="chapter-link" href="curriculum/06_Program_Engineering.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">7</div>
         <span class="chapter-emoji">🚧</span>
       </div>
       <h3>Program Execution &amp; Management</h3>
-      <p class="chapter-bluf">The phase where most of the actual R&amp;D takes place. While many day-to-day tasks don't depend on the PM, remaining vigilant matters. As research results come back, known unknowns become known — and crucial tweaks must be made. Active management ensures effective cross-pollination between performers.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/07_Program_Execution.md" target="_blank">Read chapter →</a>
+      <p class="chapter-bluf">Where most of the actual R&amp;D takes place. Remaining vigilant matters as known unknowns become known. Active management ensures effective cross-pollination between performers.</p>
+      <a class="chapter-link" href="curriculum/07_Program_Execution.html">Read chapter →</a>
     </div>
-
     <div class="chapter-card">
       <div class="chapter-meta">
         <div class="chapter-num">8</div>
         <span class="chapter-emoji">📺</span>
       </div>
       <h3>Tech Transition</h3>
-      <p class="chapter-bluf">PMs ensure their project transitions to the best transition partner possible — a group with the budget to cover the project and whose incentives are aligned with long-term success. Transition is hard and where many projects fail. The only way to succeed is to engage transition partners from a program's very inception.</p>
-      <a class="chapter-link" href="https://github.com/bits-renphil/content/blob/main/curriculum/08_Tech_Transition.md" target="_blank">Read chapter →</a>
-    </div>
-
-  </div>
+      <p class="chapter-bluf">Ensure your project transitions to the best partner possible — one with the budget and incentives aligned with long-term success. Transition is hard and where many projects fail. Engage partners from day one.</p>
+      <a class="chapter-link" href="curriculum/08_Tech_Transition.html">Read chapter →</a>
+    </div></div>
 </section>
 
-<hr class="divider" />
+<hr class="divider"/>
 
-<!-- ── Case Studies ──────────────────────────────────────────────── -->
 <section class="section" id="case-studies">
   <div class="section-header">
     <div class="section-label">Case Studies</div>
     <h2 class="section-title">ARPA Programs in Practice</h2>
     <p class="section-subtitle">Deep-dives into real programs, extracting design principles for the SPRIND challenge model and beyond.</p>
   </div>
-
   <div class="case-grid">
-
     <div class="case-card">
       <div class="case-card-header">
         <div class="case-tag">DARPA · 2004–2007</div>
@@ -557,16 +274,10 @@
       </div>
       <div class="case-card-body">
         <p class="case-excerpt">Between 2004 and 2007, DARPA ran three consecutive prize competitions that seeded Waymo, Aurora, Nuro, and Zoox — with under $7M in prize money. The story is not about autonomous vehicles. It is about what a well-designed challenge can do that a traditional funded program cannot: shift community belief, attract outside talent, and create the conditions for a field to take itself seriously.</p>
-        <div class="case-meta">
-          <span class="pill">Challenge design</span>
-          <span class="pill">Prize competitions</span>
-          <span class="pill">Field creation</span>
-          <span class="pill">SPRIND lessons</span>
-        </div>
-        <a class="case-link" href="https://github.com/bits-renphil/content/blob/main/Case_Study_DARPA_Grand_Challenge.md" target="_blank">Read case study →</a>
+        <div class="case-meta"><span class="pill">Challenge design</span><span class="pill">Prize competitions</span><span class="pill">Field creation</span><span class="pill">SPRIND lessons</span></div>
+        <a class="case-link" href="case-studies/Case_Study_DARPA_Grand_Challenge.html">Read case study →</a>
       </div>
     </div>
-
     <div class="case-card">
       <div class="case-card-header">
         <div class="case-tag">DARPA BTO · 2022–2026</div>
@@ -574,28 +285,20 @@
         <div class="case-subtitle">Designing a Grand Challenge for a Data-Scarce, Life-Critical Domain</div>
       </div>
       <div class="case-card-body">
-        <p class="case-excerpt">The DARPA Triage Challenge is a three-year open competition attempting to do for mass casualty triage what the Grand Challenge did for autonomous vehicles. Designed in part by BiTS co-director JP Chretien, it illustrates how to build challenge infrastructure — including data collection programs (RITMO) before competition launch — in domains where the usual prerequisites don't yet exist.</p>
-        <div class="case-meta">
-          <span class="pill">Challenge design</span>
-          <span class="pill">Medical AI</span>
-          <span class="pill">Data infrastructure</span>
-          <span class="pill">SPRIND lessons</span>
-        </div>
-        <a class="case-link" href="https://github.com/bits-renphil/content/blob/main/Case_Study_DARPA_Triage_Challenge.md" target="_blank">Read case study →</a>
+        <p class="case-excerpt">The DARPA Triage Challenge is a three-year open competition attempting to do for mass casualty triage what the Grand Challenge did for autonomous vehicles. Designed in part by BiTS co-director JP Chretien, it illustrates how to build challenge infrastructure — including data collection programs (RITMO) — before competition launch in domains where the usual prerequisites don't yet exist.</p>
+        <div class="case-meta"><span class="pill">Challenge design</span><span class="pill">Medical AI</span><span class="pill">Data infrastructure</span><span class="pill">SPRIND lessons</span></div>
+        <a class="case-link" href="case-studies/Case_Study_DARPA_Triage_Challenge.html">Read case study →</a>
       </div>
-    </div>
-
-  </div>
+    </div></div>
 </section>
 
-<hr class="divider" />
+<hr class="divider"/>
 
-<!-- ── About ─────────────────────────────────────────────────────── -->
 <div class="about-strip" id="about">
   <div class="about-inner">
     <div class="about-block">
       <h4>About BiTS</h4>
-      <p>The Big if True Science Accelerator is a 15-week, part-time program run by Renaissance Philanthropy that trains scientists, engineers, and entrepreneurs to design and lead high-impact coordinated research programs at organisations like DARPA, ARPA-E, ARIA, ARPA-H, and SPRIND.</p>
+      <p>The Big if True Science Accelerator is a 15-week, part-time program run by Renaissance Philanthropy that trains scientists and engineers to design and lead high-impact coordinated research programs at organisations like DARPA, ARPA-E, ARIA, ARPA-H, and SPRIND.</p>
     </div>
     <div class="about-block">
       <h4>About this resource</h4>
@@ -608,13 +311,10 @@
   </div>
 </div>
 
-<!-- ── Footer ────────────────────────────────────────────────────── -->
+
 <footer>
-  <p>
-    BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
-    <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a> &nbsp;·&nbsp;
-    <a href="https://github.com/bits-renphil/content" target="_blank">GitHub</a>
-  </p>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
 </footer>
 
 </body>

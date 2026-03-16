@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Program Engineering — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* Hero (index only) */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
+  color:#fff;padding:5rem 2rem 4rem;text-align:center}
+.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
+  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
+.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
+
+/* Page header (inner pages) */
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
+  max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+
+/* Section / grid */
+.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem}
+.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* Cards (index) */
+.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s}
+.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
+.chapter-card:hover::before{opacity:1}
+.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
+.chapter-meta{display:flex;align-items:center;gap:.6rem}
+.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
+  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chapter-emoji{font-size:1.2rem}
+.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
+  align-items:center;gap:.25rem;margin-top:.25rem}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
+  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.case-card-header{padding:1.5rem 1.5rem 1rem;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
+.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
+.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
+.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.3rem}
+
+/* Content (inner pages) */
+.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
+  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
+.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
+.content-wrap strong{color:var(--navy)}
+.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
+  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
+  font-style:italic;color:var(--muted);font-size:.95rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
+  font-family:monospace;font-size:.88em;color:#be185d}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
+  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
+.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Nav between pages */
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
+.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
+  display:flex;align-items:center;gap:.3rem}
+.page-nav a:hover{text-decoration:underline}
+
+/* About / Footer */
+.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
+  padding:2rem;font-size:.82rem}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+
+@media(max-width:700px){
+  .about-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:3rem 1.25rem 2.5rem}
+  .section{padding:2.5rem 1.25rem}
+  .content-wrap{padding:2rem 1.25rem 3rem}
+  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
+}
+</style>
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#curriculum">Curriculum</a></li>
+    <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
+  <div class="eyebrow">Chapter 6 &nbsp;⚙️</div>
+  <h1>Program Engineering</h1>
+</div>
+<div class="content-wrap">
+<h1 id="6-program-engineering">6️⃣ Program Engineering</h1>
+<p><strong>Chapter 6: Engineering a Coordinated Research Program (CRP)</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">BLUF: Once your program idea is approved and funded, PMs must focus on securing and organizing the teams responsible for executing the R\&amp;D. This involves soliciting proposals, negotiating contracts, and moving from planning to action. At this stage, PMs will collaborate with their office staff to issue and secure proposals, finalize contracts, and initiate key processes. This is where strategic thinking transitions into concrete decisions and actions.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚡Practical Outcome</strong>: By the end of this section, PMs should have a clear understanding of the specific steps needed to turn their approved idea and funding into a program that is off and running. While the details may vary by agency and office, upon completing this module you will gain a clear idea of how to initiate project solicitations and refine program budgets.</p>
+<p><a href="#👉general-pointers">👉General pointers</a></p>
+<p><a href="#🕵️‍♂️-the-importance-of-identifying-performers">🕵️‍♂️ The Importance of Identifying Performers</a></p>
+<p><a href="#🤌-writing-a-strong-solicitation">🤌 Writing a Strong Solicitation</a></p>
+<p><a href="#⚖️-evaluating-proposals-and-selecting-performers">⚖️ Evaluating Proposals and Selecting Performers</a></p>
+<p><a href="#red-flags-when-assessing-performer-budgets">Red Flags When Assessing Performer Budgets</a></p>
+<p><a href="#📈-setting-up-a-program-for-success">📈 Setting up a Program for Success</a></p>
+<p><a href="#🛠️-ideas-for-using-the-tech-stack-3">🛠️ Ideas for Using the Tech Stack</a></p>
+<p><a href="#📜-appendix-a:-rough-outline-of-a-solicitation">📜 Appendix A: Rough outline of a solicitation</a></p>
+<h2 id="general-pointers-general-pointers"><strong>👉General pointers</strong> {#👉general-pointers}</h2>
+<p>As you begin to actually do things, you’ll need to be adaptable. You’ll have had a plan. Parts of the plan won’t survive first contact with reality. You’ll have to constantly adjust your program design based on how things unfold in the action-oriented stages of the program.</p>
+<p>In this program engineering stage, it pays to dedicate yourself to the minutiae of the processes in your specific office. Dedicate yourself to understanding the small things that are more administration than R\&amp;D. These small details are vital to your program’s success.</p>
+<p>Figure out how things are done in your office: what legal constraints are non-negotiable, where there’s flexibility, and how to navigate the system to support your program. Doing this will allow you to have as much freedom and power as you can without getting sued, fired, or going to prison!</p>
+<p>While it's difficult to provide universally applicable advice at this point, the following guidelines should offer a good starting point:</p>
+<ul>
+<li><strong>Understand Contracting Constraints:</strong> Do the legwork to understand the specific limitations in your organization regarding the types of contracts you can create.  </li>
+<li><strong>Build Relationships with Legal:</strong> Make friends with your legal team—they are your allies.  </li>
+<li><strong>Plan for Transition</strong>: Always keep planning for transition in mind, especially around intellectual property (IP).  </li>
+<li><strong>Read the Fine Print</strong>: You don’t have to be a lawyer to read legal documentation, grasp key details, and bring them to your legal team. They may not be as invested in your program’s success as you are.  </li>
+<li><strong>If Need Be, Challenge 'Standard Procedures' With Contractors</strong>: Everything is negotiable. Even when an organization insists, “this is just how we do things,” the right incentives can often create flexibility. Many external systems weren’t built with a funder like DARPA in mind, so push for alignment with your program's goals.  </li>
+<li><strong>Expect Delays in Negotiations</strong>: Contract negotiations will always take longer than expected.  </li>
+<li><strong>Handshake Agreements Aren’t Final</strong>: Nothing is a done deal until the legal contract is signed and funds are disbursed—and even then, things can still go wrong.</li>
+</ul>
+<p>Throughout this process, remain diligent, resourceful, and opportunistic—those qualities can take you far.</p>
+<h2 id="the-importance-of-identifying-performers-the-importance-of-identifying-performers"><strong>🕵️‍♂️ The Importance of Identifying Performers</strong> {#🕵️‍♂️-the-importance-of-identifying-performers}</h2>
+<p>In DARPA-style programs, there are no in-house labs or research teams. While PMs develop the vision, the performers are the ones who execute the R\&amp;D. PMs can influence incentives and actively manage the program, but ultimately, the success hinges on the performers you choose. Selecting the right performers might be the most crucial decision PMs make.</p>
+<p>The wrong approach is to simply issue a Request for Proposals (RFP) and assume the best candidates will naturally apply. You need to actively engage with top groups, selling them on why they should submit a bid to do the work. This involves going beyond a passive RFP process—you must proactively seek out the best performers.</p>
+<p>However, be aware that your organization may have specific rules regarding how you can solicit and engage with potential performers. This is especially true if you are part of a well-established government office. For example, some organizations mandate an open call for any grant, contract, or position. Even under these restrictions, you should (where permitted) identify the groups you want to work with, ensure they are aware of the opportunity, and encourage them to apply.</p>
+<p>The top performers may not have worked with your office before—and some may not even know how to apply. If it’s legal and possible, go the extra mile to bring these groups into the running. Engage with your legal and administrative teams to explore options like new performer programs or specific grants that might help bring fresh talent into your project. While this requires more effort, securing the best teams is crucial for your program’s success. R\&amp;D success depends as much on securing the right talent and expertise as it does on identifying the right research question.</p>
+<p>There are several tactics you can use to ensure you find the best performers. Some of these best practices mirror those used in the program exploration stage, but they bear repeating here. Some effective strategies include:</p>
+<ul>
+<li><strong>Requests for Information (RFIs)</strong>: <a href="https://en.wikipedia.org/wiki/Request_for_information">RFIs</a> are a common tool to attract high-quality proposals. While they cast a wide net, it’s important to remember that RFIs will generally attract people who are tuned into the channels where your RFI is advertised and who have the time to respond.  </li>
+<li>Writing an effective RFI requires balance: it must be broad enough to encourage innovative, out-of-the-box ideas, but not so vague that performers propose irrelevant solutions. A strong RFI comes from thorough preparation—refining your ideas and anticipating common misinterpretations or potential dead ends.  </li>
+<li>Keep in mind that while some organizations have dedicated staff to spot and respond to RFIs, many do not. To ensure your RFI gets the attention it deserves, go beyond traditional channels. Use platforms like academic Twitter, LinkedIn, Substacks popular in your field, or other innovative outreach methods to prevent your announcement from slipping through the cracks.  </li>
+<li><strong>Gauge Excitement Levels</strong>: When engaging with potential performers, pay close attention to their enthusiasm. Do they ask insightful questions and offer new ideas? Or are they simply trying to fit their existing work into your program? Performer excitement can be a strong indicator of alignment with your vision.  </li>
+<li><strong>Attend Conferences Outside Your Field</strong>: To expand your network, attend conferences beyond your direct area of expertise. Maximize the value by reaching out to promising individuals beforehand. Prioritize hallway conversations over formal talks, and don’t hesitate to listen in on discussions. Take note of who shows genuine interest when you share details about your program.  </li>
+<li><strong>Visit Labs in Person</strong>: If certain performers or groups stand out, visit their labs in person. While virtual meetings are an option, being physically present offers several advantages:  </li>
+<li>You gain a deeper understanding of their capabilities and workload.  </li>
+<li>You observe how their lab operates day-to-day.  </li>
+<li>Lab visits spark questions and ideas that might not arise in a virtual setting.  </li>
+<li>You get to interact with not just the principal investigator (PI) or CEO, but also the people doing the actual work.  </li>
+<li><strong>Walk the Halls at Universities</strong>: If you're at a university known for excellence in your program area, take the time to explore. Ask questions, make connections, and remember—you represent significant funding opportunities for these researchers. More than one groundbreaking DARPA program began with a PM walking the halls like a beat reporter, scouting for the best ideas. In academia, there are no “dumb” people, but many who are overlooked for arbitrary reasons.  </li>
+<li><strong>Hold Office Hours</strong>: Digital office hours allow potential performers to ask questions and pitch ideas in real-time. This creates an open and accessible forum to spark new connections and innovations.  </li>
+<li><strong>Host Workshops</strong>: Once you’ve narrowed down your program focus and identified potential performers, holding a workshop can provide valuable insights. It allows you to observe how performers engage with your ideas and with each other, offering a glimpse of how they might collaborate on the project.  </li>
+<li><strong>Leverage Past Performers</strong>: Look to those who have worked on previous DARPA-style programs. Individuals who have been part of successful performer teams, including graduate students, postdocs, and PIs, tend to understand the urgency and ambition for which they’re signing up. People who have been on successful performer teams in the past are a good place to look for performers on future projects.</li>
+</ul>
+<p>Some groups may view DARPA-style projects as just another lab task, while others see them as the ideal approach to science—one they wish universities and companies would embrace. Seek out groups that believe the latter! </p>
+<p>The next section will cover a key program engineering tactic: the solicitation.</p>
+<h2 id="writing-a-strong-solicitation-writing-a-strong-solicitation"><strong>🤌 Writing a Strong Solicitation</strong> {#🤌-writing-a-strong-solicitation}</h2>
+<p>The specifics of how you draft a solicitation will depend on your organization’s processes and your program’s design. However, here are some commonly effective tips:</p>
+<ul>
+<li><strong>Emphasize What You Don’t Want</strong>: Spend time clarifying what you’re not looking for as well as what you are. This helps avoid irrelevant submissions. If you have specific constraints or a clear metric of success in mind, clearly flag this in the solicitation.   </li>
+<li><strong>Stay Open to Unexpected Approaches</strong>: To encourage creativity and innovative solutions, don’t prescribe exact solutions. Ensure that your goals and metrics clearly target the problem you’re solving or the capability you're building. This leaves room for diverse approaches. For example, if you're seeking highly efficient vehicles, asking for a motor that gets 100 miles per gallon could exclude electric or fuel-cell vehicles, which might meet your goal more effectively.  </li>
+<li><strong>If Possible, Provide a Sample</strong>. It is often helpful for those making proposals to see an example of what you would consider a good proposal. If it is easy to do and will not negatively impact the proposals in some way, provide a sample. ARIA recently did this with their <a href="https://www.aria.org.uk/request-for-opps/">Request for Opportunities</a>.  </li>
+<li><strong>Use Letters of Intent (LOIs)</strong>: Before calling for full proposals, request short (\~2-page) LOIs. The LOI request should resemble the full solicitation but with fewer details (e.g., no detailed budgets or timelines). Using LOIs has several advantages:  </li>
+<li><strong>Saves Time</strong>: After reviewing LOIs, most full proposals will be high-quality because they’ve received initial approval from you, saving time for both reviewers and applicants.  </li>
+<li><strong>Refines the Solicitation</strong>: Reviewing LOIs helps you identify common misunderstandings or elements you’d like to see more of in full proposals, allowing you to refine the solicitation.  </li>
+<li><strong>Targets Desired Groups</strong>: If certain disciplines or labs don’t submit LOIs, you can actively reach out to encourage them to apply.  </li>
+<li><strong>An effective LOI process</strong> can make the full proposal stage more like contract negotiations, rather than a lottery.  </li>
+<li><strong>Target Specific Audiences</strong>: Whether or not you use an LOI, it’s helpful to have specific types or examples of people or groups in mind while writing the solicitation. This allows you to craft a more focused, clearer solicitation, reducing confusion for potential applicants.</li>
+</ul>
+<p>A rough outline for writing a strong solicitation can be found in Appendix A of this module.</p>
+<h2 id="evaluating-proposals-and-selecting-performers-evaluating-proposals-and-selecting-performers"><strong>⚖️ Evaluating Proposals and Selecting Performers</strong> {#⚖️-evaluating-proposals-and-selecting-performers}</h2>
+<p>When selecting the projects for your program, remember that you are building a program and not (generally) funding all the best proposals or top people. Hopefully these things will align, but there’s definitely no guarantee. </p>
+<ul>
+<li>You may need to assess value and make tradeoffs on your available budget.   </li>
+<li>You might want to choose a high-risk/high-impact project, but balance it with a low-risk approach that might be less exciting, but more likely to succeed.   </li>
+<li>Remember to think about incentives and tradeoffs between different types of performers. Universities will often need long lead times to get spun up to full staff because of hiring bureaucracy and the academic cycle. Make sure you take that into account as best as possible! </li>
+</ul>
+<p><strong>Partial project selection and negotiation.</strong>  Frequently during source selection you’ll find yourself thinking “I’d really like to fund this part of project X, but that part kind of sucks”. This means it's time for a partial selection and negotiation! Things to consider: </p>
+<ul>
+<li>If you’ve <a href="#identifying-“technical-areas”">designed</a> your TAs to be easily separable and the bad stuff falls roughly into one of the TAs they proposed, it's generally pretty straightforward to say I want this TA and not that one.   </li>
+<li>If you need to subselect below the TA level, be prepared for pretty complex negotiations. Often (whether real or perceived) proposers will believe that there are strong dependencies amongst the components of their proposal and will push back against the idea that you can “pick and choose”. You need to do your homework and have a clear explanation for how they will succeed (for example, this part is duplicative with performer Y who proposed something more compelling and you will work closely with them, etc.).   </li>
+<li>No matter what the technical situation is in the negotiation, be prepared for some hurt feelings. Humans are fundamentally loss-averse and will be upset that you are “taking something away from them”. This is your first chance to demonstrate those social engineering skills that will be so critical during program execution. </li>
+</ul>
+<h3 id="red-flags-when-assessing-performer-budgets-red-flags-when-assessing-performer-budgets"><strong>Red Flags When Assessing Performer Budgets</strong> {#red-flags-when-assessing-performer-budgets}</h3>
+<p>The points in the above list are all great to consider incorporating into your budget process. The following brief list is a list of budget red flags to keep in mind when reviewing the budgets performers send you.</p>
+<ul>
+<li><strong>Low PI Involvement</strong>: Be cautious if a PI plans to spend less than 20% of their time on your program—this often signals lower priority and commitment.  </li>
+<li><strong>Unrealistic People-to-Time Ratios</strong>: If a proposal claims twice the number of people will complete a task in half the time, challenge this assumption and make sure it's true. In many cases, oversimplifications or wishful thinking cause bad budget estimates.  </li>
+<li><strong>Linear Spending</strong>: A uniform budget spread across all months raises concerns. Costs should vary as the project progresses—investigate any flat spending plans.  </li>
+<li><strong>Suspiciously Low Bids</strong>: Underpriced bids often signal a lack of understanding about the project’s scope. Scrutinize low bids to ensure the bidder is informed about what the task entails. </li>
+</ul>
+<p>These tips will help refine your budget process, while the red flags can guide you in identifying potential issues before they arise. Remember, budgeting is a balancing act between ambition, realism, and flexibility.</p>
+<h2 id="setting-up-a-program-for-success-setting-up-a-program-for-success"><strong>📈 Setting up a Program for Success</strong> {#📈-setting-up-a-program-for-success}</h2>
+<p>Once you have identified your performers and the contracting process has started, it's time to go back and revisit your design and update basically everything to reflect the reality of the actual projects and performers. These are unlikely to be major updates (unless something drastic happened, like if you couldn’t find a viable performer in one of your TAs), but it's important. The contracting period is (usually) a relatively quiet time, so take advantage of it to get as much prepared and planned as possible. </p>
+<ul>
+<li>Bring together your evaluation, integration, etc. teams early and often to start planning program details. How will you ensure collaboration? Who will be in charge of what? Etc.   </li>
+<li>Establish any necessary infrastructure for the program (e.g., Slack channels, etc.)  </li>
+<li>Start making detailed plans for meeting cadences, hackathons, evaluations, working groups, etc.   </li>
+<li>Reevaluate your phase gates and milestones based on the actual performers and institutions (for example, considering realistic time-delays from staffing, regulations like HSR and etc.).   </li>
+<li>Talk to performers about what they can do in advance to prepare and/or get ahead of typical latencies. Some organizations/contracts allow performers to invoice for work conducted some days (typically 90 days at DARPA) before the contract is signed. Be sure to stress that anything done before contract signing is done AT RISK and that if the contract doesn’t get finalized for any reason then that work cannot be reimbursed.   </li>
+<li>One of the most important things in this period is around staffing the project, particularly for universities. Some institutions will have rules that may prevent them issuing job adverts until contracts are done (or even until money is actually in the bank), but it's worth discussing with PIs and making sure they know the constraints and that, at minimum, they are ready to go (with adverts approved by admins for example) as soon as they’re able. </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">🛠️ Ideas for Using the Tech Stack Program Engineering involves negotiations, contracts, and relationships with multiple stakeholders. LLMs and other software tools can streamline these processes, helping you maintain focus on strategic priorities rather than getting lost in administrative details. LLMs for Contract Analysis and Generation Use LLMs to analyze proposed contracts, highlighting potential issues or inconsistencies with your program goals. These models can also generate initial term sheets based on your program requirements and translate complex legal language into plain English, helping you understand implications without constantly consulting legal teams. Relationship Management Systems Implement a specialized CRM for tracking interactions with potential performers, legal teams, and transition partners. Tools like Airtable or custom-configured Salesforce can track negotiation progress across multiple contracts and create dashboards showing the status of all active negotiations. For legal contracts specifically, tools such as <a href="https://ironcladapp.com/">Ironclad</a> can streamline approval processes with external parties and your legal team, helping you avoid unnecessary delays. Collaborative Documentation Tools Utilize version control platforms for contracts during negotiation to track changes and maintain clear history. Create living documents that link program design elements to specific contract requirements, ensuring alignment between your vision and executed agreements. Use Google Docs if you can. Implementation Approach Start with small applications to build comfort with your legal team. Create feedback loops where insights from negotiations improve future program design. These tech tools help ensure administrative complexities don't dilute the ambitious goals established during program design, but should augment rather than replace critical relationship-building aspects of program engineering.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">📜 Appendix A: Rough outline of a solicitation Remember, the key is to be clear, concise, and focused. Your solicitation should inspire and guide potential contributors, providing them with all the necessary information to submit high-quality, relevant proposals. Title. Create a concise and descriptive title — the title should be concise while also capturing the essence of the program. There is some tension between being descriptive and concise! Good Example: "Advancing Autonomous Systems in Unstructured Environments” Bad Example: “Next-gen AI: AI systems anywhere anytime for anybody that can operate in situations where other AIs cannot” (This is both long and unspecific) Goals: Before anything else, state the program’s specific and ambitious goals in the most simple language possible. It’s tempting to give background first or go very detailed but do not do this! Example: "Develop AI algorithms capable of real-time decision-making in dynamic environments." Background. Give readers brief and relevant context for why the program exists in the first place. Keep it short and directly related to the objective. Example: "Current AI systems struggle in unstructured environments. This program seeks to address this gap. \&lt;Some more information about the specific failure points and contexts of use you are hoping to address&gt; Scope. Outline specific areas of interest or research topics. This guides potential contributors towards relevant proposals. Keep the scope defined and focused while leaving yourself open to unanticipated approaches or ways to achieve the program’s high-level goals. Example: "Focus areas include hardware-software co-development, transfer between simulation-based reinforcement learning and live sensor-in-the loop learning, and human-AI collaboration." Requirements. List specific criteria that proposals must meet. Clarity here prevents ambiguity and ensures quality submissions. Ideally, these are as clear and measurable as possible. Example: "Proposals must demonstrate a pathway to achieving real-world application within five years." \&lt;List of indicators of this&gt; Timeline. Provide a timeline with distinct phases and milestones. This shows the program’s trajectory and expectations. Ideally, this timeline is as realistic and structured as possible. Condensed Example: "Phase 1 (12 months): Prototype development. Phase 2 (24 months): Field testing.” Budget. Clearly state the budget. Providing guidelines on approximate funding and number of funded projects per Technical Area helps in planning and proposal alignment. The budget should be as transparent and justified as possible. Example: "Total budget is $50M, of which we expect to fund 3 performers for TA1 (totaling roughly $10M), 4 performers for TA1 (totaling roughly $20M), etc." Generally avoid putting a specific dollar cap per project as everyone will just propose to that amount. Giving the number of performers and total budget sends a strong signal while still allowing ambitious proposals to budget higher and blow you away (or small-budget proposals to pitch something narrow that you didn’t know you needed).  Proposal Format. Specify the format and content for proposals. This ensures uniformity and ease of evaluation. This format will depend heavily on your organization, but wherever you have leeway, think about how you can make the proposal as short as possible while still giving you enough information to make a decision. Example: "Proposals should follow the provided format: Executive Summary, Technical Approach, Team Qualifications, Budget. No more than one page per section.” Evaluation Criteria. Define how proposals will be judged. This guides applicants in structuring their proposals effectively. These criteria should be as objective and comprehensive as possible. Example: "Proposals will be evaluated based on how directly they address the capabilities this program is trying to build, counterfactual impact if the project is successful, clear timelines, and whether the project would be able to get funding from other sources. Contact Information. Make sure potential applicants have a point of contact for questions or clarifications. Answer questions promptly! Example: "For queries, contact the program coordinator at [whoever]." There are many examples of ARPA solicitations available at <a href="https://grants.gov/search-grants">https://grants.gov/search-grants</a>. Just filter for your favorite ARPA Office.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page-nav">
+  <a href="05_Communications.html">← Communicating Vision</a>
+  <a href="07_Program_Execution.html">Program Execution &amp; Management →</a>
+</div>
+
+
+<footer>
+  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
+  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
+</footer>
+
+</body>
+</html>
