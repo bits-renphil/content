@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -92,24 +108,42 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 </tbody>
 </table>
 <p><strong>⚡Practical Outcome:</strong> By the end of this module, PMs should have identified one or more specific transition partners for their project. They should have a clear understanding of each partner’s incentives, constraints, and operational realities. PMs should use this knowledge to shape their program design for successful transition.</p>
-<p><a href="#ensuring-transition-stays-a-priority-not-an-afterthought">🏭Ensuring Transition Stays a Priority, Not an Afterthought</a></p>
-<p><a href="#buckets-of-transition-partners">🪣 Buckets of transition partners</a></p>
-<p><a href="#understanding-your-partners">🦻Understanding your partners</a></p>
-<p><a href="#different-levels-of-alignment">🚦Different Levels of Alignment</a></p>
-<p><a href="#the-partner-is-unsure-but">⚖️ “The Partner is Unsure, But…”</a></p>
-<p><a href="#specific-transition-tactics">🔎 Specific Transition Tactics</a></p>
-<p><a href="#planning-stage">🔭 Planning Stage:</a></p>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#ensuring-transition-stays-a-priority-not-an-afterthought">🏭Ensuring Transition Stays a Priority, Not an Afterthought</a></li>
+<li><a href="#buckets-of-transition-partners">🪣 Buckets of transition partners</a><ul>
+<li><a href="#understanding-your-partners">🦻Understanding your partners</a></li>
+</ul>
+</li>
+<li><a href="#different-levels-of-alignment">🚦Different Levels of Alignment</a><ul>
+<li><a href="#the-partner-is-unsure-but">⚖️ “The Partner is Unsure, But…”</a></li>
+</ul>
+</li>
+<li><a href="#specific-transition-tactics">🔎 Specific Transition Tactics</a><ul>
+<li><a href="#planning-stage">🔭 Planning Stage:</a></li>
+<li><a href="#early-to-mid-execution-stage-first-two-years">🚀 Early to Mid-Execution Stage (\~First Two Years):</a></li>
+<li><a href="#late-execution-stage-final-two-years">🛰️ Late Execution Stage (\~Final Two Years):</a></li>
+<li><a href="#general-transition-strategy">♟️General Transition Strategy:</a></li>
+</ul>
+</li>
+<li><a href="#a-final-note-on-ambitious-applications-focused-rd">🏭 A Final Note on Ambitious, Applications-Focused R\&amp;D</a><ul>
+<li><a href="#anticipating-common-transition-pitfalls">🔮 Anticipating Common Transition Pitfalls</a></li>
+<li><a href="#creating-a-transition-sustainability-plan">🛤️ Creating a Transition Sustainability Plan</a></li>
+<li><a href="#leveraging-policy-and-regulatory-support">🗽Leveraging Policy and Regulatory Support</a></li>
+<li><a href="#partnering-for-scale-up-and-commercialization">🤝Partnering for Scale-Up and Commercialization</a></li>
+<li><a href="#successful-transition-can-take-many-forms">📜 Successful Transition Can Take Many Forms</a></li>
+</ul>
+</li>
+<li><a href="#appendix-broader-taxonomy-of-translational-rd-mechanisms">🏷️ Appendix: Broader taxonomy of translational R\&amp;D mechanisms</a><ul>
+<li><a href="#bits-fellowship-tech-stack-overview">BiTS Fellowship: Tech Stack Overview</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 <p><a href="#🚀-early-to-mid-execution-stage-(~first-two-years):">🚀 Early to Mid-Execution Stage (\~First Two Years):</a></p>
 <p><a href="#🛰️-late-execution-stage-(~final-two-years):">🛰️ Late Execution Stage (\~Final Two Years):</a></p>
-<p><a href="#general-transition-strategy">♟️General Transition Strategy:</a></p>
-<p><a href="#a-final-note-on-ambitious-applications-focused-rd">🏭 A Final Note on Ambitious, Applications-Focused R\&amp;D</a></p>
-<p><a href="#anticipating-common-transition-pitfalls">🔮 Anticipating Common Transition Pitfalls</a></p>
-<p><a href="#creating-a-transition-sustainability-plan">🛤️ Creating a Transition Sustainability Plan</a></p>
-<p><a href="#leveraging-policy-and-regulatory-support">🗽Leveraging Policy and Regulatory Support</a></p>
-<p><a href="#partnering-for-scale-up-and-commercialization">🤝Partnering for Scale-Up and Commercialization</a></p>
-<p><a href="#successful-transition-can-take-many-forms">📜 Successful Transition Can Take Many Forms</a></p>
-<p><a href="#🛠️-ideas-for-using-the-tech-stack-5">🛠️ Ideas for Using the Tech Stack</a></p>
-<p><a href="#appendix-broader-taxonomy-of-translational-rd-mechanisms">🏷️ Appendix: Broader taxonomy of translational R\&amp;D mechanisms</a></p>
 <h2 id="ensuring-transition-stays-a-priority-not-an-afterthought"><strong>🏭Ensuring Transition Stays a Priority, Not an Afterthought</strong></h2>
 <p>Program managers must think about tech transition when they approach every strategy decision from program conception onward. Phrases like “transition” or “translation” are often appended to the back half of images describing the R\&amp;D pipeline as something of an afterthought to the basic research stages. That is even how many in academia and industry conceptualize the R\&amp;D pipeline, but that is not how PMs should approach transition. Successful programs need people to fund their work beyond the initial, temporary payer – such as DARPA or ARIA. Projects must accomplish early-stage R\&amp;D goals in ways that ensure follow-on funders are eager to continue funding the work.</p>
 <p>The integration of your transition partners’ constraints into your program design is critical. Early design decisions have profound effects on your technology’s ability to draw follow-on funding and survive beyond the R\&amp;D cocoon. Small differences, like the ability for a new material to be created using existing equipment or interface with standard connection points, can have a huge impact on its ability to transition. Great PMs do whatever they can to plan and get ahead of these issues. Academics often don’t begin investigations with things like manufacturing techniques or material cost constraints at scale in mind. While academic journals do not care about that, it is your job to obsess over it.</p>

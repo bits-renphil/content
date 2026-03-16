@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -92,27 +108,40 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 </tbody>
 </table>
 <p><strong>⚡Practical Outcome:</strong> By the end of this module, PMs should have concise (\~30-second) responses to these questions, tailored for different stakeholders—funders, performers, transition partners, etc. For tricky questions, rehearsing responses is useful. Getting to the heart of the matter quickly is critical for success, as many will need a clear, general understanding of your project to become involved.</p>
-<p><a href="#stakeholders-to-consider">👥 Stakeholders to Consider</a></p>
-<p><a href="#1-management">1. Management</a></p>
-<p><a href="#2-collaborators-doers">2. Collaborators &amp; Doers</a></p>
-<p><a href="#3-transition-partners">3. Transition Partners</a></p>
-<p><a href="#a-laundry-list-of-tips-and-tricks">🧺 A Laundry List of Tips and Tricks</a></p>
-<p><a href="#clarity">Clarity</a></p>
-<p><a href="#sales">Sales</a></p>
-<p><a href="#preparation">Preparation</a></p>
-<p><a href="#keep-in-mind-your-comparative-advantages">📌 Keep in Mind Your Comparative Advantages</a></p>
-<p><a href="#comparative-advantages-of-darpa-style-programs">Comparative Advantages of DARPA-Style Programs:</a></p>
-<p><a href="#useful-historical-examples">⏳ Useful Historical Examples</a></p>
-<p><a href="#pitching-a-program">🎯Pitching a Program</a></p>
-<p><a href="#🛠️-ideas-for-using-the-tech-stack-2">🛠️ Ideas for Using the Tech Stack</a></p>
-<p><a href="#appendix-some-additional-tips-and-exercises-you-might-try">✅ Appendix: Some additional tips and exercises you might try</a></p>
-<p><a href="#elevator-pitch-creation">Elevator Pitch Creation</a></p>
-<p><a href="#handling-objections">Handling Objections</a></p>
-<p><a href="#storytelling-techniques">Storytelling Techniques</a></p>
-<p><a href="#visual-communication-skills">Visual Communication Skills</a></p>
-<p><a href="#feedback-and-iteration">Feedback and Iteration</a></p>
-<p><a href="#listening-and-active-engagement">Listening and Active Engagement</a></p>
-<p><a href="#crisis-communication">Crisis Communication</a></p>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#stakeholders-to-consider">👥 Stakeholders to Consider</a><ul>
+<li><a href="#1-management">1. Management</a></li>
+<li><a href="#2-collaborators-doers">2. Collaborators &amp; Doers</a></li>
+<li><a href="#3-transition-partners">3. Transition Partners</a></li>
+</ul>
+</li>
+<li><a href="#a-laundry-list-of-tips-and-tricks">🧺 A Laundry List of Tips and Tricks</a><ul>
+<li><a href="#clarity">Clarity</a></li>
+<li><a href="#sales">Sales</a></li>
+<li><a href="#preparation">Preparation</a></li>
+</ul>
+</li>
+<li><a href="#keep-in-mind-your-comparative-advantages">📌 Keep in Mind Your Comparative Advantages</a><ul>
+<li><a href="#comparative-advantages-of-darpa-style-programs">Comparative Advantages of DARPA-Style Programs:</a></li>
+</ul>
+</li>
+<li><a href="#useful-historical-examples">⏳ Useful Historical Examples</a></li>
+<li><a href="#pitching-a-program">🎯Pitching a Program</a></li>
+<li><a href="#appendix-some-additional-tips-and-exercises-you-might-try">✅ Appendix: Some additional tips and exercises you might try</a><ul>
+<li><a href="#elevator-pitch-creation">Elevator Pitch Creation</a></li>
+<li><a href="#handling-objections">Handling Objections</a></li>
+<li><a href="#storytelling-techniques">Storytelling Techniques</a></li>
+<li><a href="#visual-communication-skills">Visual Communication Skills</a></li>
+<li><a href="#feedback-and-iteration">Feedback and Iteration</a></li>
+<li><a href="#listening-and-active-engagement">Listening and Active Engagement</a></li>
+<li><a href="#crisis-communication">Crisis Communication</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 <p>Note that communication spans every aspect of what a program leader does, from your hunch to your transition (which is why it needs its own chapter). We have focussed primarily on communication up to and including your program approval, but the same basic lessons and guidance apply throughout. </p>
 <h2 id="stakeholders-to-consider"><strong>👥 Stakeholders to Consider</strong></h2>
 <p>Tailored Communication: When sharing your project’s goals and challenges, always consider who you’re speaking to. What are their incentives? What are their beliefs? What is their technical background? Many individuals crucial to the success of your project will have very different incentives and backgrounds. Tailor your description to meet their specific needs.</p>

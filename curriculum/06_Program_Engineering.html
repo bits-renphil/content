@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -92,14 +108,20 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 </tbody>
 </table>
 <p><strong>⚡Practical Outcome</strong>: By the end of this section, PMs should have a clear understanding of the specific steps needed to turn their approved idea and funding into a program that is off and running. While the details may vary by agency and office, upon completing this module you will gain a clear idea of how to initiate project solicitations and refine program budgets.</p>
-<p><a href="#general-pointers">👉General pointers</a></p>
-<p><a href="#the-importance-of-identifying-performers">🕵️‍♂️ The Importance of Identifying Performers</a></p>
-<p><a href="#writing-a-strong-solicitation">🤌 Writing a Strong Solicitation</a></p>
-<p><a href="#evaluating-proposals-and-selecting-performers">⚖️ Evaluating Proposals and Selecting Performers</a></p>
-<p><a href="#red-flags-when-assessing-performer-budgets">Red Flags When Assessing Performer Budgets</a></p>
-<p><a href="#setting-up-a-program-for-success">📈 Setting up a Program for Success</a></p>
-<p><a href="#🛠️-ideas-for-using-the-tech-stack-3">🛠️ Ideas for Using the Tech Stack</a></p>
-<p><a href="#📜-appendix-a:-rough-outline-of-a-solicitation">📜 Appendix A: Rough outline of a solicitation</a></p>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#general-pointers">👉General pointers</a></li>
+<li><a href="#the-importance-of-identifying-performers">🕵️‍♂️ The Importance of Identifying Performers</a></li>
+<li><a href="#writing-a-strong-solicitation">🤌 Writing a Strong Solicitation</a></li>
+<li><a href="#evaluating-proposals-and-selecting-performers">⚖️ Evaluating Proposals and Selecting Performers</a><ul>
+<li><a href="#red-flags-when-assessing-performer-budgets">Red Flags When Assessing Performer Budgets</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-a-program-for-success">📈 Setting up a Program for Success</a></li>
+</ul>
+</div>
+</div>
+
 <h2 id="general-pointers"><strong>👉General pointers</strong></h2>
 <p>As you begin to actually do things, you’ll need to be adaptable. You’ll have had a plan. Parts of the plan won’t survive first contact with reality. You’ll have to constantly adjust your program design based on how things unfold in the action-oriented stages of the program.</p>
 <p>In this program engineering stage, it pays to dedicate yourself to the minutiae of the processes in your specific office. Dedicate yourself to understanding the small things that are more administration than R\&amp;D. These small details are vital to your program’s success.</p>

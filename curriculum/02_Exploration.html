@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -103,27 +119,39 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 <li>Initial ideas on the long-term translation and impact of the project</li>
 </ul>
 <p>The two-pager doesn’t need to be perfect at this stage, as it will be tightened in the subsequent idea refinement module. It may also be useful to keep a longer version on hand, offering deeper technical insights, caveats, and contingencies.</p>
-<p><a href="#quick-examples-of-darpa-hard-problems">🌋 Quick examples of “DARPA hard” problems</a></p>
-<p><a href="#what-you-will-learn-in-this-process">💡What you will learn in this process</a></p>
-<p><a href="#mastering-the-art-of-technical-exploration-and-strategic-networking">Mastering the Art of Technical Exploration and Strategic Networking</a></p>
-<p><a href="#find-the-best-idea-not-your-best-idea">Find the best idea, not your best idea</a></p>
-<p><a href="#darpas-comparative-advantages">DARPA’s Comparative Advantages</a></p>
-<p><a href="#bottlenecks-and-blockers">🚰 Bottlenecks and Blockers</a></p>
-<p><a href="#differentiating-between-bottlenecks-and-blockers">Differentiating between bottlenecks and blockers</a></p>
-<p><a href="#strategies-for-addressing-bottlenecks-and-blockers">Strategies for Addressing Bottlenecks and Blockers</a></p>
-<p><a href="#example-and-next-steps">Example and Next Steps</a></p>
-<p><a href="#darpas-mosis-a-case-study-in-field-exploration">📚DARPA’s MOSIS: A Case Study in Field Exploration</a></p>
-<p><a href="#the-rd-landscape-and-bottlenecks">The R\&amp;D Landscape and Bottlenecks</a></p>
-<p><a href="#mead-and-conways-contributions">Mead and Conway’s Contributions</a></p>
-<p><a href="#darpas-involvement">DARPA’s Involvement</a></p>
-<p><a href="#lessons-from-mosis">Lessons from MOSIS</a></p>
-<p><a href="#hypothetical-scenarios">Hypothetical Scenarios</a></p>
-<p><a href="#the-little-details-networking-and-approaching-conversations">✏️The Little Details: Networking and Approaching Conversations</a></p>
-<p><a href="#strategies-for-navigating-a-network">Strategies for Navigating a Network</a></p>
-<p><a href="#tactics-and-tools-for-building-your-network">Tactics and Tools for Building Your Network</a></p>
-<p><a href="#strategies-for-approaching-conversations">Strategies for Approaching Conversations</a></p>
-<p><a href="#🛠️-ideas-for-using-the-tech-stack">🛠️ Ideas for using the tech stack</a></p>
-<h2 id="_1"></h2>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#quick-examples-of-darpa-hard-problems">🌋 Quick examples of “DARPA hard” problems</a></li>
+<li><a href="#what-you-will-learn-in-this-process">💡What you will learn in this process</a><ul>
+<li><a href="#mastering-the-art-of-technical-exploration-and-strategic-networking">Mastering the Art of Technical Exploration and Strategic Networking</a></li>
+<li><a href="#find-the-best-idea-not-your-best-idea">Find the best idea, not your best idea</a></li>
+<li><a href="#darpas-comparative-advantages">DARPA’s Comparative Advantages</a></li>
+</ul>
+</li>
+<li><a href="#bottlenecks-and-blockers">🚰 Bottlenecks and Blockers</a><ul>
+<li><a href="#differentiating-between-bottlenecks-and-blockers">Differentiating between bottlenecks and blockers</a></li>
+<li><a href="#strategies-for-addressing-bottlenecks-and-blockers">Strategies for Addressing Bottlenecks and Blockers</a></li>
+<li><a href="#example-and-next-steps">Example and Next Steps</a></li>
+</ul>
+</li>
+<li><a href="#darpas-mosis-a-case-study-in-field-exploration">📚DARPA’s MOSIS: A Case Study in Field Exploration</a><ul>
+<li><a href="#the-rd-landscape-and-bottlenecks">The R\&amp;D Landscape and Bottlenecks</a></li>
+<li><a href="#mead-and-conways-contributions">Mead and Conway’s Contributions</a></li>
+<li><a href="#darpas-involvement">DARPA’s Involvement</a></li>
+<li><a href="#lessons-from-mosis">Lessons from MOSIS</a></li>
+<li><a href="#hypothetical-scenarios">Hypothetical Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#the-little-details-networking-and-approaching-conversations">✏️The Little Details: Networking and Approaching Conversations</a><ul>
+<li><a href="#strategies-for-navigating-a-network">Strategies for Navigating a Network</a></li>
+<li><a href="#tactics-and-tools-for-building-your-network">Tactics and Tools for Building Your Network</a></li>
+<li><a href="#strategies-for-approaching-conversations">Strategies for Approaching Conversations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 <h2 id="quick-examples-of-darpa-hard-problems"><strong>🌋 Quick examples of “DARPA hard” problems</strong></h2>
 <p>Before diving into the content, it’s useful to first list out some prototypical examples of problems considered “DARPA hard.” This will give prospective PMs in DARPA-like roles a clearer understanding of the level of technical ambition their programs should be encouraged to achieve. Classic structures of “DARPA hard” technical goals are:</p>
 <ul>
@@ -306,7 +334,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 <li>Cold Emails: Organizations often have standard email formats—figure these out to send cold emails directly.  </li>
 <li>LinkedIn Messages: Although it has a low response rate, it’s still worth trying.</li>
 </ul>
-<h4 id="_2"></h4>
 <h3 id="strategies-for-approaching-conversations"><strong>Strategies for Approaching Conversations</strong></h3>
 <p>To ensure your conversations are productive, consider these strategies:</p>
 <ul>

@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -99,24 +115,44 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 <li>A draft of your transition strategy/options (at a high-level)  </li>
 <li>A road-tested argument for why this won’t happen without your program</li>
 </ul>
-<p><a href="#planning-for-problems">🔮Planning for Problems</a></p>
-<p><a href="#the-structure-of-a-coordinated-research-program">🩻The Structure of a Coordinated Research Program</a></p>
-<p><a href="#program-style">Program Style</a></p>
-<p><a href="#identifying-technical-areas">Identifying “Technical Areas”</a></p>
-<p><a href="#timelines-phases-and-milestones">Timelines, Phases and Milestones</a></p>
-<p><a href="#component-integration">Component Integration</a></p>
-<p><a href="#designing-evaluation-plans-and-metrics">Designing evaluation plans and metrics</a></p>
-<p><a href="#designing-your-transition-strategy">Designing your transition strategy</a></p>
-<p><a href="#budgeting-for-a-coordinated-research-program">💰Budgeting for a Coordinated Research Program</a></p>
-<p><a href="#an-aside-on-top-down-budgeting">An Aside on Top-Down Budgeting</a></p>
-<p><a href="#getting-started-on-your-budget">Getting Started on Your Budget</a></p>
-<p><a href="#examples-of-program-contexts-and-plays">♟️Examples of Program Contexts and Plays</a></p>
-<p><a href="#example-1-building-a-dataset-for-a-competition">Example 1: Building a Dataset for a Competition</a></p>
-<p><a href="#example-2-two-different-solutions-two-different-trls">Example 2: Two Different Solutions, Two Different TRLs</a></p>
-<p><a href="#creating-your-pitch">🗣️ Creating Your Pitch</a></p>
-<p><a href="#other-places-to-source-program-design-ideas">🕵️‍♂️ Other Places to Source Program Design Ideas</a></p>
-<p><a href="#💰appendix:-miscellaneous-budget-tips">💰Appendix: Miscellaneous Budget Tips</a></p>
-<p><a href="#budgeting-tips">Budgeting Tips</a></p>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#planning-for-problems">🔮Planning for Problems</a></li>
+<li><a href="#the-structure-of-a-coordinated-research-program">🩻The Structure of a Coordinated Research Program</a><ul>
+<li><a href="#program-style">Program Style</a></li>
+<li><a href="#identifying-technical-areas">Identifying “Technical Areas”</a><ul>
+<li><a href="#example-ta-structures">Example TA structures.</a></li>
+<li><a href="#performer-types-and-examples">Performer types and examples</a></li>
+</ul>
+</li>
+<li><a href="#timelines-phases-and-milestones">Timelines, Phases and Milestones</a></li>
+<li><a href="#component-integration">Component Integration</a></li>
+<li><a href="#designing-evaluation-plans-and-metrics">Designing evaluation plans and metrics</a><ul>
+<li><a href="#metrics-for-coordinated-research-programs">Metrics for coordinated research programs</a></li>
+<li><a href="#how-to-approach-creating-metrics">How to Approach Creating Metrics</a></li>
+<li><a href="#indirect-but-useful-metrics-of-program-success">Indirect (but useful) Metrics of Program Success</a></li>
+<li><a href="#avoiding-misuse-of-metrics">Avoiding Misuse of Metrics</a></li>
+</ul>
+</li>
+<li><a href="#designing-your-transition-strategy">Designing your transition strategy</a></li>
+</ul>
+</li>
+<li><a href="#budgeting-for-a-coordinated-research-program">💰Budgeting for a Coordinated Research Program</a><ul>
+<li><a href="#an-aside-on-top-down-budgeting">An Aside on Top-Down Budgeting</a></li>
+<li><a href="#getting-started-on-your-budget">Getting Started on Your Budget</a></li>
+</ul>
+</li>
+<li><a href="#examples-of-program-contexts-and-plays">♟️Examples of Program Contexts and Plays</a><ul>
+<li><a href="#example-1-building-a-dataset-for-a-competition">Example 1: Building a Dataset for a Competition</a></li>
+<li><a href="#example-2-two-different-solutions-two-different-trls">Example 2: Two Different Solutions, Two Different TRLs</a></li>
+</ul>
+</li>
+<li><a href="#creating-your-pitch">🗣️ Creating Your Pitch</a></li>
+<li><a href="#other-places-to-source-program-design-ideas">🕵️‍♂️ Other Places to Source Program Design Ideas</a></li>
+</ul>
+</div>
+</div>
+
 <p>Many aspects of effective program design require good strategic skills as well as scientific intuition. You need to assess whether the technical tasks are doable, who is up to the challenge, and whether all elements of the project can come together cohesively. Understanding incentive structures, clarifying roles, and ensuring alignment between performers are all tasks that fall squarely on the PM's shoulders. While scientific challenges can sometimes be difficult to predict, management problems are often within your control. Careful and thorough program design helps you stay ahead of these challenges.</p>
 <p>In the design phase you will continue to iterate on your Big Four HQs and answer “the other four” as well:</p>
 <ul>

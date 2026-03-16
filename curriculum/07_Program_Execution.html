@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -92,21 +108,30 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 </tbody>
 </table>
 <p><strong>⚡Practical Outcome</strong>: By the end of this module, PMs should understand how to assess progress in their program, make informed decisions based on research results, and conduct key types of meetings effectively to keep their teams aligned and on track.</p>
-<p><a href="#overview">🎬 Overview</a></p>
-<p><a href="#active-management">🧐 Active Management</a></p>
-<p><a href="#🚖-darpa’s-alv:-a-case-study-in-active-program-management">🚖 DARPA’s ALV: A Case Study in Active Program Management</a></p>
-<p><a href="#key-takeaways-from-the-alv-case-study">Key Takeaways from the ALV Case Study</a></p>
-<p><a href="#mapping-incentives">🗺️ Mapping incentives</a></p>
-<p><a href="#some-tactics-for-discerning-incentives">Some tactics for discerning incentives</a></p>
-<p><a href="#related-reading">Related reading</a></p>
-<p><a href="#knowing-when-to-quit">⏹️ Knowing when to quit</a></p>
-<p><a href="#kill-criteria">Kill Criteria</a></p>
-<p><a href="#concrete-examples">Concrete examples</a></p>
-<p><a href="#kick-off-meeting-structures-site-visits-evaluations-etc">🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</a></p>
-<p><a href="#meetings-and-events">Meetings and events</a></p>
-<p><a href="#performance-evaluation-framework">Performance Evaluation Framework</a></p>
-<p><a href="#post-program-reflection-and-knowledge-transfer">Post-Program Reflection and Knowledge Transfer</a></p>
-<p><a href="#🛠️-ideas-for-using-the-tech-stack-4">🛠️ Ideas for Using the Tech Stack</a></p>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#overview">🎬 Overview</a></li>
+<li><a href="#active-management">🧐 Active Management</a></li>
+<li><a href="#mapping-incentives">🗺️ Mapping incentives</a><ul>
+<li><a href="#some-tactics-for-discerning-incentives">Some tactics for discerning incentives</a></li>
+<li><a href="#related-reading">Related reading</a></li>
+</ul>
+</li>
+<li><a href="#knowing-when-to-quit">⏹️ Knowing when to quit</a><ul>
+<li><a href="#kill-criteria">Kill Criteria</a></li>
+<li><a href="#concrete-examples">Concrete examples</a></li>
+</ul>
+</li>
+<li><a href="#kick-off-meeting-structures-site-visits-evaluations-etc">🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</a><ul>
+<li><a href="#meetings-and-events">Meetings and events</a></li>
+<li><a href="#performance-evaluation-framework">Performance Evaluation Framework</a></li>
+<li><a href="#post-program-reflection-and-knowledge-transfer">Post-Program Reflection and Knowledge Transfer</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 <h2 id="overview"><strong>🎬 Overview</strong></h2>
 <p>Program execution is when the real research happens: contracts are signed, money is distributed, and researchers get to work. Ironically, for a PM, there may be fewer daily tasks, but your role as project manager and CEO is crucial.</p>
 <p>Treating projects as “fire and forget” is a common mistake for several reasons:</p>

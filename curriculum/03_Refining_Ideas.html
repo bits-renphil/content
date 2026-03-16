@@ -59,6 +59,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
   transition:all .15s}
 .page-nav a:hover{background:var(--light);text-decoration:none}
+
+/* Nested TOC box */
+.toc-box{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:1.5rem 0 2rem;max-width:680px}
+.toc-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem}
+.toc-box .toc ul{list-style:none;margin:0;padding:0}
+.toc-box .toc > ul > li{margin-bottom:.4rem}
+.toc-box .toc > ul > li > a{font-weight:600;font-size:.9rem;color:var(--navy)}
+.toc-box .toc > ul > li > a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul{margin:.25rem 0 .25rem 1.1rem;padding:0;
+  border-left:2px solid var(--border)}
+.toc-box .toc ul ul li{margin:.15rem 0}
+.toc-box .toc ul ul a{font-size:.84rem;color:var(--muted);padding-left:.6rem;display:inline-block}
+.toc-box .toc ul ul a:hover{color:var(--accent);text-decoration:none}
+.toc-box .toc ul ul ul a{font-size:.8rem;color:#94a3b8}
 </style>
 </head>
 <body>
@@ -104,22 +120,33 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 <li>You have a good draft argument for why this won’t happen without your program.   </li>
 <li>You can communicate all this effectively to colleagues and leadership and have begun to get them on board.</li>
 </ul>
-<p><a href="#what-makes-an-idea-a-darpa-program">📋What makes an idea a DARPA program?</a></p>
-<p><a href="#the-big-four-focus-on-these-first-the-rest-youll-address-later-once-the-program-starts-to-coalesce">The Big Four. Focus on these first, the rest you’ll address later once the program starts to coalesce.</a></p>
-<p><a href="#the-other-four-it-never-hurts-to-keep-these-in-mind-but-dont-focus-on-them-at-this-stage">The Other Four. It never hurts to keep these in mind, but don’t focus on them at this stage.</a></p>
-<p><a href="#other-useful-questions-weve-found-over-the-years">✅Other Useful Questions We've Found Over the Years</a></p>
-<p><a href="#on-potential-upside-and-translational-potential">On Potential Upside and Translational Potential</a></p>
-<p><a href="#identifying-performers">🤝Identifying Performers</a></p>
-<p><a href="#the-little-details-tactics-for-refining-ideas">✍️The Little Details: Tactics for Refining Ideas</a></p>
-<p><a href="#assumptions-hypotheses-impacts">🧐Assumptions - Hypotheses - Impacts</a></p>
-<p><a href="#wireframes">🎨Wireframes</a></p>
-<p><a href="#circling-back">✉️Circling Back</a></p>
-<p><a href="#cross-disciplinary-thinking">🤔Cross-Disciplinary Thinking</a></p>
-<p><a href="#rfis-and-workshops">📝RFIs and Workshops</a></p>
-<p><a href="#red-teams-blue-teams-and-murder-boards">📊Red Teams, Blue Teams, and Murder Boards</a></p>
-<p><a href="#risk-assessment-and-mitigation">🌊 Risk Assessment and Mitigation</a></p>
-<p><a href="#iteration-and-failure">🔁Iteration and Failure</a></p>
-<p><a href="#🛠️-ideas-for-using-the-tech-stack-1">🛠️ Ideas for Using the Tech Stack</a></p>
+<div class="toc-box"><p class="toc-title">Contents</p><div class="toc">
+<ul>
+<li><a href="#what-makes-an-idea-a-darpa-program">📋What makes an idea a DARPA program?</a><ul>
+<li><a href="#the-big-four-focus-on-these-first-the-rest-youll-address-later-once-the-program-starts-to-coalesce">The Big Four. Focus on these first, the rest you’ll address later once the program starts to coalesce.</a></li>
+<li><a href="#the-other-four-it-never-hurts-to-keep-these-in-mind-but-dont-focus-on-them-at-this-stage">The Other Four. It never hurts to keep these in mind, but don’t focus on them at this stage.</a></li>
+</ul>
+</li>
+<li><a href="#other-useful-questions-weve-found-over-the-years">✅Other Useful Questions We've Found Over the Years</a><ul>
+<li><a href="#on-potential-upside-and-translational-potential">On Potential Upside and Translational Potential</a></li>
+</ul>
+</li>
+<li><a href="#identifying-performers">🤝Identifying Performers</a></li>
+<li><a href="#the-little-details-tactics-for-refining-ideas">✍️The Little Details: Tactics for Refining Ideas</a><ul>
+<li><a href="#assumptions-hypotheses-impacts">🧐Assumptions - Hypotheses - Impacts</a></li>
+<li><a href="#wireframes">🎨Wireframes</a></li>
+<li><a href="#circling-back">✉️Circling Back</a></li>
+<li><a href="#cross-disciplinary-thinking">🤔Cross-Disciplinary Thinking</a></li>
+<li><a href="#rfis-and-workshops">📝RFIs and Workshops</a></li>
+<li><a href="#red-teams-blue-teams-and-murder-boards">📊Red Teams, Blue Teams, and Murder Boards</a></li>
+<li><a href="#risk-assessment-and-mitigation">🌊 Risk Assessment and Mitigation</a></li>
+<li><a href="#iteration-and-failure">🔁Iteration and Failure</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 <p>At a certain point in the exploration and field mapping process, PMs must begin to more ruthlessly refine their young program ideas. Refining ideas requires both thinking and talking. You need deep thinking to connect and distill the pieces of information that you’ve gathered while exploring and field mapping. Then you need to talk to people to test your ideas with those who have more knowledge in specific areas.</p>
 <p>Refining ideas should happen in a loop with exploration: one conversation might spark an idea for a sub-goal, only for the next conversation with another expert to shift that idea in a new direction. This process can be challenging, as promising ideas may need to be scrapped or significantly revised before your project takes its final shape. In this module, we’ll guide you through how to navigate this iterative process of refining ideas.</p>
 <p>The information in this module will become particularly important once you’ve learned enough about a space to come up with ideas for whole programs. For an idea to flourish into something impactful, you must rigorously examine it from every angle to identify and address weak points. This is especially critical in the context of DARPA programs, where even minor “details” could demand millions of dollars or years of highly skilled labor to fix. Upfront refinement can be the difference between a program’s success or failure.</p>
@@ -191,7 +218,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 <h3 id="wireframes"><strong>🎨Wireframes</strong></h3>
 <p>Another effective tactic is to sketch out a wireframe of the Heilmeier Catechism (shown below). This simplified form of the Catechism can clarify your thinking and serve as a concise way to convey your ideas in presentations or meetings, allowing you to spend less time explaining and more time discussing. Wireframes force you to be clear and succinct, making them a powerful tool for sharpening your approach.</p>
 <p><em>A wireframe using shortened versions of the Heilmeier questions [credit: Actuate Innovation]</em></p>
-<h3 id="_1"></h3>
 <h3 id="circling-back"><strong>✉️Circling Back</strong></h3>
 <p>One crucial tactic you should utilize is circling back with people you spoke to during the exploration phase, this time with a concrete hypothesis for them to respond to. Re-engaging with key individuals from the early stages of your program exploration can lead to two valuable outcomes.</p>
 <p>First, they may continue to provide incredibly useful insights—fantastic! Continue involving them as long as their input adds value. Second, they may be less helpful this time around because you’ve gained new knowledge since your initial conversation. That’s also a positive sign—it indicates your thinking has evolved. In either case, this process is valuable for refining ideas.</p>
