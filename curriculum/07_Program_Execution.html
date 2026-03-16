@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Program Execution &amp; Management — BiTS</title>
+  <title>Program Execution & Management — BiTS</title>
   <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -15,8 +15,6 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-
-/* Nav */
 nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
@@ -26,149 +24,57 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 .nav-links{display:flex;gap:1.5rem;list-style:none}
 .nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:#fff;text-decoration:none}
-
-/* Hero (index only) */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
-  color:#fff;padding:5rem 2rem 4rem;text-align:center}
-.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:1rem}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
-  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
-.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
-.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
-
-/* Page header (inner pages) */
 .page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
   color:#fff;padding:3rem 2rem 2.5rem}
 .page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
-  max-width:800px}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;max-width:800px}
 .page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
 .breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
 .breadcrumb a{color:rgba(255,255,255,.7)}
 .breadcrumb a:hover{color:#fff;text-decoration:none}
-
-/* Section / grid */
-.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
-.section-header{margin-bottom:2.5rem}
-.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:.4rem}
-.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
-.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
-.divider{border:none;border-top:1px solid var(--border);margin:0}
-
-/* Cards (index) */
-.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
-.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
-  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
-  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
-.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--accent);opacity:0;transition:opacity .2s}
-.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
-.chapter-card:hover::before{opacity:1}
-.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
-.chapter-meta{display:flex;align-items:center;gap:.6rem}
-.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
-  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.chapter-emoji{font-size:1.2rem}
-.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
-.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
-  align-items:center;gap:.25rem;margin-top:.25rem}
-
-.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
-.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
-  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
-.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
-.case-card-header{padding:1.5rem 1.5rem 1rem;
-  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
-.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:.5rem}
-.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
-.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
-.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
-.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
-.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
-.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
-  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
-.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
-  display:inline-flex;align-items:center;gap:.3rem}
-
-/* Content (inner pages) */
-.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
 .content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
-.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
-  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
-.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
-.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
-.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);margin:2rem 0 .75rem;line-height:1.3;
+  padding-bottom:.35rem;border-bottom:2px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.5rem 0 .5rem}
+.content-wrap h4{font-size:1rem;font-weight:600;color:var(--text);margin:1.25rem 0 .4rem}
+.content-wrap p{margin-bottom:1rem}
 .content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
-.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
-.content-wrap strong{color:var(--navy)}
-.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
-  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
-  font-style:italic;color:var(--muted);font-size:.95rem}
-.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
-.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
-.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap li{margin-bottom:.3rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.9rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem .9rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem .9rem;border-bottom:1px solid var(--border)}
 .content-wrap tr:nth-child(even) td{background:var(--light)}
-.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
-  font-family:monospace;font-size:.88em;color:#be185d}
-.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
-  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
-.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
-.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
-
-/* Nav between pages */
+.content-wrap blockquote{border-left:4px solid var(--accent);margin:1.25rem 0;
+  padding:.75rem 1.25rem;background:var(--light);border-radius:0 6px 6px 0}
+.content-wrap code{background:var(--light);padding:2px 5px;border-radius:3px;font-size:.88em}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;padding:1.25rem;border-radius:8px;
+  overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0}
+.content-wrap > h1:first-child{display:none}
 .page-nav{display:flex;justify-content:space-between;align-items:center;
-  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
-.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
-  display:flex;align-items:center;gap:.3rem}
-.page-nav a:hover{text-decoration:underline}
-
-/* About / Footer */
-.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
-.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
-.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
-footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
-  padding:2rem;font-size:.82rem}
-footer a{color:rgba(255,255,255,.75)}
-footer a:hover{color:#fff}
-
-@media(max-width:700px){
-  .about-inner{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .hero{padding:3rem 1.25rem 2.5rem}
-  .section{padding:2.5rem 1.25rem}
-  .content-wrap{padding:2rem 1.25rem 3rem}
-  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
-}
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:860px;margin:0 auto}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;
+  color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
+  transition:all .15s}
+.page-nav a:hover{background:var(--light);text-decoration:none}
 </style>
-  
 </head>
 <body>
-
 <nav>
-  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <a class="nav-brand" href="../index.html">&#x1F6F0;&#xFE0F; BiTS <span class="tag">Playbook</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#curriculum">Curriculum</a></li>
-    <li><a href="index.html#case-studies">Case Studies</a></li>
-    <li><a href="index.html#about">About</a></li>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#curriculum">Curriculum</a></li>
+    <li><a href="../index.html#case-studies">Case Studies</a></li>
+    <li><a href="../index.html#about">About</a></li>
   </ul>
 </nav>
-
-
 <div class="page-header">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
   <div class="eyebrow">Chapter 7 &nbsp;🚧</div>
-  <h1>Program Execution &amp; Management</h1>
+  <h1>Program Execution & Management</h1>
 </div>
 <div class="content-wrap">
 <h1 id="7-program-execution">7️⃣ Program Execution</h1>
@@ -186,22 +92,22 @@ footer a:hover{color:#fff}
 </tbody>
 </table>
 <p><strong>⚡Practical Outcome</strong>: By the end of this module, PMs should understand how to assess progress in their program, make informed decisions based on research results, and conduct key types of meetings effectively to keep their teams aligned and on track.</p>
-<p><a href="#🎬-overview">🎬 Overview</a></p>
-<p><a href="#🧐-active-management">🧐 Active Management</a></p>
+<p><a href="#overview">🎬 Overview</a></p>
+<p><a href="#active-management">🧐 Active Management</a></p>
 <p><a href="#🚖-darpa’s-alv:-a-case-study-in-active-program-management">🚖 DARPA’s ALV: A Case Study in Active Program Management</a></p>
 <p><a href="#key-takeaways-from-the-alv-case-study">Key Takeaways from the ALV Case Study</a></p>
-<p><a href="#🗺️-mapping-incentives">🗺️ Mapping incentives</a></p>
+<p><a href="#mapping-incentives">🗺️ Mapping incentives</a></p>
 <p><a href="#some-tactics-for-discerning-incentives">Some tactics for discerning incentives</a></p>
 <p><a href="#related-reading">Related reading</a></p>
-<p><a href="#⏹️-knowing-when-to-quit">⏹️ Knowing when to quit</a></p>
+<p><a href="#knowing-when-to-quit">⏹️ Knowing when to quit</a></p>
 <p><a href="#kill-criteria">Kill Criteria</a></p>
 <p><a href="#concrete-examples">Concrete examples</a></p>
-<p><a href="#🕵️‍♂️-kick-off,-meeting-structures,-site-visits,-evaluations,-etc.">🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</a></p>
+<p><a href="#kick-off-meeting-structures-site-visits-evaluations-etc">🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</a></p>
 <p><a href="#meetings-and-events">Meetings and events</a></p>
 <p><a href="#performance-evaluation-framework">Performance Evaluation Framework</a></p>
 <p><a href="#post-program-reflection-and-knowledge-transfer">Post-Program Reflection and Knowledge Transfer</a></p>
 <p><a href="#🛠️-ideas-for-using-the-tech-stack-4">🛠️ Ideas for Using the Tech Stack</a></p>
-<h2 id="overview-overview"><strong>🎬 Overview</strong> {#🎬-overview}</h2>
+<h2 id="overview"><strong>🎬 Overview</strong></h2>
 <p>Program execution is when the real research happens: contracts are signed, money is distributed, and researchers get to work. Ironically, for a PM, there may be fewer daily tasks, but your role as project manager and CEO is crucial.</p>
 <p>Treating projects as “fire and forget” is a common mistake for several reasons:</p>
 <ol>
@@ -223,7 +129,7 @@ footer a:hover{color:#fff}
 <li>How and when to fire underperforming performers</li>
 </ul>
 <p>While some decisions are hard to plan for, the next two sections will offer strategies to help you prepare for these challenges.</p>
-<h2 id="active-management-active-management"><strong>🧐 Active Management</strong> {#🧐-active-management}</h2>
+<h2 id="active-management"><strong>🧐 Active Management</strong></h2>
 <p>Regardless of how well-designed your program is, active management will almost certainly be required during its execution. DARPA programs often occupy the fringes of the existing R\&amp;D ecosystem—by design. As such, they frequently fall outside the typical patterns of work and collaboration, which means they can require more hands-on oversight from the PM.</p>
 <p>Even with a clear plan and dedicated funding, you can’t simply assume that all the pieces will fall into place on their own. Active management involves ensuring that performers collaborate effectively, stay on task, and meet deadlines. This might include encouraging—or even demanding—that performers put in the necessary time and effort to meet the program’s goals, as Larry Roberts did during the ARPAnet program.</p>
 <p>PM Larry Roberts' arm-twisting with the ARPAnet program is one famous example of active management. While the core hardware (the IMP) was developed smoothly, setting up the nodes—computers that would connect to the network—risked delay because the individual university departments responsible for them had other, research-related priorities. Getting the nodes set up was more important to DARPA than it was to them. Roberts had to use DARPA’s status as the departments’ most substantial funder to push the departments to get their nodes up and running on schedule. But Roberts made it work. Roberts made it very clear what the ramifications for the department’s future funding might be if they did not get their nodes up and running on schedule. As a result, the program progressed on schedule. </p>
@@ -240,7 +146,7 @@ footer a:hover{color:#fff}
 </tr>
 </tbody>
 </table>
-<h2 id="mapping-incentives-mapping-incentives"><strong>🗺️ Mapping incentives</strong> {#🗺️-mapping-incentives}</h2>
+<h2 id="mapping-incentives"><strong>🗺️ Mapping incentives</strong></h2>
 <p>At its core, a successful research program enables work that would not have otherwise happened. To make this happen, PMs need to think clearly about whether a potential performer is being funded to work on things they already want to do or if the PM needs to shift what the performer wants to do. A good PM needs to think about people’s incentives: what is driving them to act the way they do. </p>
 <p>Incentives matter for coordinated research programs both so that you can effectively coordinate people within the program and also so that the program itself can be impactful. If you don’t consider incentives, you are going to find yourself constantly frustrated by people who say they will do one thing and wind up doing another or simply won’t cooperate at all. Furthermore, many programs attempt to address systemic problems. Most people are not malicious or stupid — they’re simply acting according to incentives you might not see. In order to make headway on these problems, you need to figure out what is incentivizing people in that system so that you can shift those incentives. </p>
 <p>For example, most companies are incentivized to maximize profits (shocking!) so they’re incredibly unlikely to use a replacement technology that is [cooler/more sustainable/etc] if it costs drastically more than what they’re currently using. Installing new technology also costs money so companies are rarely incentivized to use technologies that are small improvements over what they already use. Governments (and especially militaries) have different incentives such as keeping soldiers and citizens alive, making politicians look good, and appeasing politically important groups, so they are sometimes willing to pay significantly more for marginal improvements in capabilities. </p>
@@ -253,7 +159,7 @@ footer a:hover{color:#fff}
 <li>Potential actions you could take to bridge that gap.</li>
 </ul>
 <p>Figuring out what people’s and group’s incentives are in the first place is not straightforward. You can’t ask directly both because it’s incredibly awkward to ask “so, beyond the nice-sounding reasons, why are you really doing this?” and people often don’t notice what’s really driving their behavior.  </p>
-<h3 id="some-tactics-for-discerning-incentives-some-tactics-for-discerning-incentives"><strong>Some tactics for discerning incentives</strong> {#some-tactics-for-discerning-incentives}</h3>
+<h3 id="some-tactics-for-discerning-incentives"><strong>Some tactics for discerning incentives</strong></h3>
 <ul>
 <li>Figure out what gets people in a particular position promoted or fired. Reaper functions dominate other incentives.  </li>
 <li>Look at where an organization’s free cash flow comes from.  </li>
@@ -298,13 +204,13 @@ footer a:hover{color:#fff}
 <li>Convince them that what you want them to do is related to what they already find interesting  </li>
 <li>Shift your goals to be more aligned with theirs</li>
 </ul>
-<h3 id="related-reading-related-reading"><strong>Related reading</strong> {#related-reading}</h3>
+<h3 id="related-reading"><strong>Related reading</strong></h3>
 <ul>
 <li><a href="http://www.nber.org/papers/w26752.pdf">Stagnation and Scientific Incentives</a> examines how incentives drive behavior and outcomes in science, focusing on how academic structures often prioritize safe, incremental work over transformative breakthroughs due to career and funding pressures.   </li>
 <li><a href="https://blog.benjaminreinhardt.com/wddw">Why Does DARPA Work?</a> analyzes DARPA's unique operational model, highlighting its reliance on empowered program managers, flexible funding, and a flat organizational structure to drive high-risk, high-reward innovation. Replicating DARPA's success in other contexts requires adapting these elements to fit different institutional environments. <a href="https://twitter.com/ilangur/status/1277447853023956993?s=20">“It’s all about incentives”</a></li>
 </ul>
 <hr />
-<h2 id="knowing-when-to-quit-knowing-when-to-quit"><strong>⏹️ Knowing when to quit</strong> {#⏹️-knowing-when-to-quit}</h2>
+<h2 id="knowing-when-to-quit"><strong>⏹️ Knowing when to quit</strong></h2>
 <p>One of the reasons ARPA-style programs can take significant risks is their willingness to terminate projects or entire lines of investigation. These programs often pursue “big, if true” ideas—the "if" acknowledging that many may not succeed. Quitting allows you and your office to redirect resources toward more promising endeavors.</p>
 <p>Knowing when to quit is an art. It’s often difficult, especially when it involves letting go of external performers. Decisions to abandon a line of investigation or shut down a project can happen at various stages, such as:</p>
 <ul>
@@ -321,7 +227,7 @@ footer a:hover{color:#fff}
 <li>Identifying that a performer isn’t competent or capable of execution.</li>
 </ul>
 <p>In some cases, replacing a performer may solve the issue, while in others, it’s better to end the entire line of investigation.</p>
-<h3 id="kill-criteria-kill-criteria"><strong>Kill Criteria</strong> {#kill-criteria}</h3>
+<h3 id="kill-criteria"><strong>Kill Criteria</strong></h3>
 <p>Whenever possible, establish kill criteria early in the program’s life cycle. Effective kill criteria should be:</p>
 <ul>
 <li><strong>Objective</strong>: The clearest way to achieve this is through measurable outcomes. However, insisting on measurability can exclude some valuable projects.  </li>
@@ -338,7 +244,7 @@ footer a:hover{color:#fff}
 </ul>
 <p>Once you’ve decided to quit, act quickly. Delaying only wastes time and resources.</p>
 <p>The following section will provide concrete examples of DARPA-style programs that successfully implemented quitting, firing, and killing strategies.</p>
-<h3 id="concrete-examples-concrete-examples"><strong>Concrete examples</strong> {#concrete-examples}</h3>
+<h3 id="concrete-examples"><strong>Concrete examples</strong></h3>
 <p>The following list contains some concrete historical examples of effective quitting, firing, and killing in DARPA-style programs.</p>
 <ul>
 <li><strong>Cutting sub-projects or external collaborators due to cost overruns.</strong> During the <a href="https://web.archive.org/web/20110629003311/http://www.darpa.mil/WorkArea/DownloadAsset.aspx?id=2565">Miniature GPS Receiver Program</a>, Tony Tether cut Magnavox as a performer because they had repeated cost overruns. Pruning performers based on cost overruns is not uncommon.  </li>
@@ -353,9 +259,9 @@ footer a:hover{color:#fff}
 <li><strong>Quitting because of politics.</strong> <a href="https://en.wikipedia.org/wiki/Total_Information_Awareness">The Total Information Awareness (TIA) Program was developing technologies for large-scale data mining and analysis to prevent terrorist attacks.</a> It was terminated due to public concerns over privacy and civil liberties. The controversy over surveillance and data collection led to a loss of support in Congress, resulting in its early closure.  </li>
 <li><strong>Quitting because the world changes</strong>. The <a href="https://www.darpa.mil/program/systems-of-neuromorphic-adaptive-plastic-scalable-electronics">SyNAPSE (Systems of Neuromorphic Adaptive Plastic Scalable Electronics) program</a>, started in the late 2000s, aimed to create electronic neuromorphic machine technology that would function similarly to a human brain. The goal was to develop a new generation of computers and electronics that could interpret, analyze, and learn from data in a sophisticated, efficient manner, much like the human brain. However, as the program progressed, the rapid advancement of machine learning and artificial intelligence in the broader tech industry, particularly the development and improvement of deep learning algorithms, overshadowed the goals of SyNAPSE. These advancements in AI and machine learning offered more immediate and practical solutions to problems SyNAPSE aimed to address. Deep learning, leveraging large neural networks and massive amounts of data, began to demonstrate remarkable capabilities in image and speech recognition, natural language processing, and other areas that were once thought to require the kind of neuromorphic computing DARPA's SyNAPSE program was exploring. As a result, the focus in the tech industry shifted towards these more immediately applicable AI technologies, which were rapidly evolving and being integrated into various applications. This shift made some of the objectives of the SyNAPSE program seem less relevant, leading to its early wind-down.</li>
 </ul>
-<h2 id="kick-off-meeting-structures-site-visits-evaluations-etc-kick-off-meeting-structures-site-visits-evaluations-etc"><strong>🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</strong> {#🕵️‍♂️-kick-off,-meeting-structures,-site-visits,-evaluations,-etc.}</h2>
+<h2 id="kick-off-meeting-structures-site-visits-evaluations-etc"><strong>🕵️‍♂️ Kick-off, meeting structures, site visits, evaluations, etc.</strong></h2>
 <p>One of the most important tools you have for program management is events and in-person engagements. These can take many forms depending on the structure of the program and your objectives, but there are usually some universal components. </p>
-<h3 id="meetings-and-events-meetings-and-events"><strong>Meetings and events</strong> {#meetings-and-events}</h3>
+<h3 id="meetings-and-events"><strong>Meetings and events</strong></h3>
 <p><strong>The Kick-Off</strong>: A program generally starts out with a kick-off event. Having seen dozens of these, I can say there is no one right way to organize it. A few tips: </p>
 <ul>
 <li>Start the event (after an inspirational program overview talk of course) with icebreakers, unstructured discussions, or even a (perhaps anonymous) pre-mortem where you ask performers to consider that the program has just ended and it was a failure and ask them to write down their top N reasons for why it failed (you can come back to these at the end of the meeting to see if people have updated their priors).   </li>
@@ -371,7 +277,7 @@ footer a:hover{color:#fff}
 <p><strong>Site Visits</strong>: It used to be gospel at DARPA that you should visit each performer in person every 6 months. This is undoubtedly valuable, if you don’t mind living on the road… Since the pandemic, virtual site visits have become much more common though there’s still nothing like face-to-face. Depending on how many performers you have, the types of work they’re doing and how widely distributed they are (can you knock out 3 or 4 in a couple days in one city?), consider doing in-person site visits as reasonable. </p>
 <p><strong>Hackathons and Evaluations</strong>: ARPA-style meetings tend to be much more productive when they’re built around working and planning, rather than conference-style powerpoint overload. Hackathons are a great framework for organizing a true working event and can be particularly useful for targeted integration work (get everyone together and hack until their tools/data can talk to each other). </p>
 <p><strong>Evaluation Events</strong>: Not every program will need to have an event to conduct evaluations, but frequently this will be the case, particularly if you are trying to bring in users (real or proxy) to put a technology, or integrated set of technologies, through its paces. Consider combining this with a preceding hackathon so teams have targeted time for hardening, integration and testing before the eval. </p>
-<h3 id="performance-evaluation-framework-performance-evaluation-framework"><strong>Performance Evaluation Framework</strong> {#performance-evaluation-framework}</h3>
+<h3 id="performance-evaluation-framework"><strong>Performance Evaluation Framework</strong></h3>
 <p>It’s important to have a structured framework to evaluate performers and assess progress at various milestones. This includes:</p>
 <ul>
 <li><strong>A checklist for evaluation</strong>: Use a standardized set of questions or criteria to evaluate each performer.  </li>
@@ -379,7 +285,7 @@ footer a:hover{color:#fff}
 <li><strong>Tight feedback loops</strong>: Maintain regular communication to track progress and identify issues early.</li>
 </ul>
 <p><em>Note: Please keep this simple! Create a standard template and have a plan for how you’ll use the various templates across the program (a good time to leverage AI tools!).</em> </p>
-<h3 id="post-program-reflection-and-knowledge-transfer-post-program-reflection-and-knowledge-transfer"><strong>Post-Program Reflection and Knowledge Transfer</strong> {#post-program-reflection-and-knowledge-transfer}</h3>
+<h3 id="post-program-reflection-and-knowledge-transfer"><strong>Post-Program Reflection and Knowledge Transfer</strong></h3>
 <p>After the program ends, conduct post-mortems or debrief sessions to capture lessons learned. These insights will help future PMs and teams avoid similar pitfalls. Additionally, ensure that knowledge is transferred effectively to stakeholders, collaborators, or follow-up programs.</p>
 <table>
 <thead>
@@ -395,15 +301,9 @@ footer a:hover{color:#fff}
 </table>
 </div>
 <div class="page-nav">
-  <a href="06_Program_Engineering.html">← Program Engineering</a>
-  <a href="08_Tech_Transition.html">Tech Transition →</a>
+  <a href="06_Program_Engineering.html">&#8592; Ch 6: Program Engineering</a>
+  <span style="flex:1"></span>
+  <a href="08_Tech_Transition.html">Ch 8: Tech Transition &#8594;</a>
 </div>
-
-
-<footer>
-  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
-  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
-</footer>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>The Grand Challenge — Case Study — BiTS</title>
+  <title>DARPA Grand & Urban Challenge — BiTS</title>
   <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -15,8 +15,6 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-
-/* Nav */
 nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
@@ -26,150 +24,60 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 .nav-links{display:flex;gap:1.5rem;list-style:none}
 .nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:#fff;text-decoration:none}
-
-/* Hero (index only) */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
-  color:#fff;padding:5rem 2rem 4rem;text-align:center}
-.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:1rem}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
-  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
-.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
-.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
-
-/* Page header (inner pages) */
 .page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
   color:#fff;padding:3rem 2rem 2.5rem}
 .page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
-  max-width:800px}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;max-width:800px}
 .page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
 .breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
 .breadcrumb a{color:rgba(255,255,255,.7)}
 .breadcrumb a:hover{color:#fff;text-decoration:none}
-
-/* Section / grid */
-.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
-.section-header{margin-bottom:2.5rem}
-.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:.4rem}
-.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
-.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
-.divider{border:none;border-top:1px solid var(--border);margin:0}
-
-/* Cards (index) */
-.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
-.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
-  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
-  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
-.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--accent);opacity:0;transition:opacity .2s}
-.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
-.chapter-card:hover::before{opacity:1}
-.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
-.chapter-meta{display:flex;align-items:center;gap:.6rem}
-.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
-  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.chapter-emoji{font-size:1.2rem}
-.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
-.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
-  align-items:center;gap:.25rem;margin-top:.25rem}
-
-.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
-.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
-  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
-.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
-.case-card-header{padding:1.5rem 1.5rem 1rem;
-  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
-.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:.5rem}
-.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
-.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
-.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
-.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
-.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
-.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
-  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
-.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
-  display:inline-flex;align-items:center;gap:.3rem}
-
-/* Content (inner pages) */
-.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
 .content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
-.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
-  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
-.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
-.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
-.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);margin:2rem 0 .75rem;line-height:1.3;
+  padding-bottom:.35rem;border-bottom:2px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.5rem 0 .5rem}
+.content-wrap h4{font-size:1rem;font-weight:600;color:var(--text);margin:1.25rem 0 .4rem}
+.content-wrap p{margin-bottom:1rem}
 .content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
-.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
-.content-wrap strong{color:var(--navy)}
-.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
-  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
-  font-style:italic;color:var(--muted);font-size:.95rem}
-.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
-.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
-.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap li{margin-bottom:.3rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.9rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem .9rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem .9rem;border-bottom:1px solid var(--border)}
 .content-wrap tr:nth-child(even) td{background:var(--light)}
-.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
-  font-family:monospace;font-size:.88em;color:#be185d}
-.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
-  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
-.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
-.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
-
-/* Nav between pages */
+.content-wrap blockquote{border-left:4px solid var(--accent);margin:1.25rem 0;
+  padding:.75rem 1.25rem;background:var(--light);border-radius:0 6px 6px 0}
+.content-wrap code{background:var(--light);padding:2px 5px;border-radius:3px;font-size:.88em}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;padding:1.25rem;border-radius:8px;
+  overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0}
+.content-wrap > h1:first-child{display:none}
 .page-nav{display:flex;justify-content:space-between;align-items:center;
-  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
-.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
-  display:flex;align-items:center;gap:.3rem}
-.page-nav a:hover{text-decoration:underline}
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:860px;margin:0 auto}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;
+  color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
+  transition:all .15s}
+.page-nav a:hover{background:var(--light);text-decoration:none}
 
-/* About / Footer */
-.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
-.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
-.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
-footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
-  padding:2rem;font-size:.82rem}
-footer a{color:rgba(255,255,255,.75)}
-footer a:hover{color:#fff}
-
-@media(max-width:700px){
-  .about-inner{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .hero{padding:3rem 1.25rem 2.5rem}
-  .section{padding:2.5rem 1.25rem}
-  .content-wrap{padding:2rem 1.25rem 3rem}
-  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
-}
-</style>
-  
+  .content-wrap > h1:first-child{display:block}
+  </style>
 </head>
 <body>
-
 <nav>
-  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <a class="nav-brand" href="../index.html">&#x1F6F0;&#xFE0F; BiTS <span class="tag">Playbook</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#curriculum">Curriculum</a></li>
-    <li><a href="index.html#case-studies">Case Studies</a></li>
-    <li><a href="index.html#about">About</a></li>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#curriculum">Curriculum</a></li>
+    <li><a href="../index.html#case-studies">Case Studies</a></li>
+    <li><a href="../index.html#about">About</a></li>
   </ul>
 </nav>
-
-
 <div class="page-header">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#case-studies">Case Studies</a></div>
-  <div class="eyebrow">Case Study &nbsp;·&nbsp; DARPA · 2004–2007</div>
-  <h1>The Grand Challenge</h1>
-  <div class="subtitle">Prize Competitions, Field Creation, and the Challenge Model</div>
+  <div class="eyebrow">Case Study</div>
+  <h1>DARPA Grand & Urban Challenge</h1>
+  <div class="subtitle">How DARPA’s driverless car challenges catalyzed autonomous vehicle research and lessons for the SPRIND challenge model.</div>
 </div>
 <div class="content-wrap">
 <h1 id="case-study-the-darpa-grand-challenge-prize-competitions-field-creation-and-the-challenge-model">Case Study: The DARPA Grand Challenge — Prize Competitions, Field Creation, and the Challenge Model</h1>
@@ -283,15 +191,7 @@ footer a:hover{color:#fff}
 <p><em>Sources: DARPA Grand Challenge Wikipedia; DARPA Ten Years Later (darpa.mil, 2014); Smithsonian Magazine on Stanley; Carnegie Mellon Tartan Racing press materials; Waymo, Aurora, Nuro, and Zoox corporate histories; research on innovation prizes and technology transfer.</em></p>
 </div>
 <div class="page-nav">
-  <a href="../index.html#case-studies">← Case Studies</a>
-  <a href="Case_Study_DARPA_Triage_Challenge.html">The Triage Challenge →</a>
+  <a href="../index.html#case-studies">&#8592; All Case Studies</a>
 </div>
-
-
-<footer>
-  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
-  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
-</footer>
-
 </body>
 </html>

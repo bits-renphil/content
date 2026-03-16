@@ -15,8 +15,6 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-
-/* Nav */
 nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
@@ -26,145 +24,53 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
 .nav-links{display:flex;gap:1.5rem;list-style:none}
 .nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:#fff;text-decoration:none}
-
-/* Hero (index only) */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#1e4d8c 100%);
-  color:#fff;padding:5rem 2rem 4rem;text-align:center}
-.hero-eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:1rem}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;
-  margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
-.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 2rem}
-.hero-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.9);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:500}
-
-/* Page header (inner pages) */
 .page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
   color:#fff;padding:3rem 2rem 2.5rem}
 .page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;
-  max-width:800px}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;max-width:800px}
 .page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
 .breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
 .breadcrumb a{color:rgba(255,255,255,.7)}
 .breadcrumb a:hover{color:#fff;text-decoration:none}
-
-/* Section / grid */
-.section{padding:4rem 2rem;max-width:1140px;margin:0 auto}
-.section-header{margin-bottom:2.5rem}
-.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:.4rem}
-.section-title{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
-.section-subtitle{font-size:1rem;color:var(--muted);margin-top:.5rem;max-width:600px}
-.divider{border:none;border-top:1px solid var(--border);margin:0}
-
-/* Cards (index) */
-.curriculum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
-.chapter-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
-  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
-  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
-.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--accent);opacity:0;transition:opacity .2s}
-.chapter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#c7d8f8}
-.chapter-card:hover::before{opacity:1}
-.chapter-card a.card-link{color:inherit;text-decoration:none;display:contents}
-.chapter-meta{display:flex;align-items:center;gap:.6rem}
-.chapter-num{width:32px;height:32px;border-radius:8px;background:var(--light);color:var(--accent);
-  font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.chapter-emoji{font-size:1.2rem}
-.chapter-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
-.chapter-bluf{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.chapter-link{font-size:.8rem;font-weight:600;color:var(--accent);display:flex;
-  align-items:center;gap:.25rem;margin-top:.25rem}
-
-.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
-.case-card{border:1px solid var(--border);border-radius:10px;background:var(--white);
-  overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
-.case-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
-.case-card-header{padding:1.5rem 1.5rem 1rem;
-  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
-.case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:.5rem}
-.case-card h3{font-size:1.05rem;font-weight:700;line-height:1.3;color:#fff}
-.case-subtitle{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.3rem;font-style:italic}
-.case-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
-.case-excerpt{font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
-.case-meta{display:flex;gap:.5rem;flex-wrap:wrap}
-.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;
-  background:var(--light);color:var(--blue);border:1px solid #dbeafe}
-.case-link{font-size:.82rem;font-weight:600;color:var(--accent);
-  display:inline-flex;align-items:center;gap:.3rem}
-
-/* Content (inner pages) */
-.content-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
 .content-wrap h1{font-size:1.8rem;font-weight:800;color:var(--navy);margin:2.5rem 0 1rem;line-height:1.25}
-.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);
-  margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
-.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.8rem 0 .6rem}
-.content-wrap h4{font-size:1rem;font-weight:700;color:var(--text);margin:1.4rem 0 .5rem}
-.content-wrap p{margin-bottom:1rem;font-size:.975rem;color:#334155}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);margin:2rem 0 .75rem;line-height:1.3;
+  padding-bottom:.35rem;border-bottom:2px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.5rem 0 .5rem}
+.content-wrap h4{font-size:1rem;font-weight:600;color:var(--text);margin:1.25rem 0 .4rem}
+.content-wrap p{margin-bottom:1rem}
 .content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
-.content-wrap li{font-size:.975rem;color:#334155;margin-bottom:.35rem}
-.content-wrap strong{color:var(--navy)}
-.content-wrap blockquote{border-left:3px solid var(--accent);padding:.75rem 1.25rem;
-  margin:1.25rem 0;background:var(--light);border-radius:0 6px 6px 0;
-  font-style:italic;color:var(--muted);font-size:.95rem}
-.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.875rem}
-.content-wrap th{background:var(--navy);color:#fff;padding:.6rem 1rem;text-align:left;font-weight:600}
-.content-wrap td{padding:.55rem 1rem;border-bottom:1px solid var(--border)}
+.content-wrap li{margin-bottom:.3rem}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.9rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem .9rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem .9rem;border-bottom:1px solid var(--border)}
 .content-wrap tr:nth-child(even) td{background:var(--light)}
-.content-wrap code{background:#f1f5f9;border-radius:4px;padding:2px 6px;
-  font-family:monospace;font-size:.88em;color:#be185d}
-.content-wrap pre{background:#1e293b;color:#e2e8f0;border-radius:8px;
-  padding:1.25rem;overflow-x:auto;margin:1.25rem 0}
-.content-wrap pre code{background:none;color:inherit;padding:0;font-size:.85rem}
-.content-wrap hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
-
-/* Nav between pages */
+.content-wrap blockquote{border-left:4px solid var(--accent);margin:1.25rem 0;
+  padding:.75rem 1.25rem;background:var(--light);border-radius:0 6px 6px 0}
+.content-wrap code{background:var(--light);padding:2px 5px;border-radius:3px;font-size:.88em}
+.content-wrap pre{background:#1e293b;color:#e2e8f0;padding:1.25rem;border-radius:8px;
+  overflow-x:auto;margin:1.25rem 0}
+.content-wrap pre code{background:none;color:inherit;padding:0}
+.content-wrap > h1:first-child{display:none}
 .page-nav{display:flex;justify-content:space-between;align-items:center;
-  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:800px;margin:0 auto}
-.page-nav a{font-size:.875rem;font-weight:600;color:var(--accent);
-  display:flex;align-items:center;gap:.3rem}
-.page-nav a:hover{text-decoration:underline}
-
-/* About / Footer */
-.about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
-.about-block h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
-.about-block p{font-size:.85rem;color:var(--muted);line-height:1.6}
-footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;
-  padding:2rem;font-size:.82rem}
-footer a{color:rgba(255,255,255,.75)}
-footer a:hover{color:#fff}
-
-@media(max-width:700px){
-  .about-inner{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .hero{padding:3rem 1.25rem 2.5rem}
-  .section{padding:2.5rem 1.25rem}
-  .content-wrap{padding:2rem 1.25rem 3rem}
-  .page-nav{flex-direction:column;gap:1rem;align-items:flex-start}
-}
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:860px;margin:0 auto}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;
+  color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
+  transition:all .15s}
+.page-nav a:hover{background:var(--light);text-decoration:none}
 </style>
-  
 </head>
 <body>
-
 <nav>
-  <div class="nav-brand">🛰️ BiTS <span class="tag">2025</span></div>
+  <a class="nav-brand" href="../index.html">&#x1F6F0;&#xFE0F; BiTS <span class="tag">Playbook</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#curriculum">Curriculum</a></li>
-    <li><a href="index.html#case-studies">Case Studies</a></li>
-    <li><a href="index.html#about">About</a></li>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#curriculum">Curriculum</a></li>
+    <li><a href="../index.html#case-studies">Case Studies</a></li>
+    <li><a href="../index.html#about">About</a></li>
   </ul>
 </nav>
-
-
 <div class="page-header">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#curriculum">Curriculum</a></div>
   <div class="eyebrow">Chapter 8 &nbsp;📺</div>
@@ -186,25 +92,25 @@ footer a:hover{color:#fff}
 </tbody>
 </table>
 <p><strong>⚡Practical Outcome:</strong> By the end of this module, PMs should have identified one or more specific transition partners for their project. They should have a clear understanding of each partner’s incentives, constraints, and operational realities. PMs should use this knowledge to shape their program design for successful transition.</p>
-<p><a href="#🏭ensuring-transition-stays-a-priority,-not-an-afterthought">🏭Ensuring Transition Stays a Priority, Not an Afterthought</a></p>
-<p><a href="#🪣-buckets-of-transition-partners">🪣 Buckets of transition partners</a></p>
-<p><a href="#🦻understanding-your-partners">🦻Understanding your partners</a></p>
-<p><a href="#🚦different-levels-of-alignment">🚦Different Levels of Alignment</a></p>
-<p><a href="#⚖️-“the-partner-is-unsure,-but…”">⚖️ “The Partner is Unsure, But…”</a></p>
-<p><a href="#🔎-specific-transition-tactics">🔎 Specific Transition Tactics</a></p>
-<p><a href="#🔭-planning-stage:">🔭 Planning Stage:</a></p>
+<p><a href="#ensuring-transition-stays-a-priority-not-an-afterthought">🏭Ensuring Transition Stays a Priority, Not an Afterthought</a></p>
+<p><a href="#buckets-of-transition-partners">🪣 Buckets of transition partners</a></p>
+<p><a href="#understanding-your-partners">🦻Understanding your partners</a></p>
+<p><a href="#different-levels-of-alignment">🚦Different Levels of Alignment</a></p>
+<p><a href="#the-partner-is-unsure-but">⚖️ “The Partner is Unsure, But…”</a></p>
+<p><a href="#specific-transition-tactics">🔎 Specific Transition Tactics</a></p>
+<p><a href="#planning-stage">🔭 Planning Stage:</a></p>
 <p><a href="#🚀-early-to-mid-execution-stage-(~first-two-years):">🚀 Early to Mid-Execution Stage (\~First Two Years):</a></p>
 <p><a href="#🛰️-late-execution-stage-(~final-two-years):">🛰️ Late Execution Stage (\~Final Two Years):</a></p>
-<p><a href="#♟️general-transition-strategy:">♟️General Transition Strategy:</a></p>
-<p><a href="#🏭-a-final-note-on-ambitious,-applications-focused-r&amp;d">🏭 A Final Note on Ambitious, Applications-Focused R\&amp;D</a></p>
-<p><a href="#🔮-anticipating-common-transition-pitfalls">🔮 Anticipating Common Transition Pitfalls</a></p>
-<p><a href="#🛤️-creating-a-transition-sustainability-plan">🛤️ Creating a Transition Sustainability Plan</a></p>
-<p><a href="#🗽leveraging-policy-and-regulatory-support">🗽Leveraging Policy and Regulatory Support</a></p>
-<p><a href="#🤝partnering-for-scale-up-and-commercialization">🤝Partnering for Scale-Up and Commercialization</a></p>
-<p><a href="#📜-successful-transition-can-take-many-forms">📜 Successful Transition Can Take Many Forms</a></p>
+<p><a href="#general-transition-strategy">♟️General Transition Strategy:</a></p>
+<p><a href="#a-final-note-on-ambitious-applications-focused-rd">🏭 A Final Note on Ambitious, Applications-Focused R\&amp;D</a></p>
+<p><a href="#anticipating-common-transition-pitfalls">🔮 Anticipating Common Transition Pitfalls</a></p>
+<p><a href="#creating-a-transition-sustainability-plan">🛤️ Creating a Transition Sustainability Plan</a></p>
+<p><a href="#leveraging-policy-and-regulatory-support">🗽Leveraging Policy and Regulatory Support</a></p>
+<p><a href="#partnering-for-scale-up-and-commercialization">🤝Partnering for Scale-Up and Commercialization</a></p>
+<p><a href="#successful-transition-can-take-many-forms">📜 Successful Transition Can Take Many Forms</a></p>
 <p><a href="#🛠️-ideas-for-using-the-tech-stack-5">🛠️ Ideas for Using the Tech Stack</a></p>
-<p><a href="#🏷️-appendix:-broader-taxonomy-of-translational-r&amp;d-mechanisms">🏷️ Appendix: Broader taxonomy of translational R\&amp;D mechanisms</a></p>
-<h2 id="ensuring-transition-stays-a-priority-not-an-afterthought-ensuring-transition-stays-a-priority-not-an-afterthought"><strong>🏭Ensuring Transition Stays a Priority, Not an Afterthought</strong> {#🏭ensuring-transition-stays-a-priority,-not-an-afterthought}</h2>
+<p><a href="#appendix-broader-taxonomy-of-translational-rd-mechanisms">🏷️ Appendix: Broader taxonomy of translational R\&amp;D mechanisms</a></p>
+<h2 id="ensuring-transition-stays-a-priority-not-an-afterthought"><strong>🏭Ensuring Transition Stays a Priority, Not an Afterthought</strong></h2>
 <p>Program managers must think about tech transition when they approach every strategy decision from program conception onward. Phrases like “transition” or “translation” are often appended to the back half of images describing the R\&amp;D pipeline as something of an afterthought to the basic research stages. That is even how many in academia and industry conceptualize the R\&amp;D pipeline, but that is not how PMs should approach transition. Successful programs need people to fund their work beyond the initial, temporary payer – such as DARPA or ARIA. Projects must accomplish early-stage R\&amp;D goals in ways that ensure follow-on funders are eager to continue funding the work.</p>
 <p>The integration of your transition partners’ constraints into your program design is critical. Early design decisions have profound effects on your technology’s ability to draw follow-on funding and survive beyond the R\&amp;D cocoon. Small differences, like the ability for a new material to be created using existing equipment or interface with standard connection points, can have a huge impact on its ability to transition. Great PMs do whatever they can to plan and get ahead of these issues. Academics often don’t begin investigations with things like manufacturing techniques or material cost constraints at scale in mind. While academic journals do not care about that, it is your job to obsess over it.</p>
 <p>From the outset, during <a href="">program exploration</a>, identify potential transition partners and work to understand their incentives and decision-making processes:</p>
@@ -214,7 +120,7 @@ footer a:hover{color:#fff}
 <li>What kinds of technologies align with their priorities, and why?</li>
 </ul>
 <p>As you explore different categories of transition partners, you'll gain insight into who is best suited to continue funding your project. Often, the ideal transition partner depends on how your project’s R\&amp;D unfolds. This might require you to maintain relationships with a broad spectrum of potential partners throughout the project, allowing you to pivot or adjust your approach based on findings that emerge.</p>
-<h2 id="buckets-of-transition-partners-buckets-of-transition-partners">🪣 <strong>Buckets of transition partners</strong> {#🪣-buckets-of-transition-partners}</h2>
+<h2 id="buckets-of-transition-partners">🪣 <strong>Buckets of transition partners</strong></h2>
 <p>Transition partners capable of scaling your technology to reach its full potential come in many forms, including:</p>
 <ul>
 <li>Nonprofit organizations that fund R\&amp;D.  </li>
@@ -233,7 +139,7 @@ footer a:hover{color:#fff}
 <li>A nonprofit might be interested in building a large-scale implementation program around a sensor that detects lead at a specific level, as long as it can meet strict criteria around usability, portability and cost.</li>
 </ul>
 <p>These preferences are often non-negotiable, but they are manageable if understood from the beginning. Ignoring them until later in the process can make them difficult or even impossible to accommodate after resources have been spent and performers hired. Be proactive, not reactive, in shaping your program to align with the realities of transition partners.</p>
-<h3 id="understanding-your-partners-understanding-your-partners"><strong>🦻Understanding your partners</strong> {#🦻understanding-your-partners}</h3>
+<h3 id="understanding-your-partners"><strong>🦻Understanding your partners</strong></h3>
 <p>With potential transition partners as diverse as the armed services, mission-driven philanthropies, the NIH, and private sector customers, the landscape of potential follow-on funders can seem impressively diverse. However, <strong>each of these "buckets" often comes with specific, sometimes rigid, preferences and constraints</strong>. Even within a single bucket, individual actors can have their own unique priorities—this is particularly true for private philanthropies.</p>
 <p>It’s crucial to engage directly with <strong>as many potential transition partners as possible</strong>. While it may be difficult for PMs to persuade any given funder to adjust their constraints or change their priorities, most groups are transparent about their requirements and are willing to outline the hurdles that need to be overcome to make your program an attractive investment.</p>
 <p>As you build relationships with these partners, <strong>gather detailed information about their preferences</strong> and <strong>use this intelligence to shape your program</strong>. Remember, however, that you don’t need to take every piece of advice at face value. For example, venture capitalists might suggest focusing on less ambitious technology they can clearly envision, but as a PM, your role is to drive bold, transformative programs. It’s your responsibility to understand the constraints that VCs and other funders operate under, but you should use that knowledge to strategically position your program—not needlessly dilute its ambition.</p>
@@ -249,7 +155,7 @@ footer a:hover{color:#fff}
 <li>The trick is to iterate on hypotheses until you have something nuanced and precise that will stand up to scrutiny.  </li>
 <li>Note: this is secretly all <a href="https://www.ycombinator.com/library/Iq-how-to-talk-to-users?carousel=Startup%20School">startup</a> customer <a href="https://www.amazon.com/The-Mom-Test-Rob-Fitzpatrick-audiobook/dp/B07RJZKZ7F/ref=sr_1_1?keywords=the+mom+test&amp;qid=1669126523&amp;sr=8-1">discovery advice</a></li>
 </ul>
-<h2 id="different-levels-of-alignment-different-levels-of-alignment"><strong>🚦Different Levels of Alignment</strong> {#🚦different-levels-of-alignment}</h2>
+<h2 id="different-levels-of-alignment"><strong>🚦Different Levels of Alignment</strong></h2>
 <p>As you explore transition partners and potential users, you’ll encounter varying degrees of alignment between your program and theirs. Factors like incentives, organizational culture, and timelines play significant roles. Broadly, the levels of alignment can be categorized as:</p>
 <ol>
 <li><strong>Outright “No”</strong><br />
@@ -259,7 +165,7 @@ footer a:hover{color:#fff}
 <li><strong>“The partner is unsure, but…”</strong><br />
    This is a common scenario where a potential partner is hesitant and unwilling to commit, but you, as the PM, believe they will adopt the technology if the R\&amp;D is successful. While it’s critical not to fool yourself into seeing alignment where none exists. You need to be sure you’ve worked hard to understand a partner’s needs before convincing yourself they’ll want what you’re building even if they don’t understand that just yet. A PM needs to be careful to ensure they are not deluding themself, but there can be huge returns to this strategy.DARPA-like programs often deal with ambitious projects that may not be fully understood by partners until results start emerging. Since this level of alignment is quite nuanced, the rest of this subsection will explore it a bit further.</li>
 </ol>
-<h3 id="the-partner-is-unsure-but-the-partner-is-unsure-but"><strong>⚖️ “The Partner is Unsure, But…”</strong> {#⚖️-“the-partner-is-unsure,-but…”}</h3>
+<h3 id="the-partner-is-unsure-but"><strong>⚖️ “The Partner is Unsure, But…”</strong></h3>
 <p>In some cases, your program may address a clear user need, even if the potential partner doesn’t yet fully grasp how they would integrate the completed project into their operations. There are historical examples from DARPA where this approach led to significant breakthroughs. A notable case is <a href="https://www.freaktakes.com/p/the-autonomous-land-vehicle-pilots">DARPA’s Autonomous Land Vehicle</a> (ALV) program, which helped usher in much of DARPA’s <a href="https://www.freaktakes.com/p/an-interview-with-chuck-thorpe-on">groundbreaking autonomous driving vehicles</a> at CMU. This project progressed despite the Army not expressing a strong desire for autonomous recon vehicles at the outset. </p>
 <p>However, as with the ALV program, pursuing this path should only be done after extensive legwork to deeply understand the potential user’s needs and internal processes. In a situation like this, the PM must thoroughly research and understand critical factors, such as:</p>
 <ul>
@@ -272,14 +178,14 @@ footer a:hover{color:#fff}
 <p>These considerations are always important, but they become critical when you don’t have full buy-in from the end user. When the partner is fully onboard, they can often help answer these questions. But if they’re on the fence, it’s up to you to do the heavy lifting. Only by thoroughly understanding these elements can you ensure you're not being overly optimistic about your program’s potential.</p>
 <p>While DARPA moved forward with the ALV program despite only modest interest from the Army, countless conversations took place before the project was funded to fully grasp their needs and potential use cases. This kind of ongoing communication is essential to ensure that you’re technically de-risking the right areas and addressing the user’s underlying concerns.</p>
 <p>Moreover, if the R\&amp;D stages of your program are successful, you may attract transition partners that you didn’t originally anticipate. For instance, DARPA’s autonomous vehicle work eventually drew interest from corporate players like Google and large VC firms in the 2000s. When new transition partners emerge, you must be prepared to adjust aspects of your program to capitalize on their interest and ensure the program aligns with their needs as well.</p>
-<h2 id="specific-transition-tactics-specific-transition-tactics"><strong>🔎 Specific Transition Tactics</strong> {#🔎-specific-transition-tactics}</h2>
+<h2 id="specific-transition-tactics"><strong>🔎 Specific Transition Tactics</strong></h2>
 <p>The following list contains examples of concrete tactics you can use to coordinate key aspects of technology transition while building your program. Situations vary, but the following list should give you a good idea of how you should be thinking. Use whichever pieces of advice apply to your program.</p>
-<h3 id="planning-stage-planning-stage"><strong>🔭 Planning Stage:</strong> {#🔭-planning-stage:}</h3>
+<h3 id="planning-stage"><strong>🔭 Planning Stage:</strong></h3>
 <ul>
 <li><strong>Protect IP Accessibility</strong>: Ensure the intellectual property (IP) generated by the program is not unnecessarily locked up in a university tech transfer office or controlled by a large company. This can hinder smooth transition.  </li>
 <li><strong>Identify Dealbreakers Early</strong>: For any key transition partners whose support is critical for later success, make a shortlist of their dealbreakers and constraints. Communicate these clearly to your performers so that technical and practical decisions align with these constraints.</li>
 </ul>
-<h3 id="early-to-mid-execution-stage-first-two-years-early-to-mid-execution-stage-first-two-years"><strong>🚀 Early to Mid-Execution Stage (\~First Two Years):</strong> {#🚀-early-to-mid-execution-stage-(~first-two-years):}</h3>
+<h3 id="early-to-mid-execution-stage-first-two-years"><strong>🚀 Early to Mid-Execution Stage (\~First Two Years):</strong></h3>
 <ul>
 <li><strong>Regular Engagement with Transition Partners</strong>: Establish regular but infrequent meetings with transition partners and relevant performers. Keep transition partners informed of progress and any deviations from the original plan, ensuring they stay engaged with the program.  </li>
 <li><strong>Foster Entrepreneurial Thinking:</strong> To a substantial extent, the valley of death is an issue of translational know-how. Coach performers to think like entrepreneurs. Programs like Stanford Med’s <a href="https://www.freaktakes.com/p/unpacking-the-idea-of-entrepreneurship">SPARK</a> show the value of teaching researchers to consider commercialization and real-world application early on.  </li>
@@ -287,17 +193,17 @@ footer a:hover{color:#fff}
 <li><strong>Set Up a Pilot Plant or Demo Line</strong>: Help teams launch a demonstration manufacturing line or pilot plant early on. Bridging the valley of death between lab experiments and real-world application becomes much easier with early pilot tests, as demonstrated by Edwin Cohn’s Lab’s work quickly translating blood fractionation processes in WWII.  </li>
 <li><strong>Engage a Large Company</strong>: In some cases, you might bring a large company on board as a performer, with funding tied to their ability to spin up a new product line based on your technology.</li>
 </ul>
-<h3 id="late-execution-stage-final-two-years-late-execution-stage-final-two-years"><strong>🛰️ Late Execution Stage (\~Final Two Years):</strong> {#🛰️-late-execution-stage-(~final-two-years):}</h3>
+<h3 id="late-execution-stage-final-two-years"><strong>🛰️ Late Execution Stage (\~Final Two Years):</strong></h3>
 <ul>
 <li><strong>Find a Business-Minded CEO</strong>: If transitioning to the private sector, find a CEO with business acumen who can work with the team for at least a year before the program ends. This ensures a smoother handoff and commercialization process.  </li>
 <li><strong>Support Researcher Continuation</strong>: Identify performers who are passionate about continuing the technology development and assist them in securing fellowships, grants, sabbatical funding, or other resources to keep pushing the work forward.</li>
 </ul>
-<h3 id="general-transition-strategy-general-transition-strategy"><strong>♟️General Transition Strategy:</strong> {#♟️general-transition-strategy:}</h3>
+<h3 id="general-transition-strategy"><strong>♟️General Transition Strategy:</strong></h3>
 <ul>
 <li><strong>Plan for Transition Early and Continuously</strong>: Treat transition planning with the same priority as the R\&amp;D process. Regular conversations with potential transition partners will provide the insights needed to make tough, informed decisions throughout the program’s life cycle.</li>
 </ul>
 <p>The key takeaway is to embed transition planning into your program from the start and treat it as a continuous process. Being proactive about identifying transition challenges and solutions will dramatically increase the likelihood of successful commercialization or adoption of your technology.</p>
-<h2 id="a-final-note-on-ambitious-applications-focused-rd-a-final-note-on-ambitious-applications-focused-rd"><strong>🏭 A Final Note on Ambitious, Applications-Focused R\&amp;D</strong> {#🏭-a-final-note-on-ambitious,-applications-focused-r&amp;d}</h2>
+<h2 id="a-final-note-on-ambitious-applications-focused-rd"><strong>🏭 A Final Note on Ambitious, Applications-Focused R\&amp;D</strong></h2>
 <p>If you’re concerned that planning an R\&amp;D project with transition partners in mind somehow compromises the ambition or purity of the research, I urge you to reconsider. <a href="https://www.freaktakes.com/p/how-did-places-like-bell-labs-know">Bell Labs</a> is a quintessential example of this type of work. At Bell Labs, systems engineers ensured Bell’s exploratory researchers were asking the most useful, ambitious questions they could. In ARPA-style programs, the PMs serve this purpose. This kind of application-driven research was once a cornerstone of mid-20th-century industrial R\&amp;D, flourishing in places like:</p>
 <ul>
 <li>Bell Labs  </li>
@@ -305,7 +211,7 @@ footer a:hover{color:#fff}
 <li><a href="https://www.freaktakes.com/p/a-progress-studies-history-of-early-001">Early 1900s MIT</a></li>
 </ul>
 <p>The role of ARPA-style PM is one of the few remaining roles in the R\&amp;D ecosystem that continues to carry on this illustrious tradition. Embrace that opportunity, don’t hide from it. To get to be a PM with substantial discretion and budget power is an exceptional lever for change in the world. Use it well.</p>
-<h3 id="anticipating-common-transition-pitfalls-anticipating-common-transition-pitfalls"><strong>🔮 Anticipating Common Transition Pitfalls</strong> {#🔮-anticipating-common-transition-pitfalls}</h3>
+<h3 id="anticipating-common-transition-pitfalls"><strong>🔮 Anticipating Common Transition Pitfalls</strong></h3>
 <p>Even with thorough planning, there are common pitfalls that can hinder a successful transition. As a PM, being aware of these potential roadblocks and having contingency plans can make a significant difference:</p>
 <ul>
 <li><strong>Over-reliance on a Single Partner</strong>: Avoid putting all your hopes on one transition partner. Circumstances change—budgets get cut, leadership changes, or priorities shift. Always have multiple partners in the pipeline to mitigate risk.  </li>
@@ -313,26 +219,26 @@ footer a:hover{color:#fff}
 <li><strong>Failure to Address Market Realities</strong>: A brilliant technology that isn’t cost-effective or market-ready won’t succeed. Keep market adoption and cost-scaling in mind, especially if private sector transition partners are in play.  </li>
 <li><strong>Late Engagement with Partners</strong>: Don’t wait until the end of your R\&amp;D to engage with potential partners. Engage early to ensure that their needs, incentives, and timelines are built into the program’s design and milestones.</li>
 </ul>
-<h3 id="creating-a-transition-sustainability-plan-creating-a-transition-sustainability-plan"><strong>🛤️ Creating a Transition Sustainability Plan</strong> {#🛤️-creating-a-transition-sustainability-plan}</h3>
+<h3 id="creating-a-transition-sustainability-plan"><strong>🛤️ Creating a Transition Sustainability Plan</strong></h3>
 <p>Technology transitions often require ongoing support beyond the PM’s immediate role. To ensure that the transition is sustainable:</p>
 <ul>
 <li><strong>Long-Term Funding Roadmap</strong>: Work with transition partners to create a funding roadmap that goes beyond initial commercialization or adoption. Whether through government grants, private investment, or partnerships, ensure that your project has financial backing to see it through critical phases like scale-up and market entry.  </li>
 <li><strong>Building a Support Ecosystem</strong>: Cultivate relationships not only with primary transition partners but also with secondary stakeholders—consultants, technical support, and other experts who can help your technology scale effectively. These individuals or organizations can provide the additional know-how necessary for a smooth transition.  </li>
 <li><strong>Maintaining Knowledge Continuity</strong>: Ensure that the core team—especially the R\&amp;D performers—are available to assist with the technology’s transition to a production environment or real-world deployment. Offering continuity through fellowships or ongoing collaboration agreements can prevent knowledge loss during handoffs.</li>
 </ul>
-<h3 id="leveraging-policy-and-regulatory-support-leveraging-policy-and-regulatory-support"><strong>🗽Leveraging Policy and Regulatory Support</strong> {#🗽leveraging-policy-and-regulatory-support}</h3>
+<h3 id="leveraging-policy-and-regulatory-support"><strong>🗽Leveraging Policy and Regulatory Support</strong></h3>
 <p>For certain projects, navigating regulatory environments is key to successful tech transition. PMs should:</p>
 <ul>
 <li><strong>Engage with Regulatory Agencies Early</strong>: For technologies in fields like healthcare, defense, or energy, regulatory approvals are often essential to the transition. Engaging with agencies like the FDA, FCC, or FAA early ensures that your program aligns with regulatory requirements and accelerates market readiness.  </li>
 <li><strong>Utilize Government Policy Initiatives</strong>: Identify and leverage any government-backed initiatives or incentives that support the adoption of your technology. This could be in the form of tax breaks, grants, or special programs designed to encourage innovation in specific sectors.</li>
 </ul>
-<h3 id="partnering-for-scale-up-and-commercialization-partnering-for-scale-up-and-commercialization"><strong>🤝Partnering for Scale-Up and Commercialization</strong> {#🤝partnering-for-scale-up-and-commercialization}</h3>
+<h3 id="partnering-for-scale-up-and-commercialization"><strong>🤝Partnering for Scale-Up and Commercialization</strong></h3>
 <p>Once the R\&amp;D phase is complete, the next challenge is scaling the technology for broader adoption. Strategic partnerships play a key role in this stage:</p>
 <ul>
 <li><strong>Manufacturing Partnerships</strong>: For technologies requiring complex manufacturing, align early with manufacturing partners who can handle the scale-up process. These partners can help navigate challenges like sourcing raw materials, reducing production costs, and meeting quality standards.  </li>
 <li><strong>Licensing and Joint Ventures</strong>: For IP-heavy projects, consider licensing agreements or joint ventures with companies that have the expertise and market presence to take the technology to the next level. These agreements can offer a low-risk way for your technology to enter new markets.</li>
 </ul>
-<h3 id="successful-transition-can-take-many-forms-successful-transition-can-take-many-forms"><strong>📜 Successful Transition Can Take Many Forms</strong> {#📜-successful-transition-can-take-many-forms}</h3>
+<h3 id="successful-transition-can-take-many-forms"><strong>📜 Successful Transition Can Take Many Forms</strong></h3>
 <p>Successful transitions can take many forms. </p>
 <ul>
 <li><strong>Permanent Program.</strong> One common example is your program living on as a somewhat permanent program in a separate philanthropy or government office. This was the case in DARPA’s MOSIS program, which continued to receive regular DoD support once the program was completed.  </li>
@@ -353,7 +259,7 @@ footer a:hover{color:#fff}
 </tr>
 </tbody>
 </table>
-<h2 id="appendix-broader-taxonomy-of-translational-rd-mechanisms-appendix-broader-taxonomy-of-translational-rd-mechanisms"><strong>🏷️ Appendix: Broader taxonomy of translational R\&amp;D mechanisms</strong> {#🏷️-appendix:-broader-taxonomy-of-translational-r&amp;d-mechanisms}</h2>
+<h2 id="appendix-broader-taxonomy-of-translational-rd-mechanisms"><strong>🏷️ Appendix: Broader taxonomy of translational R\&amp;D mechanisms</strong></h2>
 <p>Translating research into real-world impact requires diverse approaches tailored to specific program needs. The mechanisms for successful translation depend on various factors, including market conditions, institutional structures, and financial sustainability. Below is a taxonomy of translational R\&amp;D mechanisms, offering a menu of options. These approaches—ranging from demand aggregation and commercialization strategies to capability building and financial translation—serve as a toolkit for program directors.</p>
 <p><strong>Category: Market Formation &amp; Demand Aggregation</strong></p>
 <p><strong>Condition: If demand is uncertain, then price mechanisms</strong></p>
@@ -515,15 +421,9 @@ Fellows may also use <strong>Notion</strong> as an additional tool for organizat
 <p>[^4]:  A Case study in the Program Execution and Management module tells the story of DARPA’s early autonomous vehicle work, how a bad systems integrator almost killed the program, and a great systems integrator took it to the next level.</p>
 </div>
 <div class="page-nav">
-  <a href="07_Program_Execution.html">← Program Execution &amp; Management</a>
-  
+  <a href="07_Program_Execution.html">&#8592; Ch 7: Program Execution & Management</a>
+  <span style="flex:1"></span>
+  <span></span>
 </div>
-
-
-<footer>
-  <p>BiTS · Big if True Science Accelerator &nbsp;·&nbsp;
-  <a href="https://renphil.org" target="_blank">Renaissance Philanthropy</a></p>
-</footer>
-
 </body>
 </html>
