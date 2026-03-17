@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Heilmeier Concept Note — BiTS</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;--blue:#1a3a6b;--accent:#2563eb;--gold:#f59e0b;
+  --light:#f0f4fa;--muted:#64748b;--text:#1e293b;--border:#e2e8f0;--white:#ffffff;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.nav-brand{font-weight:700;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:.5rem}
+.nav-brand span.tag{font-size:.7rem;font-weight:600;background:var(--gold);color:var(--navy);
+  padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.page-header{background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;padding:3rem 2rem 2.5rem}
+.page-header .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.page-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;max-width:800px}
+.page-header .subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-top:.5rem;max-width:700px}
+.breadcrumb{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:.75rem}
+.breadcrumb a{color:rgba(255,255,255,.7)}
+.breadcrumb a:hover{color:#fff;text-decoration:none}
+.content-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+.content-wrap h2{font-size:1.35rem;font-weight:700;color:var(--navy);margin:2rem 0 .75rem;
+  padding-bottom:.35rem;border-bottom:2px solid var(--border)}
+.content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--blue);margin:1.5rem 0 .5rem}
+.content-wrap p{margin-bottom:1rem;color:#334155}
+.content-wrap ul,.content-wrap ol{margin:0 0 1rem 1.5rem}
+.content-wrap li{margin-bottom:.4rem;color:#334155}
+.content-wrap strong{color:var(--navy)}
+.content-wrap table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.9rem}
+.content-wrap th{background:var(--navy);color:#fff;padding:.6rem .9rem;text-align:left;font-weight:600}
+.content-wrap td{padding:.55rem .9rem;border-bottom:1px solid var(--border);vertical-align:top}
+.content-wrap tr:nth-child(even) td{background:var(--light)}
+
+/* week badge */
+.week-badge{display:inline-block;background:var(--accent);color:#fff;
+  font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:20px;
+  letter-spacing:.04em;text-transform:uppercase;margin-bottom:1rem}
+
+/* section intro box */
+.intro-box{background:var(--light);border-left:4px solid var(--accent);
+  padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin-bottom:2rem;font-size:.95rem;color:#334155}
+
+/* field blocks */
+.field-block{border:1px solid var(--border);border-radius:8px;margin-bottom:1.5rem;overflow:hidden}
+.field-label{background:var(--navy);color:#fff;font-size:.78rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem}
+.field-hint{font-size:.82rem;color:var(--muted);font-style:italic;padding:.5rem 1rem .25rem;
+  border-bottom:1px solid var(--border)}
+.field-area{min-height:80px;padding:.75rem 1rem;background:var(--white);
+  font-size:.88rem;color:#94a3b8;font-style:italic}
+
+/* matrix table for causal chain etc */
+.matrix th{background:var(--navy);color:#fff;padding:.55rem .8rem;font-size:.82rem}
+.matrix td{padding:.55rem .8rem;font-size:.88rem;min-height:60px;height:60px}
+.matrix .row-num{background:var(--light);font-weight:700;color:var(--muted);
+  text-align:center;width:36px}
+
+/* download CTA */
+.download-bar{background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.25rem 1.5rem;margin:2rem 0;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.download-bar p{margin:0;font-size:.9rem;color:var(--muted)}
+.download-bar strong{color:var(--navy)}
+.dl-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--accent);color:#fff;
+  font-weight:700;font-size:.88rem;padding:.55rem 1.1rem;border-radius:6px;transition:background .15s}
+.dl-btn:hover{background:#1d4ed8;text-decoration:none;color:#fff}
+
+/* mentor box */
+.mentor-box{border:1px solid var(--border);border-radius:8px;margin-top:2.5rem;overflow:hidden}
+.mentor-box-header{background:var(--light);padding:.65rem 1rem;
+  font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mentor-box-body{min-height:80px;padding:1rem;font-size:.88rem;color:#94a3b8;font-style:italic}
+
+.page-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2rem;border-top:1px solid var(--border);max-width:860px;margin:0 auto}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;
+  color:var(--accent);padding:.5rem .9rem;border:1px solid var(--border);border-radius:6px;
+  transition:all .15s}
+.page-nav a:hover{background:var(--light);text-decoration:none}
+
+@media(max-width:700px){
+  .nav-links{display:none}
+  .download-bar{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="../index.html">&#x1F6F0;&#xFE0F; BiTS <span class="tag">Playbook</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#curriculum">Curriculum</a></li>
+    <li><a href="../index.html#case-studies">Case Studies</a></li>
+    <li><a href="../index.html#templates">Templates</a></li>
+    <li><a href="../index.html#about">About</a></li>
+  </ul>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#templates">Templates</a></div>
+  <div class="eyebrow">Final synthesis — Template 5 of 5</div>
+  <h1>Heilmeier Concept Note</h1>
+  <div class="subtitle">A structured 3-page funding pitch that synthesises all four modular artefacts into the seven Heilmeier questions.</div>
+</div>
+<div class="content-wrap">
+  <span class="week-badge">Due Weeks 11–12</span>
+
+<div class="download-bar">
+  <p><strong>Download the fillable template</strong> &mdash; complete in Word or Google Docs, then share the link (or upload) in Slack <code>#submissions</code>.</p>
+  <a class="dl-btn" href="../🛰️ BiTS Resources/BiTS_Syllabus_Fall_2025_Revised.docx">&#11015; Download .docx</a>
+</div>
+
+<div class="intro-box">
+  The Heilmeier Concept Note is the <strong>final synthesis deliverable</strong> &mdash; a structured 3-page maximum funding pitch that draws directly from your four modular artefacts. Write it in weeks 11&ndash;12 after you have completed the Theory of Change, Bottleneck Statement, Field Mapping Synthesis, and Transition Landscape Memo.
+</div>
+
+<h2>Structure and page budget</h2>
+<table>
+  <thead><tr><th style="width:25%">Section</th><th style="width:50%">Content</th><th>Source artefact</th></tr></thead>
+  <tbody>
+    <tr><td><strong>What are you trying to do?</strong></td><td>One-sentence goal, no jargon. The sharpest version of your elevator pitch.</td><td><em>Theory of Change §1&ndash;2</em></td></tr>
+    <tr><td><strong>How is it done today?</strong></td><td>Current practice and its specific limits. The bottleneck stated crisply.</td><td><em>Bottleneck Statement §1&ndash;2</em></td></tr>
+    <tr><td><strong>What is new in your approach?</strong></td><td>Why your intervention is the right lever. What changes if you fund this.</td><td><em>Bottleneck §3&ndash;4 + Field Mapping §4</em></td></tr>
+    <tr><td><strong>Who cares?</strong></td><td>Named transition actors and what they get. The downstream unlock.</td><td><em>Transition Memo §1&ndash;2</em></td></tr>
+    <tr><td><strong>What are the risks?</strong></td><td>Technical, structural, and transition risks with mitigations.</td><td><em>Theory of Change §5 + Transition §3</em></td></tr>
+    <tr><td><strong>How much will it cost, and how long?</strong></td><td>ROM budget and timeline. Sketch of phases.</td><td><em>Program design (2-pager)</em></td></tr>
+    <tr><td><strong>Why now / why you?</strong></td><td>The counterfactual: why this won&rsquo;t happen without your program.</td><td><em>Theory of Change §2 + Field Mapping §6</em></td></tr>
+  </tbody>
+</table>
+
+<h2>Page 1 &mdash; What, How today, What&rsquo;s new</h2>
+<div class="field-block">
+  <div class="field-label">Write here (aim for ~300 words)</div>
+  <div class="field-hint">Pull from your Bottleneck Statement and Theory of Change causal chain.</div>
+  <div class="field-area" style="min-height:160px">Write here&#8230;</div>
+</div>
+
+<h2>Page 2 &mdash; Who cares, Risks, Budget sketch</h2>
+<div class="field-block">
+  <div class="field-label">Write here (aim for ~300 words)</div>
+  <div class="field-hint">Pull from your Transition Landscape Memo and Theory of Change §5.</div>
+  <div class="field-area" style="min-height:160px">Write here&#8230;</div>
+</div>
+
+<h2>Page 3 &mdash; Why now / why you, and the ask</h2>
+<div class="field-block">
+  <div class="field-label">Write here (aim for ~200 words + a clean ask statement)</div>
+  <div class="field-hint">The counterfactual argument. Close with a specific, concrete ask.</div>
+  <div class="field-area" style="min-height:140px">Write here&#8230;</div>
+</div>
+
+<h2>Reviewer rubric</h2>
+<table>
+  <thead><tr><th style="width:60%">Criterion</th><th>Pass / Flag</th></tr></thead>
+  <tbody>
+    <tr><td>Is the bottleneck statement specific and falsifiable?</td><td></td></tr>
+    <tr><td>Is the causal chain to impact made explicit with assumptions named?</td><td></td></tr>
+    <tr><td>Are named transition actors and their requirements identified?</td><td></td></tr>
+    <tr><td>Does the program design follow from field mapping, including acknowledged disagreements?</td><td></td></tr>
+    <tr><td>Is the counterfactual argument (why this won&rsquo;t happen without you) compelling?</td><td></td></tr>
+    <tr><td>Is the ask specific &mdash; budget, timeline, structure?</td><td></td></tr>
+  </tbody>
+</table>
+
+<div class="mentor-box">
+  <div class="mentor-box-header">&#x1F4DD;&nbsp; Mentor feedback</div>
+  <div class="mentor-box-body">Mentor notes here&hellip;</div>
+</div>
+
+</div>
+<div class="page-nav">
+  <a href="04_Transition_Landscape_Memo.html">&#8592; Transition Landscape Memo</a>
+  <span style="flex:1"></span>
+  <span></span>
+</div>
+</body>
+</html>

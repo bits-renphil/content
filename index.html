@@ -130,6 +130,28 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;
   display:flex;align-items:center;gap:.3rem}
 .page-nav a:hover{text-decoration:underline}
 
+
+/* Template cards */
+.template-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.tmpl-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;
+  background:var(--white);transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden}
+.tmpl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--gold);opacity:0;transition:opacity .2s}
+.tmpl-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#fde68a}
+.tmpl-card:hover::before{opacity:1}
+.tmpl-num{display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;background:#fef9c3;color:#b45309;
+  font-weight:800;font-size:.85rem;flex-shrink:0}
+.tmpl-meta{display:flex;align-items:center;gap:.6rem}
+.tmpl-week{font-size:.7rem;font-weight:700;background:var(--light);color:var(--muted);
+  border-radius:20px;padding:2px 9px;letter-spacing:.04em}
+.tmpl-card h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.3}
+.tmpl-desc{font-size:.84rem;color:var(--muted);line-height:1.55;flex:1}
+.tmpl-links{display:flex;gap:.75rem;align-items:center;margin-top:.25rem}
+.tmpl-link{font-size:.8rem;font-weight:600;color:var(--accent)}
+.tmpl-dl{font-size:.8rem;font-weight:600;color:var(--muted)}
+
 /* About / Footer */
 .about-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .about-inner{max-width:1140px;margin:0 auto;padding:3rem 2rem;
@@ -160,6 +182,7 @@ footer a:hover{color:#fff}
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#curriculum">Curriculum</a></li>
     <li><a href="index.html#case-studies">Case Studies</a></li>
+    <li><a href="index.html#templates">Templates</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
 </nav>
@@ -172,6 +195,7 @@ footer a:hover{color:#fff}
   <div class="hero-badges">
     <span class="badge">8 Curriculum Chapters</span>
     <span class="badge">2 Case Studies</span>
+    <span class="badge">5 Fellow Templates</span>
     <span class="badge">ARPA · SPRIND · ARIA</span>
   </div>
 </header>
@@ -290,6 +314,85 @@ footer a:hover{color:#fff}
         <a class="case-link" href="case-studies/Case_Study_DARPA_Triage_Challenge.html">Read case study →</a>
       </div>
     </div></div>
+</section>
+
+
+<hr class="divider"/>
+
+<section class="section" id="templates">
+  <div class="section-header">
+    <div class="section-label">Fellow Artefacts</div>
+    <h2 class="section-title">Programme Templates</h2>
+    <p class="section-subtitle">Five structured templates that build incrementally toward the final Heilmeier Concept Note. Each can be completed in the .docx or filled in directly on the web page.</p>
+  </div>
+  <div class="template-grid">
+
+    <div class="tmpl-card">
+      <div class="tmpl-meta">
+        <div class="tmpl-num">1</div>
+        <span class="tmpl-week">Due Week 4</span>
+      </div>
+      <h3>Theory of Change</h3>
+      <p class="tmpl-desc">A 1-page causal chain from your intervention to impact. Every step stated as a falsifiable assumption — including what would prove you wrong.</p>
+      <div class="tmpl-links">
+        <a class="tmpl-link" href="templates/01_Theory_of_Change.html">View template →</a>
+        <a class="tmpl-dl" href="🛰️ BiTS Resources/BiTS_Template_1_Theory_of_Change.docx">&#11015; .docx</a>
+      </div>
+    </div>
+
+    <div class="tmpl-card">
+      <div class="tmpl-meta">
+        <div class="tmpl-num">2</div>
+        <span class="tmpl-week">Due Week 5</span>
+      </div>
+      <h3>Bottleneck Statement</h3>
+      <p class="tmpl-desc">Isolate the single rate-limiting step and argue why it&rsquo;s the right leverage point. Opens with a forced sentence: &ldquo;The rate-limiting step is ___ because ___.&rdquo;</p>
+      <div class="tmpl-links">
+        <a class="tmpl-link" href="templates/03_Bottleneck_Statement.html">View template →</a>
+        <a class="tmpl-dl" href="🛰️ BiTS Resources/BiTS_Template_3_Bottleneck_Statement.docx">&#11015; .docx</a>
+      </div>
+    </div>
+
+    <div class="tmpl-card">
+      <div class="tmpl-meta">
+        <div class="tmpl-num">3</div>
+        <span class="tmpl-week">Due Week 6</span>
+      </div>
+      <h3>Field Mapping Synthesis</h3>
+      <p class="tmpl-desc">Structured synthesis of your exploration conversations, including a disagreement log, negative space analysis, and how your initial hunch changed.</p>
+      <div class="tmpl-links">
+        <a class="tmpl-link" href="templates/02_Field_Mapping_Synthesis.html">View template →</a>
+        <a class="tmpl-dl" href="🛰️ BiTS Resources/BiTS_Template_2_Field_Mapping_Synthesis.docx">&#11015; .docx</a>
+      </div>
+    </div>
+
+    <div class="tmpl-card">
+      <div class="tmpl-meta">
+        <div class="tmpl-num">4</div>
+        <span class="tmpl-week">Due Week 9</span>
+      </div>
+      <h3>Transition Landscape Memo</h3>
+      <p class="tmpl-desc">Name the specific actors who would pick up your program if it succeeds, what they need to see first, and the risks that could still prevent adoption.</p>
+      <div class="tmpl-links">
+        <a class="tmpl-link" href="templates/04_Transition_Landscape_Memo.html">View template →</a>
+        <a class="tmpl-dl" href="🛰️ BiTS Resources/BiTS_Template_4_Transition_Landscape_Memo.docx">&#11015; .docx</a>
+      </div>
+    </div>
+
+    <div class="tmpl-card" style="border-color:#fca5a5">
+      <div class="tmpl-meta">
+        <div class="tmpl-num" style="background:#fee2e2;color:#b91c1c">&#x2764;</div>
+        <span class="tmpl-week" style="background:#fee2e2;color:#b91c1c">Due Wks 11–12</span>
+      </div>
+      <h3>Heilmeier Concept Note</h3>
+      <p class="tmpl-desc">The final synthesis deliverable. A structured 3-page funding pitch that draws directly from all four artefacts above, answering the seven Heilmeier questions.</p>
+      <div class="tmpl-links">
+        <a class="tmpl-link" href="templates/05_Heilmeier_Concept_Note.html">View template →</a>
+        <a class="tmpl-dl" href="🛰️ BiTS Resources/BiTS_Syllabus_Fall_2025_Revised.docx">&#11015; Revised syllabus</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <hr class="divider"/>
