@@ -32,7 +32,7 @@
 
 [✍️The Little Details: Tactics for Refining Ideas](#✍️the-little-details:-tactics-for-refining-ideas)
 
-[🧐Assumptions \- Hypotheses \- Impacts](#🧐assumptions---hypotheses---impacts)
+[🧐Assumptions - Hypotheses - Impacts](#🧐assumptions---hypotheses---impacts)
 
 [🎨Wireframes](#🎨wireframes)
 
@@ -96,7 +96,7 @@ While the Heilmeier Catechism provides a strong foundation, specific, targeted q
 
 * **What happens after this program?** DARPA's mission is to unlock technologies with real-world impact, but that impact often depends on others carrying the work forward once DARPA's involvement ends. Whether it’s through further research, nonprofits, open-source communities, startups, or established companies integrating the technology, it’s essential to plan for this transition from the outset. Impact doesn’t happen by accident—de-risking the transition and securing future pathways for your work should be part of your strategy from day one. Some PMs fail to prioritize this and only consider transition risks late in the program, which can undermine the project’s potential.
 
-This is why planning for transition and engaging with potential users should be a central focus during your exploration and idea refinement. If you cannot disentangle the idea of planning an R\&D project with transition partners in mind from some mental stereotype of myopic, applied research, then I encourage you to read [this piece](https://www.freaktakes.com/p/how-did-places-like-bell-labs-know) on how Bell Labs leveraged its systems engineers to ensure its exploratory researchers were asking the most useful, ambitious questions they could. This application-centric approach, though less common today, was a hallmark of mid-20th-century R\&D powerhouses like Bell Labs, GE Research, and MIT (see these pieces for details on [Bell Labs](https://www.freaktakes.com/p/how-did-places-like-bell-labs-know), [GE Research](https://www.freaktakes.com/p/irving-langmuir-the-general-electric), and [MIT](https://www.freaktakes.com/p/a-progress-studies-history-of-early-001)). DARPA PM-style roles remain one of the few in the R\&D ecosystem that allow you to contribute to this tradition of visionary, application-driven research. Embrace that opportunity, don’t hide from it.
+This is why planning for transition and engaging with potential users should be a central focus during your exploration and idea refinement. If you cannot disentangle the idea of planning an R&D project with transition partners in mind from some mental stereotype of myopic, applied research, then I encourage you to read [this piece](https://www.freaktakes.com/p/how-did-places-like-bell-labs-know) on how Bell Labs leveraged its systems engineers to ensure its exploratory researchers were asking the most useful, ambitious questions they could. This application-centric approach, though less common today, was a hallmark of mid-20th-century R&D powerhouses like Bell Labs, GE Research, and MIT (see these pieces for details on [Bell Labs](https://www.freaktakes.com/p/how-did-places-like-bell-labs-know), [GE Research](https://www.freaktakes.com/p/irving-langmuir-the-general-electric), and [MIT](https://www.freaktakes.com/p/a-progress-studies-history-of-early-001)). DARPA PM-style roles remain one of the few in the R&D ecosystem that allow you to contribute to this tradition of visionary, application-driven research. Embrace that opportunity, don’t hide from it.
 
 When considering whether a problem truly requires DARPA’s involvement, it’s important to ask: Does solving this problem really need DARPA? How confident are we that this won’t happen without us? Several ways to break this question down include:
 
@@ -109,7 +109,7 @@ When considering whether a problem truly requires DARPA’s involvement, it’s 
 
 If the impacts would be extraordinary if the project succeeded, why hasn’t it been done yet? Answer this with as much detail and specificity as possible. This will form the foundation of your marketing pitch for the program. Keep in mind, people will cross-check your understanding with the very groups you say are uninterested or unable to tackle the problem for specific reasons. Being thorough and accurately representing differing viewpoints, even if you disagree with them, is crucial. Failing to do so can erode trust in your future assessments.
 
-By rigorously addressing these questions, you can uncover whether your office is uniquely positioned to take on a project that the broader R\&D ecosystem may otherwise overlook. Keeping the concept of comparative advantage at the front of your mind during the idea refinement stages will help guide you towards initiatives that your office is particularly well-suited to pursue.
+By rigorously addressing these questions, you can uncover whether your office is uniquely positioned to take on a project that the broader R&D ecosystem may otherwise overlook. Keeping the concept of comparative advantage at the front of your mind during the idea refinement stages will help guide you towards initiatives that your office is particularly well-suited to pursue.
 
 ---
 
@@ -130,11 +130,11 @@ Now that we’ve covered what makes a program distinctly DARPA-worthy, let’s m
 
 This section offers concrete tactics you can incorporate into your idea refinement process.
 
-### 🧐**Assumptions \- Hypotheses \- Impacts** {#🧐assumptions---hypotheses---impacts}
+### 🧐**Assumptions - Hypotheses - Impacts** {#🧐assumptions---hypotheses---impacts}
 
 This first tactic helps you codify and communicate your reasoning behind why your program is a good idea. It bridges the gap between your thinking and writing, allowing you to effectively share and refine your ideas with others.
 
-Start by creating a high-level Assumptions \- Hypotheses \- Impacts outline:
+Start by creating a high-level Assumptions - Hypotheses - Impacts outline:
 
 1. **Assumptions**: List all your assumptions about the program concept, problem, or field. Include any problem or bottleneck statements that frame your understanding.  
 2. **Hypotheses**: Write down what you believe will or could be true. Some of these will be predictions, while others will depend on factors you can influence, usually through funding or coordinating research.  

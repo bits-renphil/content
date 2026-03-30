@@ -5,7 +5,7 @@
 | BLUF: For any program to succeed, PMs must organize and fundraise effectively. Great ideas rarely speak for themselves. It’s the PM’s job to clearly communicate with stakeholders from the inception of the idea to the program’s conclusion. To communicate your vision well, you need to think clearly about every aspect of the program. Ask yourself: What’s the upside? Why does our organization need to work on this? What are the technical challenges? Why are those challenges solvable? Who benefits from this? Can the project transition to real-world use with reasonable funding from our office? |
 | :---- |
 
-**⚡Practical Outcome:** By the end of this module, PMs should have concise (\~30-second) responses to these questions, tailored for different stakeholders—funders, performers, transition partners, etc. For tricky questions, rehearsing responses is useful. Getting to the heart of the matter quickly is critical for success, as many will need a clear, general understanding of your project to become involved.
+**⚡Practical Outcome:** By the end of this module, PMs should have concise (~30-second) responses to these questions, tailored for different stakeholders—funders, performers, transition partners, etc. For tricky questions, rehearsing responses is useful. Getting to the heart of the matter quickly is critical for success, as many will need a clear, general understanding of your project to become involved.
 
 [👥 Stakeholders to Consider](#👥-stakeholders-to-consider)
 
@@ -73,7 +73,7 @@ The three general categories your audience might fall into are:
 
 Collaborators & Doers are the groups (researchers, engineers, and firms) who will be doing the actual research and engineering work on the project — either for or with you depending on your organization. Consider their incentives:
 
-* **Traditional Private R\&D Firms**: Many firms in this space are incentivized to think about practical details like the billable hours on the contract and contract structure. Clear, compelling project scopes help win them over, but don’t forget—they're made up of engineers and scientists who are excited by innovative projects too!  
+* **Traditional Private R&D Firms**: Many firms in this space are incentivized to think about practical details like the billable hours on the contract and contract structure. Clear, compelling project scopes help win them over, but don’t forget—they're made up of engineers and scientists who are excited by innovative projects too!  
 * **Academics**: Researchers at universities tend to focus on the technical excitement of a project, but they also have practical incentives like publishing papers and gaining recognition in their field. Understanding their academic goals can help you tailor your pitch effectively.  
 * **Startups**: Venture-funded companies can offer a mix of flexibility and top talent, but they are often laser-focused on hitting milestones that drive revenue, scale, or raising additional VC funding. If your project aligns with their technical goals, it’s a good fit—otherwise, it might get de-prioritized.
 
@@ -121,7 +121,7 @@ When pitching your project, whether to performers or management, it's key to hig
 
 For example, if you’re funding mostly academics, make sure you highlight what aspects of your project go beyond what the NSF would normally support. Your pitch should emphasize what your organization brings that’s different—maybe it's tackling an idea academia has already worked on but requires a professional engineering collaboration to make the technology useful in the real world. Sell what your program will do that won’t be done without it.
 
-Individuals going through the BiTs program might be looking to spin up an externally contracted coordinated research program — such as a DARPA program. They also might be looking to set up an organization uniquely suited to handling R\&D problems that fall between the cracks in the current ecosystem — such as a Focused Research Organization (FRO) or a BBN-model performer. For any of these goals, highlight the gaps your program fills and the value it creates in areas other institutions do not emphasize. (The rest of this section explores how to do this with DARPA-style programs. FROs and BBN-model orgs are similarly covered in the appendix.)
+Individuals going through the BiTs program might be looking to spin up an externally contracted coordinated research program — such as a DARPA program. They also might be looking to set up an organization uniquely suited to handling R&D problems that fall between the cracks in the current ecosystem — such as a Focused Research Organization (FRO) or a BBN-model performer. For any of these goals, highlight the gaps your program fills and the value it creates in areas other institutions do not emphasize. (The rest of this section explores how to do this with DARPA-style programs. FROs and BBN-model orgs are similarly covered in the appendix.)
 
 ### **Comparative Advantages of DARPA-Style Programs:** {#comparative-advantages-of-darpa-style-programs:}
 

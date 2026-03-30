@@ -7,7 +7,7 @@
 
 **⚡Practical outcomes:**
 
-* An overview of existing R\&D efforts  
+* An overview of existing R&D efforts  
 * An analysis of the rationale behind each group's focus  
 * Identification of bottlenecks within the current landscape  
 * Potential new applications and capabilities that could emerge from overcoming these bottlenecks  
@@ -38,7 +38,7 @@ The two-pager doesn’t need to be perfect at this stage, as it will be tightene
 
 [📚DARPA’s MOSIS: A Case Study in Field Exploration](#📚darpa’s-mosis:-a-case-study-in-field-exploration)
 
-[The R\&D Landscape and Bottlenecks](#the-r&d-landscape-and-bottlenecks)
+[The R&D Landscape and Bottlenecks](#the-r&d-landscape-and-bottlenecks)
 
 [Mead and Conway’s Contributions](#mead-and-conway’s-contributions)
 
@@ -74,7 +74,7 @@ In pursuit of these technically ambitious goals, thorough exploration and field 
 
 * **🤝Networking**: Building a working knowledge and network of people and organizations whose work aligns with your program’s goal. This involves understanding both the technical details of their work and the incentives and culture of various organizations.  
 * **🔎Bottleneck Analysis**: Identifying the limits of current practice, highlighting key bottlenecks to progress, and crafting a clear narrative of what could happen if these bottlenecks were overcome.  
-* **👥User Engagement**: Learning about the practical need for your program by engaging with potential users, and understanding what existing R\&D efforts do and don’t address in this area.  
+* **👥User Engagement**: Learning about the practical need for your program by engaging with potential users, and understanding what existing R&D efforts do and don’t address in this area.  
 * **🧠Field Knowledge:** Gaining detailed insight into the progress, challenges, and trends within relevant fields.
 
 This knowledge is not only crucial for designing a program but is also key to effectively managing it. During this stage, a PM should develop enough expertise and a strong enough network to accurately project the probability of success, timelines, and the management needs of different project groups.
@@ -85,11 +85,11 @@ This knowledge is not only crucial for designing a program but is also key to ef
 
 **On the networking side, you'll reach out to researchers and industry veterans with the fervor of a startup founder.** For PMs with academic backgrounds, this aspect may feel less familiar than the technical side. Remember, while some successful companies have built things their users didn’t explicitly ask for, most first talked to everyone with an opinion. It’s crucial to understand the preferences and thought processes of all relevant groups before taking action. It’s fine to challenge conventional wisdom, but you must fully understand why that wisdom exists.
 
-**Don’t wait to start networking.** It’s a mistake to read thousands of pages before beginning outreach. The temptation to learn everything beforehand is understandable, but it will slow your progress. As soon as you develop a hunch about what your program might look like, a gap in the R\&D ecosystem or a potential intersection between fields, start reaching out.
+**Don’t wait to start networking.** It’s a mistake to read thousands of pages before beginning outreach. The temptation to learn everything beforehand is understandable, but it will slow your progress. As soon as you develop a hunch about what your program might look like, a gap in the R&D ecosystem or a potential intersection between fields, start reaching out.
 
 **Share your ideas early.** Bring your hunch to the best people possible. Be clear about what excites you, what you know, and what you don’t, and ask specific questions. Start reaching out sooner rather than later—many people will schedule meetings weeks in advance, giving you plenty of time to read between the initial email and the actual meeting.
 
-**People are often pretty open.** Academics, industry veterans, and potential users are often eager to share what they believe is missing in the R\&D ecosystem. Hear them out, understand what’s possible, and what’s needed, and use this knowledge to build a solid program hypothesis that can guide your efforts.
+**People are often pretty open.** Academics, industry veterans, and potential users are often eager to share what they believe is missing in the R&D ecosystem. Hear them out, understand what’s possible, and what’s needed, and use this knowledge to build a solid program hypothesis that can guide your efforts.
 
 **It is enough to begin with a few key contacts.** Even if you only know a few people with relevant expertise, that’s enough to start. During your meetings, ask for connections to others who can answer your questions. Most people will offer at least one name, allowing you to continue your search, rinse, and repeat as you go.
 
@@ -99,7 +99,7 @@ Knowing when you know enough. How do you know when you’ve done enough explorat
 
 As a PM, your goal is to identify a valuable idea and successfully execute a program around it. The idea doesn’t need to be entirely original or something that no one has ever thought of before. Academia often emphasizes the importance of coming up with something “qualitatively new,” but this mindset isn’t necessary in your project brainstorming role as a PM.
 
-DARPA doesn’t have its own labs; it operates akin to a very hands-on funder. As a PM, you’re more of an orchestrator of R\&D efforts than a direct contributor. You should apply this same mindset to the conception of your program. You will be the idea’s most passionate advocate, whether it’s entirely yours, someone else’s, or a blend of both. What matters is not where the idea comes from, but how well you can rally support, manage resources, and drive the project to success. Your job is to curate the best ideas and combine them into a great program—one that you’ll be managing for years to come.
+DARPA doesn’t have its own labs; it operates akin to a very hands-on funder. As a PM, you’re more of an orchestrator of R&D efforts than a direct contributor. You should apply this same mindset to the conception of your program. You will be the idea’s most passionate advocate, whether it’s entirely yours, someone else’s, or a blend of both. What matters is not where the idea comes from, but how well you can rally support, manage resources, and drive the project to success. Your job is to curate the best ideas and combine them into a great program—one that you’ll be managing for years to come.
 
 ### **DARPA’s Comparative Advantages** {#darpa’s-comparative-advantages}
 
@@ -107,7 +107,7 @@ When deciding what your program should achieve, it’s crucial to understand DAR
 
 * **PM Autonomy**: As a DARPA PM, you have the freedom to pursue what you believe is best without interference from nitpicky panels. This level of autonomy is rare and enables bold decision-making.  
 * **Ambitious, Applied Goals**: DARPA programs are distinctive in their combination of ambitious goals with a clear focus on a specific end user. This dual focus is uncommon in the broader U.S. scientific funding ecosystem.  
-* **Ability To Fill Cracks in the R\&D Ecosystem**: DARPA is open to betting on areas that other funding sources avoid due to structural constraints. This allows for innovative programs that other agencies might overlook.  
+* **Ability To Fill Cracks in the R&D Ecosystem**: DARPA is open to betting on areas that other funding sources avoid due to structural constraints. This allows for innovative programs that other agencies might overlook.  
 * **Systems Engineering-style Goals**: A good DARPA program is usually (though not always) more than the sum of its parts. There are various ways of structuring a program to achieve this (e.g. the collaboration vs. competition tradeoff) but perhaps the most important technique is the use of teams that are specifically focussed on the challenges of integrating project outputs and/or designing and executing (sometimes quite complex) evaluations that clarify and drive performers toward the program goals. 
 
 Make the most of DARPA’s comparative advantages by designing programs that no other funding body would be able to support. This is where DARPA truly excels.
@@ -172,7 +172,7 @@ Next, we’ll explore a DARPA case study. The goal of this case study is twofold
 
 The MOSIS program from the 1980s is a classic example of how great programs can often emerge not from strokes of genius, but from straightforward field exploration and decisive action. This case study will highlight the early stages of the project and consider how different decisions could have led to alternative outcomes.
 
-### **The R\&D Landscape and Bottlenecks** {#the-r&d-landscape-and-bottlenecks}
+### **The R&D Landscape and Bottlenecks** {#the-r&d-landscape-and-bottlenecks}
 
 In the late 1970s, printing a single chip wafer could cost researchers the equivalent of tens of thousands of dollars today. This was especially problematic since many applications required custom-designed chips. Securing a chip run on a manufacturer’s fab was also time-consuming and caused researchers major headaches. Manufacturers who used their excess fab capacity to print bespoke chips tended to use their own specialized syntax for encoding designs. Getting designs to conform to each manufacturer’s standard was a major tax on researcher time. These cost and logistical challenges were major bottlenecks, hindering academic progress in a rapidly growing field. Additionally, if a research project led to commercialization, researchers had to worry about incumbent competitors having access to their chip designs—a significant concern that added to the inefficiency of the system.
 
@@ -212,7 +212,7 @@ It is not hard to imagine that a PM thoroughly exploring the technical landscape
 
 1. **Finding an Industry Partner Yourself**: A PM might find someone like Mead who has an idea but needs funding and industry connections to get started. The PM could help find collaborators like Conway to drive the project forward. This hypothetical Mead might not know a Conway or much about the industry at all. The PM might have to spearhead the industry engagement aspect and find a Conway-like figure to serve as the industry-savvy performer themself.  
 2. **Sourcing a Dedicated Contractor**: A PM might discover an academic with an idea and an industry designer who can execute it, but you might have to find completely different performers to actually run the program. Many people have good ideas but only want to focus on their specific job, no more.   
-3. **Coming Up with the Idea**: A PM might need to generate the idea themselves through extensive reading and networking, then find the right people to develop it. This would involve bringing the ideas to individuals like Mead and Conway to see if they are possible. Since times have changed, the PM might also need to fund a third group to broker agreements between R\&D groups and manufacturers – or to fund a group to operate a pilot-scale fab for chip types that aren’t popular with existing manufacturers.
+3. **Coming Up with the Idea**: A PM might need to generate the idea themselves through extensive reading and networking, then find the right people to develop it. This would involve bringing the ideas to individuals like Mead and Conway to see if they are possible. Since times have changed, the PM might also need to fund a third group to broker agreements between R&D groups and manufacturers – or to fund a group to operate a pilot-scale fab for chip types that aren’t popular with existing manufacturers.
 
 The more vigorously you network and read the technical literature, the more likely you are to come across a ripe but undeveloped project idea. This is all-important in almost all cases. In this one specific case, it was less critical because Mead and Conway were exceptional individuals—more entrepreneurial and dedicated to improving chip design than most would be in their position. More commonly, individuals in their position might come up with the idea and then forget about it, or they’d discuss it at a conference bar, say someone should do it, and then go back to their actual jobs. If a PM does their job excellently, they will find these ideas that often float into the aether and die at conferences because it’s nobody’s job to work on them. 
 
@@ -245,7 +245,7 @@ Whether or not you’re part of a network affects how you approach it:
 * **When you’re part of a network**: Start with the people you have the most social capital with—those you can ask “dumb” questions and who are likely to be most helpful.  
 * **When you’re not part of a network**: Before diving in, read some literature (blog posts, papers, books) to get a basic understanding. These resources might not be perfect, but they’ll give you a starting point for people and questions. Don’t spend too long on this; the goal is to start conversations. Once you have some initial questions, reach out to corresponding authors or relevant firms and go from there. Attending a conference or visiting a department can also be a great way to meet people.
 
-It can be tempting to aim for the highest-status individuals in a network, but that’s not always the best strategy. Focus on the people most useful for building what you’re trying to build, not just those with the most social capital. The “best” people can sometimes prove most helpful to you, but don’t be surprised if someone with a less famous name is far and away the most useful person to you. The existing R\&D ecosystem often rewards behaviors and work that are unrelated to what makes DARPA-style projects succeed.
+It can be tempting to aim for the highest-status individuals in a network, but that’s not always the best strategy. Focus on the people most useful for building what you’re trying to build, not just those with the most social capital. The “best” people can sometimes prove most helpful to you, but don’t be surprised if someone with a less famous name is far and away the most useful person to you. The existing R&D ecosystem often rewards behaviors and work that are unrelated to what makes DARPA-style projects succeed.
 
 At first, many conversations won’t seem useful, and that’s okay! Your goal is to emerge from your exploration with a single great idea that, if executed well, could make a big difference. It’s crucial to develop a solid understanding of and good relationships with the groups relevant to your program. You’ll quickly learn which people and resources are the most useful to take the time to know and understand. But this will be a learning-by-doing process. You’ll learn how to avoid useless connections as you go.
 

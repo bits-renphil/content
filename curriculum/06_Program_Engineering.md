@@ -2,7 +2,7 @@
 
 **Chapter 6: Engineering a Coordinated Research Program (CRP)**
 
-| BLUF: Once your program idea is approved and funded, PMs must focus on securing and organizing the teams responsible for executing the R\&D. This involves soliciting proposals, negotiating contracts, and moving from planning to action. At this stage, PMs will collaborate with their office staff to issue and secure proposals, finalize contracts, and initiate key processes. This is where strategic thinking transitions into concrete decisions and actions. |
+| BLUF: Once your program idea is approved and funded, PMs must focus on securing and organizing the teams responsible for executing the R&D. This involves soliciting proposals, negotiating contracts, and moving from planning to action. At this stage, PMs will collaborate with their office staff to issue and secure proposals, finalize contracts, and initiate key processes. This is where strategic thinking transitions into concrete decisions and actions. |
 | :---- |
 
 **⚡Practical Outcome**: By the end of this section, PMs should have a clear understanding of the specific steps needed to turn their approved idea and funding into a program that is off and running. While the details may vary by agency and office, upon completing this module you will gain a clear idea of how to initiate project solicitations and refine program budgets.
@@ -27,7 +27,7 @@
 
 As you begin to actually do things, you’ll need to be adaptable. You’ll have had a plan. Parts of the plan won’t survive first contact with reality. You’ll have to constantly adjust your program design based on how things unfold in the action-oriented stages of the program.
 
-In this program engineering stage, it pays to dedicate yourself to the minutiae of the processes in your specific office. Dedicate yourself to understanding the small things that are more administration than R\&D. These small details are vital to your program’s success.
+In this program engineering stage, it pays to dedicate yourself to the minutiae of the processes in your specific office. Dedicate yourself to understanding the small things that are more administration than R&D. These small details are vital to your program’s success.
 
 Figure out how things are done in your office: what legal constraints are non-negotiable, where there’s flexibility, and how to navigate the system to support your program. Doing this will allow you to have as much freedom and power as you can without getting sued, fired, or going to prison!
 
@@ -45,13 +45,13 @@ Throughout this process, remain diligent, resourceful, and opportunistic—those
 
 ## **🕵️‍♂️ The Importance of Identifying Performers** {#🕵️‍♂️-the-importance-of-identifying-performers}
 
-In DARPA-style programs, there are no in-house labs or research teams. While PMs develop the vision, the performers are the ones who execute the R\&D. PMs can influence incentives and actively manage the program, but ultimately, the success hinges on the performers you choose. Selecting the right performers might be the most crucial decision PMs make.
+In DARPA-style programs, there are no in-house labs or research teams. While PMs develop the vision, the performers are the ones who execute the R&D. PMs can influence incentives and actively manage the program, but ultimately, the success hinges on the performers you choose. Selecting the right performers might be the most crucial decision PMs make.
 
 The wrong approach is to simply issue a Request for Proposals (RFP) and assume the best candidates will naturally apply. You need to actively engage with top groups, selling them on why they should submit a bid to do the work. This involves going beyond a passive RFP process—you must proactively seek out the best performers.
 
 However, be aware that your organization may have specific rules regarding how you can solicit and engage with potential performers. This is especially true if you are part of a well-established government office. For example, some organizations mandate an open call for any grant, contract, or position. Even under these restrictions, you should (where permitted) identify the groups you want to work with, ensure they are aware of the opportunity, and encourage them to apply.
 
-The top performers may not have worked with your office before—and some may not even know how to apply. If it’s legal and possible, go the extra mile to bring these groups into the running. Engage with your legal and administrative teams to explore options like new performer programs or specific grants that might help bring fresh talent into your project. While this requires more effort, securing the best teams is crucial for your program’s success. R\&D success depends as much on securing the right talent and expertise as it does on identifying the right research question.
+The top performers may not have worked with your office before—and some may not even know how to apply. If it’s legal and possible, go the extra mile to bring these groups into the running. Engage with your legal and administrative teams to explore options like new performer programs or specific grants that might help bring fresh talent into your project. While this requires more effort, securing the best teams is crucial for your program’s success. R&D success depends as much on securing the right talent and expertise as it does on identifying the right research question.
 
 There are several tactics you can use to ensure you find the best performers. Some of these best practices mirror those used in the program exploration stage, but they bear repeating here. Some effective strategies include:
 
@@ -81,7 +81,7 @@ The specifics of how you draft a solicitation will depend on your organization�
 * **Emphasize What You Don’t Want**: Spend time clarifying what you’re not looking for as well as what you are. This helps avoid irrelevant submissions. If you have specific constraints or a clear metric of success in mind, clearly flag this in the solicitation.   
 * **Stay Open to Unexpected Approaches**: To encourage creativity and innovative solutions, don’t prescribe exact solutions. Ensure that your goals and metrics clearly target the problem you’re solving or the capability you're building. This leaves room for diverse approaches. For example, if you're seeking highly efficient vehicles, asking for a motor that gets 100 miles per gallon could exclude electric or fuel-cell vehicles, which might meet your goal more effectively.  
 * **If Possible, Provide a Sample**. It is often helpful for those making proposals to see an example of what you would consider a good proposal. If it is easy to do and will not negatively impact the proposals in some way, provide a sample. ARIA recently did this with their [Request for Opportunities](https://www.aria.org.uk/request-for-opps/).  
-* **Use Letters of Intent (LOIs)**: Before calling for full proposals, request short (\~2-page) LOIs. The LOI request should resemble the full solicitation but with fewer details (e.g., no detailed budgets or timelines). Using LOIs has several advantages:  
+* **Use Letters of Intent (LOIs)**: Before calling for full proposals, request short (~2-page) LOIs. The LOI request should resemble the full solicitation but with fewer details (e.g., no detailed budgets or timelines). Using LOIs has several advantages:  
   1. **Saves Time**: After reviewing LOIs, most full proposals will be high-quality because they’ve received initial approval from you, saving time for both reviewers and applicants.  
   2. **Refines the Solicitation**: Reviewing LOIs helps you identify common misunderstandings or elements you’d like to see more of in full proposals, allowing you to refine the solicitation.  
   3. **Targets Desired Groups**: If certain disciplines or labs don’t submit LOIs, you can actively reach out to encourage them to apply.  

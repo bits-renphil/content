@@ -56,7 +56,7 @@ In the design phase you will continue to iterate on your Big Four HQs and answer
 * What are the risks?  
   * *This should include the technical blockers you’ve already identified, transition/adoption challenges, program structure risks, etc.*   
 * How much will it cost?  
-  * *We’ll cover this later, for now just calibrate to something like more than $10M but less than \~$100M.*   
+  * *We’ll cover this later, for now just calibrate to something like more than $10M but less than ~$100M.*   
 * How long will it take?  
   * *What is time? Use this prompt to think about sequencing, phase structure and intermediate milestones.*  
 * What are the midterm and final "exams" to check for success?  
@@ -232,7 +232,7 @@ No matter how technically ambitious your program is, you should be designing wit
 
 ## **💰Budgeting for a Coordinated Research Program** {#💰budgeting-for-a-coordinated-research-program}
 
-There is no algorithm for figuring out a program’s budget. Budgeting for large programs is often a bundle of tricks that you will use to come up with numbers that get you in the right ballpark. But attempting to take approaches that give overly granular predictions on a very noisy process is not helpful. The budget should be as firm as it can be, accounting for all the line items you know will contribute to your costs. But, also, R\&D projects inherently deal with technical unknowns. Budget for your program in a way that allows you the flexibility to deal with and take advantage of unknowns.
+There is no algorithm for figuring out a program’s budget. Budgeting for large programs is often a bundle of tricks that you will use to come up with numbers that get you in the right ballpark. But attempting to take approaches that give overly granular predictions on a very noisy process is not helpful. The budget should be as firm as it can be, accounting for all the line items you know will contribute to your costs. But, also, R&D projects inherently deal with technical unknowns. Budget for your program in a way that allows you the flexibility to deal with and take advantage of unknowns.
 
 At a high level, your budgeting process will likely combine the following approaches:
 
@@ -262,7 +262,7 @@ In many cases, your program’s budget will be driven less by its ideal cost and
 
 ### **Getting Started on Your Budget** {#getting-started-on-your-budget}
 
-Your budget won’t be perfect—ambitious R\&D is inherently uncertain. However, budgeting is a skill, and with diligence, you can achieve a high level of accuracy. Skunk Works’ Kelly Johnson, for example, was famous for his ability to estimate R\&D budgets within 5-10% of the final cost. Being thorough in your budgeting process, research, and associated networking can help you be much more accurate.
+Your budget won’t be perfect—ambitious R&D is inherently uncertain. However, budgeting is a skill, and with diligence, you can achieve a high level of accuracy. Skunk Works’ Kelly Johnson, for example, was famous for his ability to estimate R&D budgets within 5-10% of the final cost. Being thorough in your budgeting process, research, and associated networking can help you be much more accurate.
 
 Here are steps to get your budgeting process on the right track:
 
