@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiTS × SPRIND Webinar</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:      #FFFDFA;
+    --dark:    #16161D;
+    --coral:   #ED663C;
+    --coral2:  #F87248;
+    --gray:    #6B6B75;
+    --light:   #F3F3F3;
+    --border:  #E0DDD8;
+  }
+
+  body {
+    background: #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    user-select: none;
+  }
+
+  /* ── Slide container ── */
+  #stage {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    transform-origin: top center;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 1280px;
+    height: 720px;
+    background: var(--bg);
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+  }
+  .slide.active { display: flex; }
+
+  /* ── Shared header bar ── */
+  .hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 44px 0;
+    flex-shrink: 0;
+  }
+  .hdr img { height: 32px; }
+  .hdr-right { display: flex; align-items: center; gap: 16px; }
+
+  /* ── Shared footer ── */
+  .ftr {
+    margin-top: auto;
+    padding: 14px 44px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  /* ── Watermark circles ── */
+  .circles-bg {
+    position: absolute;
+    right: -160px;
+    bottom: -160px;
+    width: 680px;
+    height: 680px;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  /* ── SLIDE 1 – Title ── */
+  #s1 .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 80px 20px;
+    position: relative;
+  }
+  #s1 .tagline {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--coral);
+    line-height: 1.5;
+    max-width: 420px;
+    margin-bottom: 36px;
+    letter-spacing: 0.01em;
+  }
+  #s1 h1 {
+    font-size: 58px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.1;
+    max-width: 680px;
+    margin-bottom: 28px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  #s1 .date {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    color: var(--gray);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+  #s1 .logos-top {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 44px 0;
+    flex-shrink: 0;
+  }
+  #s1 .logos-top img { height: 28px; }
+  #s1 .logo-sep {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+  }
+
+  /* ── SLIDE 2 – About ── */
+  #s2 .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0 44px 0;
+  }
+  #s2 .left {
+    padding: 28px 40px 20px 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #s2 .left h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 18px;
+    line-height: 1.25;
+  }
+  #s2 .left p {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  #s2 .right {
+    padding: 28px 0 20px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+  }
+  #s2 .pillar-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+  #s2 .pillar-text {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+  #s2 .pillar { padding-left: 16px; border-left: 3px solid var(--coral); }
+
+  /* ── SLIDE 3 – Mentors ── */
+  #s3 .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 0;
+    padding: 0 44px 0;
+    overflow: hidden;
+  }
+  #s3 .mentor-list {
+    padding: 10px 36px 10px 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #s3 .mentor-list ul {
+    list-style: none;
+    columns: 2;
+    column-gap: 32px;
+  }
+  #s3 .mentor-list li {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: var(--dark);
+    line-height: 1.45;
+    margin-bottom: 10px;
+    break-inside: avoid;
+    padding-left: 14px;
+    position: relative;
+  }
+  #s3 .mentor-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+  #s3 .mentor-list li strong { color: var(--dark); font-weight: 600; }
+  #s3 .mentor-list li span { color: var(--gray); }
+  #s3 .photos {
+    padding: 20px 0 20px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  #s3 .photos img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    filter: grayscale(20%);
+  }
+  #s3 .photos img:first-child { width: 120px; height: 120px; }
+  #s3 h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--dark);
+    padding: 18px 44px 12px;
+    flex-shrink: 0;
+  }
+
+  /* ── SLIDE 4 – Cohort ── */
+  #s4 .body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 44px 10px;
+    overflow: hidden;
+  }
+  #s4 .body img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  #s4 h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--dark);
+    padding: 14px 44px 10px;
+    flex-shrink: 0;
+  }
+
+  /* ── SLIDE 5 – Success Stories ── */
+  #s5 .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 0 60px 20px;
+    align-items: center;
+  }
+  .story-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .story-card .top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .story-card img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: grayscale(15%);
+  }
+  .story-card .name {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .story-card .org {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 3px;
+  }
+  .story-card .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .story-card .tag {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--coral);
+    background: rgba(237,102,60,0.08);
+    border: 1px solid rgba(237,102,60,0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+  .story-card .project-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.35;
+  }
+  .story-card .project-desc {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12.5px;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+  #s5 h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--dark);
+    padding: 14px 60px 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── SLIDE 6 – Demo Day ── */
+  #s6 {
+    position: relative;
+  }
+  #s6 .bg-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #s6 .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(22,22,29,0.55) 0%, rgba(22,22,29,0.15) 100%);
+  }
+  #s6 .content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 44px 20px;
+  }
+  #s6 .bits-logo-white {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #s6 .q-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* ── SLIDE 7 – SPRIND ── */
+  #s7 .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0 44px 20px;
+  }
+  #s7 .left {
+    padding: 20px 36px 10px 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #s7 .sprind-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 10px;
+  }
+  #s7 .left p {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  #s7 .right {
+    padding: 20px 0 10px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #s7 .dates-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 20px;
+    letter-spacing: 0.01em;
+  }
+  #s7 .date-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  #s7 .date-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--coral);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  #s7 .date-text {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13.5px;
+    color: var(--dark);
+    line-height: 1.45;
+  }
+  #s7 .date-text strong { font-weight: 600; color: var(--dark); }
+  #s7 .date-text span { color: var(--gray); }
+  #s7 h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--dark);
+    padding: 14px 44px 10px;
+    flex-shrink: 0;
+  }
+
+  /* ── Shared slide title ── */
+  .slide-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark);
+    padding: 16px 44px 8px;
+    flex-shrink: 0;
+  }
+
+  /* ── Navigation ── */
+  #nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
+  }
+  #nav button {
+    background: #444;
+    border: none;
+    color: #ccc;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #nav button:hover { background: var(--coral); color: #fff; }
+  #nav button:disabled { background: #333; color: #555; cursor: default; }
+  #counter {
+    color: #999;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .dot-nav {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #555;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .dot.active { background: var(--coral); transform: scale(1.3); }
+
+  /* Scale to viewport */
+  @media screen {
+    body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 1 – Title
+  ══════════════════════════════════════════════ -->
+  <div class="slide active" id="s1">
+    <!-- Watermark circles -->
+    <svg class="circles-bg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="195" stroke="#16161D" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="148" stroke="#16161D" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="100" stroke="#16161D" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="52" stroke="#16161D" stroke-width="1.5"/>
+    </svg>
+
+    <div class="logos-top" style="display:flex;align-items:center;gap:20px;padding:20px 44px 0;flex-shrink:0;">
+      <img src="media/rp_logo.png" style="height:30px;" alt="Renaissance Philanthropy">
+      <div style="width:1px;height:26px;background:var(--border);"></div>
+      <img src="media/bits_logo.png" style="height:24px;" alt="BiTS">
+    </div>
+
+    <div class="body">
+      <div class="tagline">A brighter future for all through science, technology, and innovation.</div>
+      <h1>Big if True Science Accelerator</h1>
+      <div class="date">May 26, 2026</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 2 – About BiTS
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="s2">
+    <div class="hdr">
+      <img src="media/bits_logo.png" alt="BiTS">
+    </div>
+
+    <div class="slide-title">Big if True Science (BiTS) Accelerator</div>
+
+    <div class="body">
+      <div class="left">
+        <h2>Supporting ARPA-like<br>managed research programs</h2>
+        <p>BiTS supports the development and launch of more ARPA-like managed research programs. The program recruits early to mid-career research talent with big-if-true ideas, helps them develop into program leaders with actionable research visions, and matches them to a host institution like DARPA, ARPA-H, ARIA, ARPA-E, and FROs.</p>
+      </div>
+      <div class="right">
+        <div class="pillar">
+          <div class="pillar-label">Curriculum</div>
+          <div class="pillar-text">We use a curriculum developed by experienced ARPA PMs and historians and a practical course on program design.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">Mentorship</div>
+          <div class="pillar-text">We connect participants to experienced former ARPA PMs and provide networking opportunities.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">Events</div>
+          <div class="pillar-text">Fellows participate in various events including a Demo Day to conclude the experience.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ftr">Big if True Science Accelerator</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 3 – Mentors
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="s3">
+    <div class="hdr">
+      <img src="media/bits_logo.png" alt="BiTS">
+    </div>
+
+    <h2 style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:26px;font-weight:700;color:var(--dark);padding:14px 44px 10px;flex-shrink:0;">Outstanding mentors</h2>
+
+    <div class="body">
+      <div class="mentor-list">
+        <ul>
+          <li><strong>Joeanna Arthur</strong><br><span>Former DARPA program manager</span></li>
+          <li><strong>Anne Cheever</strong><br><span>RAND Fellow; former DARPA PM</span></li>
+          <li><strong>Mike Fiddy</strong><br><span>Emeritus Professor, UNC; former DARPA PM</span></li>
+          <li><strong>Anne Fischer</strong><br><span>Chief Technologist, Intellectual Ventures; former DARPA office Deputy Director</span></li>
+          <li><strong>Justin Gallivan</strong><br><span>Senior Program Director, W.M. Keck Foundation; former DARPA PM</span></li>
+          <li><strong>David Markowitz</strong><br><span>Chief Scientist, STR; former IARPA PM</span></li>
+          <li><strong>Cheryl Martin</strong><br><span>Founder, Harwich Partners; former ARPA-E Director</span></li>
+          <li><strong>Patrick McGrath</strong><br><span>Program Director, Schmidt Family Foundation; former ARPA-E Deputy Director</span></li>
+          <li><strong>Sandeep Patel</strong><br><span>Entrepreneur and former BARDA DRIVe Director</span></li>
+          <li><strong>Brad Ringeisen</strong><br><span>Executive Director, Innovative Genomics Institute; former DARPA office Deputy Director</span></li>
+          <li><strong>Jane Roskams</strong><br><span>Distinguished Professor, UBC; Senior Advisor, Convergent; Founder & CEO, Cascadia Drug Discovery Network</span></li>
+          <li><strong>Renee Wegrzyn</strong><br><span>Co-founder, transfer.ai; former ARPA-H Inaugural Director and DARPA PM</span></li>
+        </ul>
+      </div>
+      <div class="photos">
+        <img src="media/renee.png" alt="Renee Wegrzyn">
+        <img src="media/mentor2.png" alt="Mentor">
+        <img src="media/mentor3.png" alt="Mentor">
+      </div>
+    </div>
+
+    <div class="ftr">Big if True Science Accelerator</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 4 – 2025 Cohort
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="s4">
+    <div class="hdr">
+      <img src="media/bits_logo.png" alt="BiTS">
+    </div>
+
+    <h2>Our 2025 cohort</h2>
+
+    <div class="body">
+      <img src="media/fellows_grid.png" alt="Fellows">
+    </div>
+
+    <div class="ftr">Big if True Science Accelerator</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 5 – Success Stories
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="s5">
+    <div class="hdr">
+      <img src="media/bits_logo.png" alt="BiTS">
+    </div>
+
+    <h2>Early Success Stories</h2>
+
+    <div class="body">
+      <div class="story-card">
+        <div class="top">
+          <img src="media/ida_tin.png" alt="Ida Tin">
+          <div>
+            <div class="name">Ida Tin</div>
+            <div class="org">Femtech Assembly</div>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">SPRIND</span>
+          <span class="tag">2025</span>
+        </div>
+        <div class="project-title">Continuous Real-Time Hormone Monitoring</div>
+        <div class="project-desc">Building continuous, real-time monitoring of all four key female sex hormones, creating the sensing infrastructure to transform women's health from reactive symptom management to precise, data-driven care across fertility, menopause and hormonal conditions.</div>
+      </div>
+
+      <div class="story-card">
+        <div class="top">
+          <img src="media/artem.png" alt="Artem Mishchenko">
+          <div>
+            <div class="name">Artem Mishchenko</div>
+            <div class="org">University of Manchester</div>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">ARIA</span>
+          <span class="tag">2025</span>
+        </div>
+        <div class="project-title">Quantum Materials Discovery Catalyst (qdisc)</div>
+        <div class="project-desc">Building the world's first ImageNet-scale experimental dataset for quantum materials, powered by an autonomous AI-robotics foundry. Combines a multi-agent AI prediction engine, a robotic lab and an open database to boost data generation by 1000x and produce over 1 million datapoints in three years.</div>
+      </div>
+    </div>
+
+    <div class="ftr">Big if True Science Accelerator</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 6 – Demo Day
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="s6">
+    <img class="bg-photo" src="media/demo_day.png" alt="Berlin Demo Day">
+    <div class="overlay"></div>
+    <div class="content">
+      <div>
+        <!-- SVG BiTS logo in white -->
+        <svg width="120" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 4 A12 12 0 1 0 14 28" stroke="#ED663C" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <line x1="28" y1="4" x2="28" y2="32" stroke="#ED663C" stroke-width="1.5"/>
+          <text x="36" y="24" font-family="Helvetica Neue, Arial, sans-serif" font-size="15" font-weight="700" fill="white" letter-spacing="0.05em">BiTS</text>
+        </svg>
+      </div>
+      <div></div>
+      <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Big if True Science Accelerator</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 7 – SPRIND Cohort
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="s7">
+    <div class="hdr">
+      <img src="media/bits_logo.png" alt="BiTS">
+    </div>
+
+    <h2>SPRIND cohort</h2>
+
+    <div class="body">
+      <div class="left">
+        <div class="sprind-label">About the program</div>
+        <p>BiTS is running a dedicated cohort in partnership with SPRIND — Germany's Federal Agency for Disruptive Innovation. Fellows will develop actionable research visions and be matched to host institutions including DARPA, ARPA-H, ARIA, ARPA-E, and FROs.</p>
+      </div>
+      <div class="right">
+        <div class="dates-title">Key dates</div>
+        <div class="date-item">
+          <div class="date-dot"></div>
+          <div class="date-text"><strong>7 June</strong> <span>— Applications close</span></div>
+        </div>
+        <div class="date-item">
+          <div class="date-dot"></div>
+          <div class="date-text"><strong>Week of 15 June</strong> <span>— Interviews for shortlisted applicants</span></div>
+        </div>
+        <div class="date-item">
+          <div class="date-dot"></div>
+          <div class="date-text"><strong>26 June</strong> <span>— Offers sent</span></div>
+        </div>
+        <div class="date-item">
+          <div class="date-dot"></div>
+          <div class="date-text"><strong>13–15 July</strong> <span>— In-person kick-off, Germany</span></div>
+        </div>
+        <div class="date-item">
+          <div class="date-dot"></div>
+          <div class="date-text"><strong>5 November</strong> <span>— ExhiBiTS demo day, Berlin</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ftr">Big if True Science Accelerator</div>
+  </div>
+
+</div><!-- /stage -->
+
+<!-- Navigation -->
+<div id="nav">
+  <button id="prev" onclick="go(-1)" title="Previous (←)">&#8592;</button>
+  <div class="dot-nav" id="dots"></div>
+  <button id="next" onclick="go(1)" title="Next (→)">&#8594;</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  let cur = 0;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => show(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    dotsContainer.children[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(n, slides.length - 1));
+    slides[cur].classList.add('active');
+    dotsContainer.children[cur].classList.add('active');
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === slides.length - 1;
+  }
+
+  function go(delta) { show(cur + delta); }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+
+  show(0);
+
+  // Scale to viewport
+  function scaleStage() {
+    const stage = document.getElementById('stage');
+    const vw = window.innerWidth - 40;
+    const vh = window.innerHeight - 100;
+    const scale = Math.min(vw / 1280, vh / 720);
+    stage.style.transform = `scale(${scale})`;
+    stage.style.marginBottom = `${(720 * scale - 720)}px`;
+  }
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+</script>
+
+</body>
+</html>
